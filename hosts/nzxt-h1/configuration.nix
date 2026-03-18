@@ -48,6 +48,14 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
+  # Allow unfree packages.
+  nixpkgs.config.allowUnfree = true;
+
+  # Enable the NVIDIA graphics drivers.
+  hardware.graphics.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.open = true;
+  hardware.nvidia.modesetting.enable = true;
 
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
