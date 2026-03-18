@@ -66,13 +66,11 @@
   # services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  # users.users.alice = {
-  #   isNormalUser = true;
-  #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-  #   packages = with pkgs; [
-  #     tree
-  #   ];
-  # };
+  users.users.echo = {
+    isNormalUser = true;
+    description = "Eugén Cowie";
+    extraGroups = [ "networkmanager" "wheel" ];
+  };
 
   # programs.firefox.enable = true;
 
