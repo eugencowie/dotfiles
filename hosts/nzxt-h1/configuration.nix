@@ -17,7 +17,8 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # networking.hostName = "nixos"; # Define your hostname.
+  # Define your hostname.
+  networking.hostName = "nzxt-h1";
 
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;

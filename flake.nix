@@ -6,9 +6,9 @@
 
   outputs = inputs@{ self, nixpkgs, ... }: {
     nixosConfigurations = {
-      # NOTE: 'nixos' is the default hostname
-      nixos = nixpkgs.lib.nixosSystem {
-        modules = [ ./hosts/nixos/configuration.nix ];
+      # Configuration for NZXT H1
+      nzxt-h1 = nixpkgs.lib.nixosSystem {
+        modules = [ ./hosts/nzxt-h1/configuration.nix ];
       };
     };
   };
