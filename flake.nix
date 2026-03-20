@@ -54,10 +54,7 @@
       system = "x86_64-linux";
       modules = [
         nixos-wsl.nixosModules.default
-        {
-          system.stateVersion = "25.11";
-          wsl.enable = true;
-        }
+        ./hosts/hp-250-g9/configuration.nix
       ];
     };
 
