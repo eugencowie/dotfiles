@@ -20,6 +20,13 @@
   programs.zsh.enable = true;
   users.users.nixos.shell = pkgs.zsh;
 
+  # Manage user environment
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.nixos = import ./home.nix;
+  };
+
   # Required for VS Code Server
   programs.nix-ld.enable = true;
 
