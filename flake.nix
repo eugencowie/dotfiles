@@ -13,7 +13,10 @@
     };
 
     # Module for running NixOS on Windows Subsystem for Linux
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Module for managing user environments
     home-manager = {
