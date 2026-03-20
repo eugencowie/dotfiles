@@ -63,6 +63,13 @@
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
+  # Manage user environment
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.echo = import ./home.nix;
+  };
+
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
