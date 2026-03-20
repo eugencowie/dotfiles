@@ -1,8 +1,11 @@
 { config, lib, pkgs, ... }: {
- 
+
   # Enable support for running NixOS as a WSL distribution
   wsl.enable = true;
   wsl.defaultUser = "nixos";
+
+  # Set the hostname
+  networking.hostName = "hp-250-g9";
  
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

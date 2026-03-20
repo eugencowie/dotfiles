@@ -49,8 +49,8 @@
       ];
     };
 
-    # Configuration for NixOS-WSL
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    # Configuration for HP 250 G9
+    nixosConfigurations.hp-250-g9 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         nixos-wsl.nixosModules.default
