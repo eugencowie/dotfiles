@@ -8,6 +8,12 @@
     syntaxHighlighting.enable = true;
   };
 
+  # Enable Starship
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "nixos";
