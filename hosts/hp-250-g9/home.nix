@@ -1,5 +1,13 @@
 { config, pkgs, ... }: {
 
+  # Enable Zsh
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+  };
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "nixos";
