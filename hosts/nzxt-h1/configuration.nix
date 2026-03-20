@@ -67,7 +67,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.echo = import ./home.nix;
+    users.echo = import ../../users/echo/home.nix;
   };
 
   # Enable flakes
