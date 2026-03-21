@@ -1,6 +1,5 @@
-{ config, pkgs, ... }:
+{ config, pkgs, ... }: {
 
-{
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "echo";
@@ -15,7 +14,4 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "25.11";
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 }
