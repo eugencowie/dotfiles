@@ -43,7 +43,7 @@
   hardware.nvidia.open = true;
   hardware.nvidia.modesetting.enable = true;
 
-  # Enable the GNOME Desktop Environment.
+  # Enable the GNOME Desktop Environment
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
@@ -62,6 +62,9 @@
     description = "Eugén Cowie";
     extraGroups = [ "networkmanager" "wheel" ];
   };
+
+  # Enable flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
