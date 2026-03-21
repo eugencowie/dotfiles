@@ -56,6 +56,14 @@
     pulse.enable = true;
   };
 
+  # Enable streaming with sunshine
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
+
   # Define the user account
   users.users.echo = {
     isNormalUser = true;
