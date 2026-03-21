@@ -82,6 +82,9 @@
     users.echo = import ../../users/echo/home.nix;
   };
 
+  # Enable the OpenSSH daemon
+  services.openssh.enable = true;
+
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
