@@ -67,12 +67,19 @@
     capSysAdmin = true;
     openFirewall = true;
   };
+  services.udev.extraRules = ''
+    KERNEL=="uinput", MODE="0660", GROUP="input", OPTIONS+="static_node=uinput"
+  '';
 
   # Define the user account
   users.users.echo = {
     isNormalUser = true;
     description = "Eugén Cowie";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "input" # needed for sunshine
+      "networkmanager"
+      "wheel"
+    ];
   };
 
   # Manage user environment
