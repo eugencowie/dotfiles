@@ -1,5 +1,14 @@
 { config, pkgs, ... }: {
 
+  # Enable Git
+  programs.git = {
+    enable = true;
+    settings = {
+      user.name = "Eugén Cowie";
+      user.email = "eugencowie@users.noreply.github.com";
+    };
+  };
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "echo";
