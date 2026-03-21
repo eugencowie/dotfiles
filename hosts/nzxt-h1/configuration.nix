@@ -10,9 +10,16 @@
       ./hardware-configuration.nix
     ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # Use the GRUB EFI boot loader.
+  boot.loader.grub = {
+    device = "nodev";
+    efiSupport = true;
+    useOSProber = true;
+  };
+  boot.loader.efi = {
+    canTouchEfiVariables = true;
+    efiSysMountPoint = "/boot/efi";
+  };
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -24,14 +31,14 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "Europe/London";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_GB.UTF-8";
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
@@ -41,6 +48,14 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
+  # Allow unfree packages.
+  nixpkgs.config.allowUnfree = true;
+
+  # Enable the NVIDIA graphics drivers.
+  hardware.graphics.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.open = true;
+  hardware.nvidia.modesetting.enable = true;
 
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
@@ -54,25 +69,24 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound.
-  # services.pulseaudio.enable = true;
-  # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
+  # Enable sound with pipewire.
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  # users.users.alice = {
-  #   isNormalUser = true;
-  #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-  #   packages = with pkgs; [
-  #     tree
-  #   ];
-  # };
+  users.users.echo = {
+    isNormalUser = true;
+    description = "Eugén Cowie";
+    extraGroups = [ "networkmanager" "wheel" ];
+  };
 
   # programs.firefox.enable = true;
 
