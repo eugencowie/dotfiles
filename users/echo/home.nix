@@ -9,6 +9,18 @@
     };
   };
 
+  # Configure GNOME
+  dconf = {
+    enable = true;
+    settings = {
+      "org/gnome/mutter" = {
+        experimental-features = [
+          "scale-monitor-framebuffer" # fractional scaling
+        ];
+      };
+    };
+  };
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "echo";
@@ -23,4 +35,5 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "25.11";
+
 }
