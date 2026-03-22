@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }: {
 
-  imports = [
-    # Include the results of the hardware scan
-    ./hardware-configuration.nix
-  ];
+  # Include the results of the hardware scan
+  imports = [ ./hardware-configuration.nix ];
 
   # Use the GRUB EFI boot loader
   boot.loader.grub = {
@@ -34,10 +32,8 @@
   # Enable the X11 windowing system
   services.xserver.enable = true;
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   # Enable the NVIDIA graphics drivers
+  nixpkgs.config.allowUnfree = true;
   hardware.graphics.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.open = true;
@@ -45,10 +41,6 @@
 
   # Enable the GNOME Desktop Environment
   services.displayManager.gdm.enable = true;
-  services.displayManager.autoLogin = {
-    enable = true;
-    user = "echo";
-  };
   services.desktopManager.gnome.enable = true;
 
   # Enable sound with pipewire
@@ -70,6 +62,10 @@
   services.udev.extraRules = ''
     KERNEL=="uinput", MODE="0660", GROUP="input", OPTIONS+="static_node=uinput"
   '';
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "echo";
+  };
 
   # Define the user account
   users.users.echo = {
@@ -113,4 +109,5 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "25.11"; # Did you read the comment?
+
 }
