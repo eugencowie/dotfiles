@@ -32,7 +32,6 @@
 
     # Configuration for MacBook Air M1
     darwinConfigurations.macbook-air-m1 = nix-darwin.lib.darwinSystem {
-      specialArgs = { inherit self inputs; };
       modules = [
         ./hosts/macbook-air-m1/configuration.nix
       ];
