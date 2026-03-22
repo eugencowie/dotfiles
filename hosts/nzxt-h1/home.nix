@@ -59,6 +59,9 @@
   programs.lazyvim.enable = true;
   programs.neovim.defaultEditor = true;
 
+  # Enable Zed editor
+  programs.zed-editor.enable = true;
+
   # Enable Ghostty
   programs.ghostty = {
     enable = true;
