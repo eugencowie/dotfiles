@@ -2,4 +2,9 @@ update:
 	nix flake update
 
 install:
-	nixos-rebuild switch --flake .
+	@case "$$(uname -s)" in \
+		Darwin) darwin-rebuild switch --flake . ;; \
+		*) nixos-rebuild switch --flake . ;; \
+	esac
+
+.PHONY: update install
