@@ -51,7 +51,6 @@
 
     # Configuration for HP 250 G9
     nixosConfigurations.hp-250-g9 = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
       modules = [
         nixos-wsl.nixosModules.default
         ./hosts/hp-250-g9/configuration.nix
