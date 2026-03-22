@@ -82,7 +82,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.echo = import ../../users/echo/home.nix;
+    users.echo = import ./home.nix;
   };
 
   # Enable the OpenSSH daemon
