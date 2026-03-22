@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }: {
 
-  imports = [
-    # Include the results of the hardware scan
-    ./hardware-configuration.nix
-  ];
+  # Include the results of the hardware scan
+  imports = [ ./hardware-configuration.nix ];
 
   # Use the GRUB EFI boot loader
   boot.loader.grub = {
@@ -34,10 +32,8 @@
   # Enable the X11 windowing system
   services.xserver.enable = true;
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   # Enable the NVIDIA graphics drivers
+  nixpkgs.config.allowUnfree = true;
   hardware.graphics.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.open = true;
@@ -56,11 +52,30 @@
     pulse.enable = true;
   };
 
+  # Enable streaming with sunshine
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
+  services.udev.extraRules = ''
+    KERNEL=="uinput", MODE="0660", GROUP="input", OPTIONS+="static_node=uinput"
+  '';
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "echo";
+  };
+
   # Define the user account
   users.users.echo = {
     isNormalUser = true;
     description = "Eugén Cowie";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "input" # needed for sunshine
+      "networkmanager"
+      "wheel"
+    ];
   };
 
   # Manage user environment
@@ -69,6 +84,9 @@
     useUserPackages = true;
     users.echo = import ../../users/echo/home.nix;
   };
+
+  # Enable the OpenSSH daemon
+  services.openssh.enable = true;
 
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -91,4 +109,5 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "25.11"; # Did you read the comment?
+
 }
