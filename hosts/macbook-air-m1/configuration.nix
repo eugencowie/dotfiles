@@ -9,6 +9,18 @@
     pkgs.vim
   ];
 
+  # Define the user account
+  users.users.eugen = {
+    home = "/Users/eugen";
+  };
+
+  # Manage user environment
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.eugen = import ./home.nix;
+  };
+
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
