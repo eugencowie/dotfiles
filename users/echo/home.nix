@@ -9,6 +9,9 @@
     };
   };
 
+  # Enable make
+  home.packages = [ pkgs.gnumake ];
+
   # Configure GNOME
   dconf = {
     enable = true;
