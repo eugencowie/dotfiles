@@ -3,6 +3,9 @@
   # Include the results of the hardware scan
   imports = [ ./hardware-configuration.nix ];
 
+  # Define the hostname
+  networking.hostName = "macbook-air-m1";
+
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = [
