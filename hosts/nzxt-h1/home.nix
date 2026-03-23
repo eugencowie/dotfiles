@@ -9,6 +9,14 @@
     };
   };
 
+  # Enable Jujutsu
+  programs.jujutsu = {
+    enable = true;
+    settings = {
+      user = config.programs.git.settings.user;
+    };
+  };
+
   # Enable make
   home.packages = [ pkgs.gnumake ];
 
