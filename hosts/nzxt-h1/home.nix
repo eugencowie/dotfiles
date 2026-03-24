@@ -33,8 +33,22 @@
   programs.lazyvim.enable = true;
   programs.neovim.defaultEditor = true;
 
-  # Enable make
-  home.packages = [ pkgs.gnumake ];
+  # Enable Ghostty
+  programs.ghostty = {
+    enable = true;
+    settings = {
+      font-family = "IosevkaTerm NF";
+    };
+  };
+
+  # Enable font support
+  fonts.fontconfig.enable = true;
+
+  # Install user packages
+  home.packages = with pkgs; [
+    nerd-fonts.iosevka-term
+    gnumake
+  ];
 
   # Configure GNOME
   dconf = {
