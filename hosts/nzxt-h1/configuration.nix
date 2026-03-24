@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, inputs, ... }: {
 
   # Include the results of the hardware scan
   imports = [ ./hardware-configuration.nix ];
@@ -82,6 +82,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
+    extraSpecialArgs = { inherit inputs; };
     users.echo = import ./home.nix;
   };
 
