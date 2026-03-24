@@ -13,6 +13,21 @@
     syntaxHighlighting.enable = true;
   };
 
+  # Enable Starship
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      git_branch.disabled = true;
+      git_status.disabled = true;
+      custom.jj = {
+        when = "jj-starship detect";
+        shell = [ "jj-starship" ];
+        format = "$output ";
+      };
+    };
+  };
+
   # Enable Git
   programs.git = {
     enable = true;
@@ -56,6 +71,7 @@
   # Install user packages
   home.packages = with pkgs; [
     nerd-fonts.iosevka-term
+    jj-starship
     gnumake
   ];
 
