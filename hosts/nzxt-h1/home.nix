@@ -1,4 +1,9 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, inputs, ... }: {
+
+  imports = [
+    # Module for managing LazyVim in Home Manager
+    inputs.lazyvim-nix.homeManagerModules.default
+  ];
 
   # Enable Git
   programs.git = {
@@ -23,6 +28,10 @@
       };
     };
   };
+
+  # Enable LazyVim
+  programs.lazyvim.enable = true;
+  programs.neovim.defaultEditor = true;
 
   # Enable make
   home.packages = [ pkgs.gnumake ];

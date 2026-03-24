@@ -18,12 +18,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Module for managing LazyVim in Home Manager
+    lazyvim-nix = {
+      url = "github:pfassina/lazyvim-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager, ... }: {
 
     # Configuration for NZXT H1
     nixosConfigurations.nzxt-h1 = nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs; };
       modules = [
         home-manager.nixosModules.home-manager
         ./hosts/nzxt-h1/configuration.nix
