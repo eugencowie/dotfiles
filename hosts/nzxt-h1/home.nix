@@ -5,6 +5,14 @@
     inputs.lazyvim-nix.homeManagerModules.default
   ];
 
+  # Enable Zsh
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+  };
+
   # Enable Git
   programs.git = {
     enable = true;
@@ -36,6 +44,7 @@
   # Enable Ghostty
   programs.ghostty = {
     enable = true;
+    enableZshIntegration = true;
     settings = {
       font-family = "IosevkaTerm NF";
     };
