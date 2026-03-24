@@ -28,6 +28,12 @@
     };
   };
 
+  # Enable Zellij
+  programs.zellij = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   # Enable Git
   programs.git = {
     enable = true;
