@@ -67,10 +67,14 @@
     user = "echo";
   };
 
+  # Enable Zsh
+  programs.zsh.enable = true;
+
   # Define the user account
   users.users.echo = {
     isNormalUser = true;
     description = "Eugén Cowie";
+    shell = pkgs.zsh;
     extraGroups = [
       "input" # needed for sunshine
       "networkmanager"
