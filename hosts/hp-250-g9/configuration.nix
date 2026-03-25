@@ -6,7 +6,13 @@
 
   # Set the hostname
   networking.hostName = "hp-250-g9";
- 
+
+  # Set the time zone
+  time.timeZone = "Europe/London";
+
+  # Set the locale
+  i18n.defaultLocale = "en_GB.UTF-8";
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It's perfectly fine and recommended to leave
