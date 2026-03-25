@@ -29,10 +29,7 @@
   };
 
   # Enable Zellij
-  programs.zellij = {
-    enable = true;
-    enableZshIntegration = true;
-  };
+  programs.zellij.enable = true;
 
   # Enable Git
   programs.git = {
@@ -61,6 +58,9 @@
   # Enable LazyVim
   programs.lazyvim.enable = true;
   programs.neovim.defaultEditor = true;
+
+  # Enable Zed editor
+  programs.zed-editor.enable = true;
 
   # Enable Ghostty
   programs.ghostty = {
