@@ -76,6 +76,7 @@
 
   # Install user packages
   home.packages = with pkgs; [
+    inputs.zen-browser.packages.x86_64-linux.zen-browser
     nerd-fonts.iosevka-term
     jj-starship
     opencode
