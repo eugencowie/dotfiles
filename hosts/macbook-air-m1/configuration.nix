@@ -6,15 +6,13 @@
   # Define the hostname
   networking.hostName = "macbook-air-m1";
 
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  environment.systemPackages = [
-    pkgs.vim
-  ];
+  # Enable Zsh
+  programs.zsh.enable = true;
 
   # Define the user account
   users.users.eugen = {
     home = "/Users/eugen";
+    shell = pkgs.zsh;
   };
 
   # Manage user environment
