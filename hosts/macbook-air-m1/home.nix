@@ -49,6 +49,7 @@
 
   # Install user packages
   home.packages = with pkgs; [
+    ghostty-bin
     jj-starship
     gnumake
   ];
