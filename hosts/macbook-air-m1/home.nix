@@ -47,9 +47,20 @@
     };
   };
 
+  # Enable Ghostty
+  programs.ghostty = {
+    enable = true;
+    enableZshIntegration = true;
+    package = pkgs.ghostty-bin;
+    settings = {
+      font-family = "IosevkaTerm NF";
+      font-size = 14;
+    };
+  };
+
   # Install user packages
   home.packages = with pkgs; [
-    ghostty-bin
+    nerd-fonts.iosevka-term
     jj-starship
     gnumake
   ];
