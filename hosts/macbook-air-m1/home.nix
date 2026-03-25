@@ -14,6 +14,20 @@
     enableZshIntegration = true;
   };
 
+  # Enable Git
+  programs.git = {
+    enable = true;
+    settings = {
+      user.name = "Eugén Cowie";
+      user.email = "eugencowie@users.noreply.github.com";
+    };
+  };
+
+  # Install user packages
+  home.packages = with pkgs; [
+    gnumake
+  ];
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "eugen";
