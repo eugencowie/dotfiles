@@ -29,10 +29,7 @@
   };
 
   # Enable Zellij
-  programs.zellij = {
-    enable = true;
-    enableZshIntegration = true;
-  };
+  programs.zellij.enable = true;
 
   # Enable Git
   programs.git = {
