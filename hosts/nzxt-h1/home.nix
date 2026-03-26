@@ -102,6 +102,9 @@
     };
   };
 
+  # Disable KDE Stylix target on GNOME host
+  stylix.targets.kde.enable = false;
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "echo";
