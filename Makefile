@@ -1,3 +1,9 @@
+check:
+	nix flake check
+
+show:
+	nix flake show
+
 update:
 	nix flake update
 
@@ -7,4 +13,4 @@ install:
 		*) nixos-rebuild switch --flake . ;; \
 	esac
 
-.PHONY: update install
+.PHONY: check show update install
