@@ -53,6 +53,7 @@
     nixosConfigurations.hp-250-g9 = nixpkgs.lib.nixosSystem {
       modules = [
         nixos-wsl.nixosModules.default
+        home-manager.nixosModules.home-manager
         ./hosts/hp-250-g9/configuration.nix
       ];
     };
