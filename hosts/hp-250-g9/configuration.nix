@@ -20,6 +20,9 @@
   programs.zsh.enable = true;
   users.users.nixos.shell = pkgs.zsh;
 
+  # Required for VS Code Server
+  programs.nix-ld.enable = true;
+
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
