@@ -12,6 +12,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Module for running NixOS on Windows Subsystem for Linux
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Module for managing user environments
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -32,7 +38,7 @@
 
   };
 
-  outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager, ... }: {
+  outputs = inputs@{ self, nixpkgs, nix-darwin, nixos-wsl, home-manager, ... }: {
 
     # Configuration for NZXT H1
     nixosConfigurations.nzxt-h1 = nixpkgs.lib.nixosSystem {
@@ -40,6 +46,14 @@
       modules = [
         home-manager.nixosModules.home-manager
         ./hosts/nzxt-h1/configuration.nix
+      ];
+    };
+
+    # Configuration for HP 250 G9
+    nixosConfigurations.hp-250-g9 = nixpkgs.lib.nixosSystem {
+      modules = [
+        nixos-wsl.nixosModules.default
+        ./hosts/hp-250-g9/configuration.nix
       ];
     };
 
