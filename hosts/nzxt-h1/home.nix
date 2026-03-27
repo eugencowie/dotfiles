@@ -63,7 +63,7 @@
   programs.opencode = {
     enable = true;
     settings = {
-      permissions.bash = "ask";
+      permission.bash = "ask";
     };
   };
 
