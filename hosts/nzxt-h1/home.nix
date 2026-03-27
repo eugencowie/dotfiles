@@ -59,6 +59,14 @@
   programs.lazyvim.enable = true;
   programs.neovim.defaultEditor = true;
 
+  # Enable OpenCode
+  programs.opencode = {
+    enable = true;
+    settings = {
+      permissions.bash = "ask";
+    };
+  };
+
   # Enable Zed editor
   programs.zed-editor.enable = true;
 
@@ -79,7 +87,6 @@
     inputs.zen-browser.packages.x86_64-linux.zen-browser
     nerd-fonts.iosevka-term
     jj-starship
-    opencode
     gnumake
   ];
 
