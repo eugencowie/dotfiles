@@ -1,40 +1,28 @@
 {
   inputs = {
 
-    # Official Nix packages collection
-    nixpkgs = {
-      url = "github:NixOS/nixpkgs/nixos-unstable";
-    };
+    # Nix packages collection and NixOS
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    # Module for managing macOS system configurations
-    nix-darwin = {
-      url = "github:nix-darwin/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Modules for running NixOS on Windows Subsystem for Linux
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
+    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Module for running NixOS on Windows Subsystem for Linux
-    nixos-wsl = {
-      url = "github:nix-community/NixOS-WSL";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Modules for managing macOS using Nix
+    nix-darwin.url = "github:nix-darwin/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Module for managing user environments
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # System for managing user environments using Nix
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # Module for managing LazyVim in Home Manager
-    lazyvim-nix = {
-      url = "github:pfassina/lazyvim-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    lazyvim-nix.url = "github:pfassina/lazyvim-nix";
+    lazyvim-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     # Flake providing Zen Browser packages
-    zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    zen-browser.url = "github:youwen5/zen-browser-flake";
+    zen-browser.inputs.nixpkgs.follows = "nixpkgs";
 
   };
 
