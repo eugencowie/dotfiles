@@ -16,6 +16,10 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Theming framework for NixOS, Home Manager, and nix-darwin
+    stylix.url = "github:nix-community/stylix";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
+
     # Module for managing LazyVim in Home Manager
     lazyvim-nix.url = "github:pfassina/lazyvim-nix";
     lazyvim-nix.inputs.nixpkgs.follows = "nixpkgs";
@@ -26,13 +30,14 @@
 
   };
 
-  outputs = inputs@{ self, nixpkgs, nix-darwin, nixos-wsl, home-manager, ... }: {
+  outputs = inputs@{ self, nixpkgs, nix-darwin, nixos-wsl, home-manager, stylix, ... }: {
 
     # Configuration for NZXT H1
     nixosConfigurations.nzxt-h1 = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
         home-manager.nixosModules.home-manager
+        stylix.nixosModules.stylix
         ./hosts/nzxt-h1/configuration.nix
       ];
     };
@@ -42,6 +47,7 @@
       modules = [
         nixos-wsl.nixosModules.default
         home-manager.nixosModules.home-manager
+        stylix.nixosModules.stylix
         ./hosts/hp-250-g9/configuration.nix
       ];
     };
@@ -50,6 +56,7 @@
     darwinConfigurations.macbook-air-m1 = nix-darwin.lib.darwinSystem {
       modules = [
         home-manager.darwinModules.home-manager
+        stylix.darwinModules.stylix
         ./hosts/macbook-air-m1/configuration.nix
       ];
     };
