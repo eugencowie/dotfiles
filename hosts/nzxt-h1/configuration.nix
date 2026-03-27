@@ -70,6 +70,13 @@
   # Enable Zsh
   programs.zsh.enable = true;
 
+  # Enable Stylix
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
+    polarity = "dark";
+  };
+
   # Define the user account
   users.users.echo = {
     isNormalUser = true;

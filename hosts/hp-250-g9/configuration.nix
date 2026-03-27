@@ -20,6 +20,12 @@
   programs.zsh.enable = true;
   users.users.nixos.shell = pkgs.zsh;
 
+  # Enable Stylix
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
+  };
+
   # Manage user environment
   home-manager = {
     useGlobalPkgs = true;
