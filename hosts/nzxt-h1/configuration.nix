@@ -8,6 +8,7 @@
     ../../modules/network/networkManager.nix
     ../../modules/time/europe/london.nix
     ../../modules/locale/english/british.nix
+    ../../modules/gpu/nvidia.nix
   ];
 
   # Define the hostname
@@ -16,17 +17,8 @@
   # Define user configuration
   my.user.name = "echo";
 
-  # Enable the X11 windowing system
-  services.xserver.enable = true;
-
-  # Enable the NVIDIA graphics drivers
-  nixpkgs.config.allowUnfree = true;
-  hardware.graphics.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.open = true;
-  hardware.nvidia.modesetting.enable = true;
-
   # Enable the GNOME Desktop Environment
+  services.xserver.enable = true;
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
