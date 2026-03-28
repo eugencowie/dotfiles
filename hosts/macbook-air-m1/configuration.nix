@@ -4,6 +4,7 @@
     ./hardware-configuration.nix
     ../../options/user.nix
     ../../modules/shell/zsh.nix
+    ../../modules/theme/catppuccin-macchiato.nix
   ];
 
   # Define the hostname
@@ -11,12 +12,6 @@
 
   # Define user configuration
   my.user.name = "eugen";
-
-  # Enable Stylix
-  stylix = {
-    enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
-  };
 
   # Define the user account
   users.users.eugen = {

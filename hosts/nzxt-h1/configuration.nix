@@ -13,6 +13,7 @@
     ../../modules/sound/pipewire.nix
     ../../modules/streaming/sunshine.nix
     ../../modules/shell/zsh.nix
+    ../../modules/theme/catppuccin-macchiato.nix
   ];
 
   # Define the hostname
@@ -20,13 +21,6 @@
 
   # Define user configuration
   my.user.name = "echo";
-
-  # Enable Stylix
-  stylix = {
-    enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
-    polarity = "dark";
-  };
 
   # Define the user account
   users.users.echo = {

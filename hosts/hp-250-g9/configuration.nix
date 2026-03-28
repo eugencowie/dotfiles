@@ -6,6 +6,7 @@
     ../../modules/time/europe/london.nix
     ../../modules/locale/english/british.nix
     ../../modules/shell/zsh.nix
+    ../../modules/theme/catppuccin-macchiato.nix
   ];
 
   # Enable support for running NixOS as a WSL distribution
@@ -17,12 +18,6 @@
 
   # Define user configuration
   my.user.name = "nixos";
-
-  # Enable Stylix
-  stylix = {
-    enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
-  };
 
   # Manage user environment
   home-manager = {
