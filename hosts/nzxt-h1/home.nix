@@ -8,6 +8,7 @@
     ../../modules/user/vcs/jujutsu.nix
     ../../modules/user/diff/meld.nix
     ../../modules/user/editor/lazyvim.nix
+    ../../modules/user/editor/zed.nix
   ];
 
   # Enable OpenCode
@@ -17,9 +18,6 @@
       permission.bash = "ask";
     };
   };
-
-  # Enable Zed editor
-  programs.zed-editor.enable = true;
 
   # Enable Ghostty
   programs.ghostty = {
