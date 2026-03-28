@@ -4,6 +4,7 @@
     ./hardware-configuration.nix
     ../../options/user.nix
     ../../modules/time/europe/london.nix
+    ../../modules/locale/english/british.nix
   ];
 
   # Enable support for running NixOS as a WSL distribution
@@ -15,9 +16,6 @@
 
   # Define user configuration
   my.user.name = "nixos";
-
-  # Set the locale
-  i18n.defaultLocale = "en_GB.UTF-8";
 
   # Set the login shell
   programs.zsh.enable = true;

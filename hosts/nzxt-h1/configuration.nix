@@ -7,6 +7,7 @@
     ../../modules/kernel/latest.nix
     ../../modules/network/networkManager.nix
     ../../modules/time/europe/london.nix
+    ../../modules/locale/english/british.nix
   ];
 
   # Define the hostname
@@ -14,9 +15,6 @@
 
   # Define user configuration
   my.user.name = "echo";
-
-  # Select internationalisation properties
-  i18n.defaultLocale = "en_GB.UTF-8";
 
   # Enable the X11 windowing system
   services.xserver.enable = true;
