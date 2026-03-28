@@ -6,23 +6,8 @@
     ../../modules/user/prompts/starship.nix
     ../../modules/user/multiplex/zellij.nix
     ../../modules/user/vcs/git.nix
+    ../../modules/user/vcs/jujutsu.nix
   ];
-
-  # Enable Jujutsu
-  programs.jujutsu = {
-    enable = true;
-    settings = {
-      user = config.programs.git.settings.user;
-      ui.merge-editor = "meld";
-      templates = {
-        new_description = ''
-          if(parents.len() == 2 && parents.get(0).bookmarks() && parents.get(1).bookmarks(),
-            "Merge branch '" ++ parents.get(1).bookmarks() ++ "' into " ++ parents.get(0).bookmarks()
-          )
-        '';
-      };
-    };
-  };
 
   # Enable LazyVim
   programs.lazyvim.enable = true;
