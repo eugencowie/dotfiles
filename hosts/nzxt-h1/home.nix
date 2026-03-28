@@ -4,10 +4,8 @@
     inputs.lazyvim-nix.homeManagerModules.default
     ../../modules/user/shell/zsh.nix
     ../../modules/user/prompts/starship.nix
+    ../../modules/user/multiplex/zellij.nix
   ];
-
-  # Enable Zellij
-  programs.zellij.enable = true;
 
   # Enable Git
   programs.git = {
