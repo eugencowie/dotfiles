@@ -17,9 +17,7 @@
   my.user.config = import ./home.nix;
 
   # Define the user account
-  users.users.eugen = {
-    home = "/Users/eugen";
-  };
+  users.users.eugen.home = "/Users/eugen";
 
   # Used for backwards compatibility, please read the changelog before changing:
   # $ darwin-rebuild changelog
