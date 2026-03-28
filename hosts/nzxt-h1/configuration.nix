@@ -9,6 +9,7 @@
     ../../modules/time/europe/london.nix
     ../../modules/locale/english/british.nix
     ../../modules/gpu/nvidia.nix
+    ../../modules/desktop/gnome.nix
   ];
 
   # Define the hostname
@@ -16,11 +17,6 @@
 
   # Define user configuration
   my.user.name = "echo";
-
-  # Enable the GNOME Desktop Environment
-  services.xserver.enable = true;
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
 
   # Enable sound with pipewire
   security.rtkit.enable = true;
