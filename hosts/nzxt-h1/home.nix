@@ -10,24 +10,12 @@
     ../../modules/user/editor/lazyvim.nix
     ../../modules/user/editor/zed.nix
     ../../modules/user/ai/opencode.nix
+    ../../modules/user/term/ghostty.nix
   ];
-
-  # Enable Ghostty
-  programs.ghostty = {
-    enable = true;
-    enableZshIntegration = true;
-    settings = {
-      font-family = "IosevkaTerm NF";
-    };
-  };
-
-  # Enable font support
-  fonts.fontconfig.enable = true;
 
   # Install user packages
   home.packages = with pkgs; [
     inputs.zen-browser.packages.x86_64-linux.zen-browser
-    nerd-fonts.iosevka-term
     gnumake
   ];
 

@@ -5,22 +5,11 @@
     ../../modules/user/prompts/starship.nix
     ../../modules/user/vcs/git.nix
     ../../modules/user/vcs/jujutsu.nix
+    ../../modules/user/term/ghostty.nix
   ];
-
-  # Enable Ghostty
-  programs.ghostty = {
-    enable = true;
-    enableZshIntegration = true;
-    package = pkgs.ghostty-bin;
-    settings = {
-      font-family = "IosevkaTerm NF";
-      font-size = 14;
-    };
-  };
 
   # Install user packages
   home.packages = with pkgs; [
-    nerd-fonts.iosevka-term
     gnumake
   ];
 
