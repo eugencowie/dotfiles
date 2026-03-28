@@ -1,7 +1,15 @@
 { config, lib, pkgs, ... }: {
 
-  # Include the results of the hardware scan
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ../../options/user.nix
+    ../../modules/time/europe/london.nix
+    ../../modules/locale/english/british.nix
+    ../../modules/shell/zsh.nix
+    ../../modules/home/homeManager.nix
+    ../../modules/theme/catppuccin-macchiato.nix
+    ../../modules/nix/flakes.nix
+  ];
 
   # Enable support for running NixOS as a WSL distribution
   wsl.enable = true;
@@ -10,34 +18,12 @@
   # Set the hostname
   networking.hostName = "hp-250-g9";
 
-  # Set the time zone
-  time.timeZone = "Europe/London";
-
-  # Set the locale
-  i18n.defaultLocale = "en_GB.UTF-8";
-
-  # Set the login shell
-  programs.zsh.enable = true;
-  users.users.nixos.shell = pkgs.zsh;
-
-  # Enable Stylix
-  stylix = {
-    enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
-  };
-
-  # Manage user environment
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.nixos = import ./home.nix;
-  };
+  # Define user configuration
+  my.user.name = "nixos";
+  my.user.config = import ./home.nix;
 
   # Required for VS Code Server
   programs.nix-ld.enable = true;
-
-  # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

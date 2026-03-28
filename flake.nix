@@ -44,6 +44,7 @@
 
     # Configuration for HP 250 G9
     nixosConfigurations.hp-250-g9 = nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs; };
       modules = [
         nixos-wsl.nixosModules.default
         home-manager.nixosModules.home-manager
@@ -54,6 +55,7 @@
 
     # Configuration for MacBook Air M1
     darwinConfigurations.macbook-air-m1 = nix-darwin.lib.darwinSystem {
+      specialArgs = { inherit inputs; };
       modules = [
         home-manager.darwinModules.home-manager
         stylix.darwinModules.stylix

@@ -1,35 +1,25 @@
 { config, lib, pkgs, ... }: {
 
-  # Include the results of the hardware scan
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ../../options/user.nix
+    ../../modules/shell/zsh.nix
+    ../../modules/home/homeManager.nix
+    ../../modules/theme/catppuccin-macchiato.nix
+    ../../modules/nix/flakes.nix
+  ];
 
   # Define the hostname
   networking.hostName = "macbook-air-m1";
 
-  # Enable Zsh
-  programs.zsh.enable = true;
-
-  # Enable Stylix
-  stylix = {
-    enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
-  };
+  # Define user configuration
+  my.user.name = "eugen";
+  my.user.config = import ./home.nix;
 
   # Define the user account
   users.users.eugen = {
     home = "/Users/eugen";
-    shell = pkgs.zsh;
   };
-
-  # Manage user environment
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.eugen = import ./home.nix;
-  };
-
-  # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Used for backwards compatibility, please read the changelog before changing:
   # $ darwin-rebuild changelog
