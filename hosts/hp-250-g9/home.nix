@@ -1,12 +1,8 @@
 { config, pkgs, ... }: {
 
-  # Enable Zsh
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-  };
+  imports = [
+    ../../modules/user/shell/zsh.nix
+  ];
 
   # Enable Starship
   programs.starship = {

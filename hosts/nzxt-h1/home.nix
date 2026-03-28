@@ -1,17 +1,9 @@
 { config, pkgs, inputs, ... }: {
 
   imports = [
-    # Module for managing LazyVim in Home Manager
     inputs.lazyvim-nix.homeManagerModules.default
+    ../../modules/user/shell/zsh.nix
   ];
-
-  # Enable Zsh
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-  };
 
   # Enable Starship
   programs.starship = {
