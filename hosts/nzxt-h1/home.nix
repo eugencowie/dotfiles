@@ -4,6 +4,7 @@
     ../../modules/user/shell/zsh.nix
     ../../modules/user/prompts/starship.nix
     ../../modules/user/multiplex/zellij.nix
+    ../../modules/user/make/make.nix
     ../../modules/user/vcs/git.nix
     ../../modules/user/vcs/jujutsu.nix
     ../../modules/user/diff/meld.nix
@@ -12,11 +13,6 @@
     ../../modules/user/ai/opencode.nix
     ../../modules/user/term/ghostty.nix
     ../../modules/user/browser/zen.nix
-  ];
-
-  # Install user packages
-  home.packages = with pkgs; [
-    gnumake
   ];
 
   # Configure GNOME

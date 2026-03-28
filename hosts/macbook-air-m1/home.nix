@@ -3,14 +3,10 @@
   imports = [
     ../../modules/user/shell/zsh.nix
     ../../modules/user/prompts/starship.nix
+    ../../modules/user/make/make.nix
     ../../modules/user/vcs/git.nix
     ../../modules/user/vcs/jujutsu.nix
     ../../modules/user/term/ghostty.nix
-  ];
-
-  # Install user packages
-  home.packages = with pkgs; [
-    gnumake
   ];
 
   # Home Manager needs a bit of information about you and the
