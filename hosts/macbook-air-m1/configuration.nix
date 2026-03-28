@@ -3,10 +3,10 @@
   imports = [
     ./hardware-configuration.nix
     ../../options/user.nix
-    ../../modules/shell/zsh.nix
-    ../../modules/home/homeManager.nix
-    ../../modules/theme/catppuccin-macchiato.nix
-    ../../modules/nix/flakes.nix
+    ../../modules/system/shell/zsh.nix
+    ../../modules/system/home/homeManager.nix
+    ../../modules/system/theme/catppuccin-macchiato.nix
+    ../../modules/system/nix/flakes.nix
   ];
 
   # Define the hostname
@@ -17,9 +17,7 @@
   my.user.config = import ./home.nix;
 
   # Define the user account
-  users.users.eugen = {
-    home = "/Users/eugen";
-  };
+  users.users.eugen.home = "/Users/eugen";
 
   # Used for backwards compatibility, please read the changelog before changing:
   # $ darwin-rebuild changelog

@@ -1,111 +1,20 @@
 { config, pkgs, inputs, ... }: {
 
   imports = [
-    # Module for managing LazyVim in Home Manager
-    inputs.lazyvim-nix.homeManagerModules.default
+    ../../modules/user/shell/zsh.nix
+    ../../modules/user/prompts/starship.nix
+    ../../modules/user/multiplex/zellij.nix
+    ../../modules/user/make/make.nix
+    ../../modules/user/vcs/git.nix
+    ../../modules/user/vcs/jujutsu.nix
+    ../../modules/user/diff/meld.nix
+    ../../modules/user/editor/lazyvim.nix
+    ../../modules/user/editor/zed.nix
+    ../../modules/user/ai/opencode.nix
+    ../../modules/user/term/ghostty.nix
+    ../../modules/user/browser/zen.nix
+    ../../modules/user/desktop/gnome.nix
   ];
-
-  # Enable Zsh
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-  };
-
-  # Enable Starship
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-    settings = {
-      git_branch.disabled = true;
-      git_status.disabled = true;
-      custom.jj = {
-        when = "jj-starship detect";
-        shell = [ "jj-starship" ];
-        format = "$output ";
-      };
-    };
-  };
-
-  # Enable Zellij
-  programs.zellij.enable = true;
-
-  # Enable Git
-  programs.git = {
-    enable = true;
-    settings = {
-      user.name = "Eugén Cowie";
-      user.email = "eugencowie@users.noreply.github.com";
-    };
-  };
-
-  # Enable Jujutsu
-  programs.jujutsu = {
-    enable = true;
-    settings = {
-      user = config.programs.git.settings.user;
-      ui.merge-editor = "meld";
-      templates = {
-        new_description = ''
-          if(parents.len() == 2 && parents.get(0).bookmarks() && parents.get(1).bookmarks(),
-            "Merge branch '" ++ parents.get(1).bookmarks() ++ "' into " ++ parents.get(0).bookmarks()
-          )
-        '';
-      };
-    };
-  };
-
-  # Enable LazyVim
-  programs.lazyvim.enable = true;
-  programs.neovim.defaultEditor = true;
-
-  # Enable OpenCode
-  programs.opencode = {
-    enable = true;
-    settings = {
-      permission.bash = "ask";
-    };
-  };
-
-  # Enable Zed editor
-  programs.zed-editor.enable = true;
-
-  # Enable Ghostty
-  programs.ghostty = {
-    enable = true;
-    enableZshIntegration = true;
-    settings = {
-      font-family = "IosevkaTerm NF";
-    };
-  };
-
-  # Enable font support
-  fonts.fontconfig.enable = true;
-
-  # Install user packages
-  home.packages = with pkgs; [
-    inputs.zen-browser.packages.x86_64-linux.zen-browser
-    nerd-fonts.iosevka-term
-    jj-starship
-    meld
-    gnumake
-  ];
-
-  # Configure GNOME
-  dconf = {
-    enable = true;
-    settings = {
-      "org/gnome/mutter" = {
-        experimental-features = [
-          "scale-monitor-framebuffer" # fractional scaling
-        ];
-      };
-    };
-  };
-
-  # Disable KDE Stylix target on GNOME host
-  stylix.targets.kde.enable = false;
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.

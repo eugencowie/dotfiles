@@ -3,12 +3,12 @@
   imports = [
     ./hardware-configuration.nix
     ../../options/user.nix
-    ../../modules/time/europe/london.nix
-    ../../modules/locale/english/british.nix
-    ../../modules/shell/zsh.nix
-    ../../modules/home/homeManager.nix
-    ../../modules/theme/catppuccin-macchiato.nix
-    ../../modules/nix/flakes.nix
+    ../../modules/system/time/europe/london.nix
+    ../../modules/system/locale/english/british.nix
+    ../../modules/system/shell/zsh.nix
+    ../../modules/system/home/homeManager.nix
+    ../../modules/system/theme/catppuccin-macchiato.nix
+    ../../modules/system/nix/flakes.nix
   ];
 
   # Enable support for running NixOS as a WSL distribution
