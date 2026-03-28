@@ -13,22 +13,8 @@
     ../../modules/user/ai/opencode.nix
     ../../modules/user/term/ghostty.nix
     ../../modules/user/browser/zen.nix
+    ../../modules/user/desktop/gnome.nix
   ];
-
-  # Configure GNOME
-  dconf = {
-    enable = true;
-    settings = {
-      "org/gnome/mutter" = {
-        experimental-features = [
-          "scale-monitor-framebuffer" # fractional scaling
-        ];
-      };
-    };
-  };
-
-  # Disable KDE Stylix target on GNOME host
-  stylix.targets.kde.enable = false;
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
