@@ -3,10 +3,8 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/boot/grub.nix
+    ../../modules/kernel/latest.nix
   ];
-
-  # Use latest kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Define the hostname
   networking.hostName = "nzxt-h1";
