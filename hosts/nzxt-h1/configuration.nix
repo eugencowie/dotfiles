@@ -3,19 +3,19 @@
   imports = [
     ./hardware-configuration.nix
     ../../options/user.nix
-    ../../modules/boot/grub.nix
-    ../../modules/kernel/latest.nix
-    ../../modules/network/networkManager.nix
-    ../../modules/time/europe/london.nix
-    ../../modules/locale/english/british.nix
-    ../../modules/gpu/nvidia.nix
-    ../../modules/desktop/gnome.nix
-    ../../modules/sound/pipewire.nix
-    ../../modules/streaming/sunshine.nix
-    ../../modules/shell/zsh.nix
-    ../../modules/home/homeManager.nix
-    ../../modules/theme/catppuccin-macchiato.nix
-    ../../modules/nix/flakes.nix
+    ../../modules/system/boot/grub.nix
+    ../../modules/system/kernel/latest.nix
+    ../../modules/system/network/networkManager.nix
+    ../../modules/system/time/europe/london.nix
+    ../../modules/system/locale/english/british.nix
+    ../../modules/system/gpu/nvidia.nix
+    ../../modules/system/desktop/gnome.nix
+    ../../modules/system/sound/pipewire.nix
+    ../../modules/system/streaming/sunshine.nix
+    ../../modules/system/shell/zsh.nix
+    ../../modules/system/home/homeManager.nix
+    ../../modules/system/theme/catppuccin-macchiato.nix
+    ../../modules/system/nix/flakes.nix
   ];
 
   # Define the hostname
