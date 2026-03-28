@@ -10,6 +10,7 @@
     ../../modules/locale/english/british.nix
     ../../modules/gpu/nvidia.nix
     ../../modules/desktop/gnome.nix
+    ../../modules/sound/pipewire.nix
   ];
 
   # Define the hostname
@@ -17,15 +18,6 @@
 
   # Define user configuration
   my.user.name = "echo";
-
-  # Enable sound with pipewire
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
 
   # Enable streaming with sunshine
   services.sunshine = {
