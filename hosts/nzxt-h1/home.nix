@@ -1,18 +1,14 @@
 { config, pkgs, inputs, ... }: {
 
   imports = [
-    inputs.lazyvim-nix.homeManagerModules.default
     ../../modules/user/shell/zsh.nix
     ../../modules/user/prompts/starship.nix
     ../../modules/user/multiplex/zellij.nix
     ../../modules/user/vcs/git.nix
     ../../modules/user/vcs/jujutsu.nix
     ../../modules/user/diff/meld.nix
+    ../../modules/user/editor/lazyvim.nix
   ];
-
-  # Enable LazyVim
-  programs.lazyvim.enable = true;
-  programs.neovim.defaultEditor = true;
 
   # Enable OpenCode
   programs.opencode = {
