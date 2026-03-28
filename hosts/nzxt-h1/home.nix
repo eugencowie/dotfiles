@@ -11,11 +11,11 @@
     ../../modules/user/editor/zed.nix
     ../../modules/user/ai/opencode.nix
     ../../modules/user/term/ghostty.nix
+    ../../modules/user/browser/zen.nix
   ];
 
   # Install user packages
   home.packages = with pkgs; [
-    inputs.zen-browser.packages.x86_64-linux.zen-browser
     gnumake
   ];
 
