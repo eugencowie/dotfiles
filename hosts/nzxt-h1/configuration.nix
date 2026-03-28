@@ -5,6 +5,7 @@
     ../../options/user.nix
     ../../modules/boot/grub.nix
     ../../modules/kernel/latest.nix
+    ../../modules/network/networkManager.nix
   ];
 
   # Define the hostname
@@ -12,9 +13,6 @@
 
   # Define user configuration
   my.user.name = "echo";
-
-  # Configure network connections interactively with nmcli or nmtui
-  networking.networkmanager.enable = true;
 
   # Set the time zone
   time.timeZone = "Europe/London";
@@ -77,7 +75,6 @@
     shell = pkgs.zsh;
     extraGroups = [
       "input" # needed for sunshine
-      "networkmanager"
       "wheel"
     ];
   };
