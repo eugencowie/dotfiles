@@ -5,16 +5,8 @@
     ../../modules/user/shell/zsh.nix
     ../../modules/user/prompts/starship.nix
     ../../modules/user/multiplex/zellij.nix
+    ../../modules/user/vcs/git.nix
   ];
-
-  # Enable Git
-  programs.git = {
-    enable = true;
-    settings = {
-      user.name = "Eugén Cowie";
-      user.email = "eugencowie@users.noreply.github.com";
-    };
-  };
 
   # Enable Jujutsu
   programs.jujutsu = {
