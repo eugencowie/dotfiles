@@ -1,18 +1,9 @@
 { config, lib, pkgs, inputs, ... }: {
 
-  # Include the results of the hardware scan
-  imports = [ ./hardware-configuration.nix ];
-
-  # Use the GRUB EFI boot loader
-  boot.loader.grub = {
-    device = "nodev";
-    efiSupport = true;
-    useOSProber = true;
-  };
-  boot.loader.efi = {
-    canTouchEfiVariables = true;
-    efiSysMountPoint = "/boot/efi";
-  };
+  imports = [
+    ./hardware-configuration.nix
+    ../../modules/boot/grub.nix
+  ];
 
   # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;

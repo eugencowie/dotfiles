@@ -1,7 +1,8 @@
 { config, lib, pkgs, ... }: {
 
-  # Include the results of the hardware scan
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   # Define the hostname
   networking.hostName = "macbook-air-m1";

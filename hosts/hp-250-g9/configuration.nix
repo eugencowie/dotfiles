@@ -1,7 +1,8 @@
 { config, lib, pkgs, ... }: {
 
-  # Include the results of the hardware scan
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   # Enable support for running NixOS as a WSL distribution
   wsl.enable = true;
