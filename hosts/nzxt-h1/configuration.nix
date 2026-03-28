@@ -12,6 +12,7 @@
     ../../modules/desktop/gnome.nix
     ../../modules/sound/pipewire.nix
     ../../modules/streaming/sunshine.nix
+    ../../modules/shell/zsh.nix
   ];
 
   # Define the hostname
@@ -19,9 +20,6 @@
 
   # Define user configuration
   my.user.name = "echo";
-
-  # Enable Zsh
-  programs.zsh.enable = true;
 
   # Enable Stylix
   stylix = {
@@ -34,7 +32,6 @@
   users.users.echo = {
     isNormalUser = true;
     description = "Eugén Cowie";
-    shell = pkgs.zsh;
     extraGroups = [ "wheel" ];
   };
 

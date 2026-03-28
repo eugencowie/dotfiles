@@ -3,6 +3,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../options/user.nix
+    ../../modules/shell/zsh.nix
   ];
 
   # Define the hostname
@@ -10,9 +11,6 @@
 
   # Define user configuration
   my.user.name = "eugen";
-
-  # Enable Zsh
-  programs.zsh.enable = true;
 
   # Enable Stylix
   stylix = {
@@ -23,7 +21,6 @@
   # Define the user account
   users.users.eugen = {
     home = "/Users/eugen";
-    shell = pkgs.zsh;
   };
 
   # Manage user environment

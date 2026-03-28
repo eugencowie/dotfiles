@@ -5,6 +5,7 @@
     ../../options/user.nix
     ../../modules/time/europe/london.nix
     ../../modules/locale/english/british.nix
+    ../../modules/shell/zsh.nix
   ];
 
   # Enable support for running NixOS as a WSL distribution
@@ -16,10 +17,6 @@
 
   # Define user configuration
   my.user.name = "nixos";
-
-  # Set the login shell
-  programs.zsh.enable = true;
-  users.users.nixos.shell = pkgs.zsh;
 
   # Enable Stylix
   stylix = {
