@@ -3,22 +3,8 @@
   imports = [
     inputs.lazyvim-nix.homeManagerModules.default
     ../../modules/user/shell/zsh.nix
+    ../../modules/user/prompts/starship.nix
   ];
-
-  # Enable Starship
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-    settings = {
-      git_branch.disabled = true;
-      git_status.disabled = true;
-      custom.jj = {
-        when = "jj-starship detect";
-        shell = [ "jj-starship" ];
-        format = "$output ";
-      };
-    };
-  };
 
   # Enable Zellij
   programs.zellij.enable = true;
@@ -79,7 +65,6 @@
   home.packages = with pkgs; [
     inputs.zen-browser.packages.x86_64-linux.zen-browser
     nerd-fonts.iosevka-term
-    jj-starship
     meld
     gnumake
   ];

@@ -2,22 +2,8 @@
 
   imports = [
     ../../modules/user/shell/zsh.nix
+    ../../modules/user/prompts/starship.nix
   ];
-
-  # Enable Starship
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-    settings = {
-      git_branch.disabled = true;
-      git_status.disabled = true;
-      custom.jj = {
-        when = "jj-starship detect";
-        shell = [ "jj-starship" ];
-        format = "$output ";
-      };
-    };
-  };
 
   # Enable Git
   programs.git = {
@@ -45,7 +31,6 @@
 
   # Install user packages
   home.packages = with pkgs; [
-    jj-starship
     gnumake
   ];
 
