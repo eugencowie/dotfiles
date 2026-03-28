@@ -7,6 +7,7 @@
     ../../modules/user/multiplex/zellij.nix
     ../../modules/user/vcs/git.nix
     ../../modules/user/vcs/jujutsu.nix
+    ../../modules/user/diff/meld.nix
   ];
 
   # Enable LazyVim
@@ -40,7 +41,6 @@
   home.packages = with pkgs; [
     inputs.zen-browser.packages.x86_64-linux.zen-browser
     nerd-fonts.iosevka-term
-    meld
     gnumake
   ];
 
