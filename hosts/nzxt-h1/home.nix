@@ -9,15 +9,8 @@
     ../../modules/user/diff/meld.nix
     ../../modules/user/editor/lazyvim.nix
     ../../modules/user/editor/zed.nix
+    ../../modules/user/ai/opencode.nix
   ];
-
-  # Enable OpenCode
-  programs.opencode = {
-    enable = true;
-    settings = {
-      permission.bash = "ask";
-    };
-  };
 
   # Enable Ghostty
   programs.ghostty = {
