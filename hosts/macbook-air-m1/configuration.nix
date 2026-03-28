@@ -5,6 +5,7 @@
     ../../options/user.nix
     ../../modules/shell/zsh.nix
     ../../modules/theme/catppuccin-macchiato.nix
+    ../../modules/nix/flakes.nix
   ];
 
   # Define the hostname
@@ -24,9 +25,6 @@
     useUserPackages = true;
     users.eugen = import ./home.nix;
   };
-
-  # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Used for backwards compatibility, please read the changelog before changing:
   # $ darwin-rebuild changelog

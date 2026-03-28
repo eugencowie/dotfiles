@@ -14,6 +14,7 @@
     ../../modules/streaming/sunshine.nix
     ../../modules/shell/zsh.nix
     ../../modules/theme/catppuccin-macchiato.nix
+    ../../modules/nix/flakes.nix
   ];
 
   # Define the hostname
@@ -36,9 +37,6 @@
     extraSpecialArgs = { inherit inputs; };
     users.echo = import ./home.nix;
   };
-
-  # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

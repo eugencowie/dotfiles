@@ -7,6 +7,7 @@
     ../../modules/locale/english/british.nix
     ../../modules/shell/zsh.nix
     ../../modules/theme/catppuccin-macchiato.nix
+    ../../modules/nix/flakes.nix
   ];
 
   # Enable support for running NixOS as a WSL distribution
@@ -28,9 +29,6 @@
 
   # Required for VS Code Server
   programs.nix-ld.enable = true;
-
-  # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
