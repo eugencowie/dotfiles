@@ -11,6 +11,7 @@
     ../../modules/gpu/nvidia.nix
     ../../modules/desktop/gnome.nix
     ../../modules/sound/pipewire.nix
+    ../../modules/streaming/sunshine.nix
   ];
 
   # Define the hostname
@@ -18,21 +19,6 @@
 
   # Define user configuration
   my.user.name = "echo";
-
-  # Enable streaming with sunshine
-  services.sunshine = {
-    enable = true;
-    autoStart = true;
-    capSysAdmin = true;
-    openFirewall = true;
-  };
-  services.udev.extraRules = ''
-    KERNEL=="uinput", MODE="0660", GROUP="input", OPTIONS+="static_node=uinput"
-  '';
-  services.displayManager.autoLogin = {
-    enable = true;
-    user = "echo";
-  };
 
   # Enable Zsh
   programs.zsh.enable = true;
@@ -49,10 +35,7 @@
     isNormalUser = true;
     description = "Eugén Cowie";
     shell = pkgs.zsh;
-    extraGroups = [
-      "input" # needed for sunshine
-      "wheel"
-    ];
+    extraGroups = [ "wheel" ];
   };
 
   # Manage user environment
@@ -62,9 +45,6 @@
     extraSpecialArgs = { inherit inputs; };
     users.echo = import ./home.nix;
   };
-
-  # Enable the OpenSSH daemon
-  services.openssh.enable = true;
 
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
