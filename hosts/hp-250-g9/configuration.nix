@@ -6,6 +6,7 @@
     ../../modules/time/europe/london.nix
     ../../modules/locale/english/british.nix
     ../../modules/shell/zsh.nix
+    ../../modules/home/homeManager.nix
     ../../modules/theme/catppuccin-macchiato.nix
     ../../modules/nix/flakes.nix
   ];
@@ -19,13 +20,7 @@
 
   # Define user configuration
   my.user.name = "nixos";
-
-  # Manage user environment
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.nixos = import ./home.nix;
-  };
+  my.user.config = import ./home.nix;
 
   # Required for VS Code Server
   programs.nix-ld.enable = true;

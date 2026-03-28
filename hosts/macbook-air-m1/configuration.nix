@@ -4,6 +4,7 @@
     ./hardware-configuration.nix
     ../../options/user.nix
     ../../modules/shell/zsh.nix
+    ../../modules/home/homeManager.nix
     ../../modules/theme/catppuccin-macchiato.nix
     ../../modules/nix/flakes.nix
   ];
@@ -13,17 +14,11 @@
 
   # Define user configuration
   my.user.name = "eugen";
+  my.user.config = import ./home.nix;
 
   # Define the user account
   users.users.eugen = {
     home = "/Users/eugen";
-  };
-
-  # Manage user environment
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.eugen = import ./home.nix;
   };
 
   # Used for backwards compatibility, please read the changelog before changing:

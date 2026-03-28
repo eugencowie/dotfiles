@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }: {
+{ config, lib, pkgs, ... }: {
 
   imports = [
     ./hardware-configuration.nix
@@ -13,6 +13,7 @@
     ../../modules/sound/pipewire.nix
     ../../modules/streaming/sunshine.nix
     ../../modules/shell/zsh.nix
+    ../../modules/home/homeManager.nix
     ../../modules/theme/catppuccin-macchiato.nix
     ../../modules/nix/flakes.nix
   ];
@@ -22,20 +23,13 @@
 
   # Define user configuration
   my.user.name = "echo";
+  my.user.config = import ./home.nix;
 
   # Define the user account
   users.users.echo = {
     isNormalUser = true;
     description = "Eugén Cowie";
     extraGroups = [ "wheel" ];
-  };
-
-  # Manage user environment
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    extraSpecialArgs = { inherit inputs; };
-    users.echo = import ./home.nix;
   };
 
   # This option defines the first version of NixOS you have installed on this particular machine,
