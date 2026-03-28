@@ -2,6 +2,7 @@
 
   imports = [
     ./hardware-configuration.nix
+    ../../options/user.nix
   ];
 
   # Enable support for running NixOS as a WSL distribution
@@ -10,6 +11,9 @@
 
   # Set the hostname
   networking.hostName = "hp-250-g9";
+
+  # Define user configuration
+  my.user.name = "nixos";
 
   # Set the time zone
   time.timeZone = "Europe/London";

@@ -2,10 +2,14 @@
 
   imports = [
     ./hardware-configuration.nix
+    ../../options/user.nix
   ];
 
   # Define the hostname
   networking.hostName = "macbook-air-m1";
+
+  # Define user configuration
+  my.user.name = "eugen";
 
   # Enable Zsh
   programs.zsh.enable = true;

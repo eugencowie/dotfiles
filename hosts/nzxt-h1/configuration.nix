@@ -2,12 +2,16 @@
 
   imports = [
     ./hardware-configuration.nix
+    ../../options/user.nix
     ../../modules/boot/grub.nix
     ../../modules/kernel/latest.nix
   ];
 
   # Define the hostname
   networking.hostName = "nzxt-h1";
+
+  # Define user configuration
+  my.user.name = "echo";
 
   # Configure network connections interactively with nmcli or nmtui
   networking.networkmanager.enable = true;
