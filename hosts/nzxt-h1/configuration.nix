@@ -6,6 +6,7 @@
     ../../modules/boot/grub.nix
     ../../modules/kernel/latest.nix
     ../../modules/network/networkManager.nix
+    ../../modules/time/europe/london.nix
   ];
 
   # Define the hostname
@@ -13,9 +14,6 @@
 
   # Define user configuration
   my.user.name = "echo";
-
-  # Set the time zone
-  time.timeZone = "Europe/London";
 
   # Select internationalisation properties
   i18n.defaultLocale = "en_GB.UTF-8";

@@ -3,6 +3,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../options/user.nix
+    ../../modules/time/europe/london.nix
   ];
 
   # Enable support for running NixOS as a WSL distribution
@@ -14,9 +15,6 @@
 
   # Define user configuration
   my.user.name = "nixos";
-
-  # Set the time zone
-  time.timeZone = "Europe/London";
 
   # Set the locale
   i18n.defaultLocale = "en_GB.UTF-8";
