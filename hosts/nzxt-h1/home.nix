@@ -45,6 +45,7 @@
     enable = true;
     settings = {
       user = config.programs.git.settings.user;
+      ui.merge-editor = "meld";
       templates = {
         new_description = ''
           if(parents.len() == 2 && parents.get(0).bookmarks() && parents.get(1).bookmarks(),
@@ -87,6 +88,7 @@
     inputs.zen-browser.packages.x86_64-linux.zen-browser
     nerd-fonts.iosevka-term
     jj-starship
+    meld
     gnumake
   ];
 
