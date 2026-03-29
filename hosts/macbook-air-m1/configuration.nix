@@ -5,7 +5,7 @@
     ../../options/user.nix
     ../../modules/system/shell/zsh.nix
     ../../modules/system/home/homeManager.nix
-    ../../modules/system/theme/catppuccin-macchiato.nix
+    ../../modules/system/theme/stylix.nix
     ../../modules/system/nix/flakes.nix
   ];
 
