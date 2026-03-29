@@ -24,9 +24,10 @@
     lazyvim-nix.url = "github:pfassina/lazyvim-nix";
     lazyvim-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Flake providing Zen Browser packages
-    zen-browser.url = "github:youwen5/zen-browser-flake";
+    # Module for managing Zen Browser in Home Manager
+    zen-browser.url = "github:0xc000022070/zen-browser-flake/beta";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
+    zen-browser.inputs.home-manager.follows = "home-manager";
 
   };
 
