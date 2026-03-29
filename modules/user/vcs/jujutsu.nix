@@ -5,6 +5,9 @@
     enable = true;
     settings = {
       user = config.programs.git.settings.user;
+      ui = {
+        default-command = "status";
+      };
       templates = {
         new_description = ''
           if(parents.len() == 2 && parents.get(0).bookmarks() && parents.get(1).bookmarks(),
