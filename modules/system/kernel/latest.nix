@@ -1,6 +1,6 @@
 { pkgs, ... }: {
 
-  # Use latest kernel
+  # Use the latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
 }

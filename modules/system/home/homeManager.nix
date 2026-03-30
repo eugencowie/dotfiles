@@ -1,6 +1,6 @@
 { config, inputs, ... }: {
 
-  # Manage user environment
+  # Manage user environment for the primary user
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
