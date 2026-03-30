@@ -9,6 +9,7 @@
     ../../options/user.nix
 
     # Basic system configuration
+    ../../modules/system/boot/wsl.nix
     ../../modules/system/time/europe/london.nix
     ../../modules/system/locale/english/british.nix
 
@@ -19,10 +20,6 @@
     ../../modules/system/nix/flakes.nix
 
   ];
-
-  # Enable support for running NixOS as a WSL distribution
-  wsl.enable = true;
-  wsl.defaultUser = "nixos";
 
   # Define the hostname
   networking.hostName = "hp-250-g9";
