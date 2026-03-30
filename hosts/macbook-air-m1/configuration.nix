@@ -1,12 +1,19 @@
 { config, lib, pkgs, ... }: {
 
   imports = [
+
+    # Include the results of the hardware scan
     ./hardware-configuration.nix
+
+    # Include custom option definitions
     ../../options/user.nix
+
+    # Customise login environment
     ../../modules/system/shell/zsh.nix
     ../../modules/system/home/homeManager.nix
     ../../modules/system/theme/stylix.nix
     ../../modules/system/nix/flakes.nix
+
   ];
 
   # Define the hostname

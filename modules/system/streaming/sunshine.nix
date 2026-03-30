@@ -8,19 +8,17 @@
     openFirewall = true;
   };
 
-  services.udev.extraRules = ''
-    KERNEL=="uinput", MODE="0660", GROUP="input", OPTIONS+="static_node=uinput"
-  '';
+  # Allow the primary user to control the virtual input device
+  hardware.uinput.enable = true;
+  users.users.${config.my.user.name}.extraGroups = lib.mkAfter [ "uinput" ];
 
-  users.users.${config.my.user.name}.extraGroups = lib.mkAfter [ "input" ];
-
-  # Autologin for Sunshine
+  # Autologin to allow streaming without needing to log in first
   services.displayManager.autoLogin = {
     enable = true;
     user = config.my.user.name;
   };
 
-  # Enable the OpenSSH daemon as a backup for Sunshine
+  # Enable SSH as a backup in case streaming fails
   services.openssh.enable = true;
 
 }

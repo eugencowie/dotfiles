@@ -1,21 +1,32 @@
 { config, lib, pkgs, ... }: {
 
   imports = [
+
+    # Include the results of the hardware scan
     ./hardware-configuration.nix
+
+    # Include custom option definitions
     ../../options/user.nix
+
+    # Basic system configuration
     ../../modules/system/boot/grub.nix
     ../../modules/system/kernel/latest.nix
     ../../modules/system/network/networkManager.nix
     ../../modules/system/time/europe/london.nix
     ../../modules/system/locale/english/british.nix
-    ../../modules/system/gpu/nvidia.nix
-    ../../modules/system/desktop/gnome.nix
-    ../../modules/system/sound/pipewire.nix
-    ../../modules/system/streaming/sunshine.nix
+
+    # Customise login environment
     ../../modules/system/shell/zsh.nix
     ../../modules/system/home/homeManager.nix
     ../../modules/system/theme/stylix.nix
     ../../modules/system/nix/flakes.nix
+
+    # Configure desktop environment
+    ../../modules/system/gpu/nvidia.nix
+    ../../modules/system/desktop/gnome.nix
+    ../../modules/system/sound/pipewire.nix
+    ../../modules/system/streaming/sunshine.nix
+
   ];
 
   # Define the hostname
