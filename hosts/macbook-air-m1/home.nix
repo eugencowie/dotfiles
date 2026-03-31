@@ -4,11 +4,11 @@
 
     # Configure terminal environment
     ../../modules/user/shell/zsh.nix
+    ../../modules/user/shell/direnv.nix
     ../../modules/user/prompts/starship.nix
     ../../modules/user/term/ghostty.nix
 
     # Configure development environment
-    ../../modules/user/make/make.nix # TODO: remove in favour of dev shell
     ../../modules/user/vcs/git.nix
     ../../modules/user/vcs/jujutsu.nix
 
