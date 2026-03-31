@@ -1,6 +1,9 @@
 {
   inputs = {
 
+    # Pure Nix flake utility functions
+    flake-utils.url = "github:numtide/flake-utils";
+
     # Nix packages collection and NixOS
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
@@ -31,7 +34,7 @@
 
   };
 
-  outputs = inputs@{ self, nixpkgs, nix-darwin, nixos-wsl, home-manager, stylix, ... }: {
+  outputs = inputs@{ self, flake-utils, nixpkgs, nix-darwin, nixos-wsl, home-manager, stylix, ... }: {
 
     # Configuration for NZXT H1
     nixosConfigurations.nzxt-h1 = nixpkgs.lib.nixosSystem {
@@ -64,5 +67,12 @@
       ];
     };
 
-  };
+  } // flake-utils.lib.eachDefaultSystem (system: {
+
+    # Development shell for this project
+    devShells.default = import ./shell.nix {
+      pkgs = nixpkgs.legacyPackages.${system};
+    };
+
+  });
 }
