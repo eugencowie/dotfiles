@@ -4,6 +4,7 @@
 
     # Configure terminal environment
     ../../modules/user/shell/zsh.nix
+    ../../modules/user/shell/direnv.nix
     ../../modules/user/prompts/starship.nix
     ../../modules/user/multiplex/zellij.nix
     ../../modules/user/term/ghostty.nix
