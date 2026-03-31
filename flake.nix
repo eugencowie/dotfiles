@@ -31,7 +31,32 @@
 
   };
 
-  outputs = inputs@{ self, nixpkgs, nix-darwin, nixos-wsl, home-manager, stylix, ... }: {
+  outputs = inputs@{ self, nixpkgs, nix-darwin, nixos-wsl, home-manager, stylix, ... }:
+    let
+      supportedSystems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
+      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+    in {
+
+    devShells = forAllSystems (system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+      in
+      rec {
+        nix-lsp = pkgs.mkShell {
+          packages = with pkgs; [
+            nixd
+            nixfmt
+            statix
+            deadnix
+          ];
+        };
+        default = nix-lsp;
+      });
 
     # Configuration for NZXT H1
     nixosConfigurations.nzxt-h1 = nixpkgs.lib.nixosSystem {
