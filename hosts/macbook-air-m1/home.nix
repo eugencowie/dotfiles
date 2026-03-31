@@ -1,12 +1,17 @@
 { config, pkgs, ... }: {
 
   imports = [
+
+    # Configure terminal environment
     ../../modules/user/shell/zsh.nix
     ../../modules/user/prompts/starship.nix
-    ../../modules/user/make/make.nix
+    ../../modules/user/term/ghostty.nix
+
+    # Configure development environment
+    ../../modules/user/make/make.nix # TODO: remove in favour of dev shell
     ../../modules/user/vcs/git.nix
     ../../modules/user/vcs/jujutsu.nix
-    ../../modules/user/term/ghostty.nix
+
   ];
 
   # Home Manager needs a bit of information about you and the
