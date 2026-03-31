@@ -6,6 +6,10 @@
     ../../modules/user/make/make.nix
     ../../modules/user/vcs/git.nix
     ../../modules/user/vcs/jujutsu.nix
+    ../../modules/user/diff/meld.nix
+    ../../modules/user/editor/lazyvim.nix
+    ../../modules/user/ai/opencode.nix
+    ../../modules/user/term/ghostty.nix
   ];
 
   # Home Manager needs a bit of information about you and the
