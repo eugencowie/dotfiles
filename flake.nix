@@ -6,6 +6,7 @@
 
     # Nix packages collection and NixOS
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-latest.url = "github:NixOS/nixpkgs";
 
     # Modules for running NixOS on Windows Subsystem for Linux
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
