@@ -35,9 +35,7 @@
 
   # Define the user account
   users.users.echo = {
-    isNormalUser = true;
     description = "Eugén Cowie";
-    extraGroups = [ "wheel" ];
   };
 
   # Required for VS Code Server
