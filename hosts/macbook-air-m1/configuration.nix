@@ -26,8 +26,4 @@
   # Define the user account
   users.users.eugen.home = "/Users/eugen";
 
-  # Used for backwards compatibility, please read the changelog before changing:
-  # $ darwin-rebuild changelog
-  system.stateVersion = 6; # Did you read the comment?
-
 }
