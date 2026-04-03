@@ -11,9 +11,6 @@
       aliases = {
         l = [ "log" ];
       };
-      working-copy = {
-        eol-conversion = "input-output";
-      };
       templates = {
         new_description = ''
           if(parents.len() == 2 && parents.get(0).bookmarks() && parents.get(1).bookmarks(),
