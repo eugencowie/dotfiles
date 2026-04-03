@@ -6,7 +6,10 @@
   den.aspects.nzxt-h1.nixos = { ... }: {
     imports = [ ../hosts/nzxt-h1/configuration.nix ];
   };
-  den.aspects.echo.includes = [ den.provides.primary-user ];
+  den.aspects.echo = {
+    includes = [ den.provides.primary-user ];
+    user.description = "Eugén Cowie";
+  };
 
   den.hosts.x86_64-linux.hp-250-g9.users.nixos = {};
   den.aspects.hp-250-g9.nixos = { ... }: {

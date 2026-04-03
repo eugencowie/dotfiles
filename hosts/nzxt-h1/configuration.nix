@@ -33,11 +33,6 @@
   my.user.name = "echo";
   my.user.config = import ./home.nix;
 
-  # Define the user account
-  users.users.echo = {
-    description = "Eugén Cowie";
-  };
-
   # Required for VS Code Server
   programs.nix-ld.enable = true;
 
