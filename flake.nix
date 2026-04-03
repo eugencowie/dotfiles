@@ -4,6 +4,12 @@
     # Pure Nix flake utility functions
     flake-utils.url = "github:numtide/flake-utils";
 
+    # Import all nix files in a directory tree
+    import-tree.url = "github:vic/import-tree";
+
+    # Aspect-oriented, context-driven dendritic Nix configurations
+    den.url = "github:vic/den";
+
     # Nix packages collection and NixOS
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
@@ -34,12 +40,23 @@
 
   };
 
-  outputs = inputs@{ flake-utils, nixpkgs, nix-darwin, nixos-wsl, home-manager, stylix, ... }: {
+  outputs = inputs@{ flake-utils, import-tree, nixpkgs, nix-darwin, nixos-wsl, home-manager, stylix, ... }: let
+
+    den = (nixpkgs.lib.evalModules {
+      modules = [ (import-tree ./modules) ];
+      specialArgs = { inherit inputs; };
+    }).config;
+
+    inherit (den.den.hosts.x86_64-linux) nzxt-h1 hp-250-g9;
+    inherit (den.den.hosts.aarch64-darwin) macbook-air-m1;
+
+  in {
 
     # Configuration for NZXT H1
     nixosConfigurations.nzxt-h1 = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
+        nzxt-h1.mainModule
         home-manager.nixosModules.home-manager
         stylix.nixosModules.stylix
         ./hosts/nzxt-h1/configuration.nix
@@ -50,6 +67,7 @@
     nixosConfigurations.hp-250-g9 = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
+        hp-250-g9.mainModule
         nixos-wsl.nixosModules.default
         home-manager.nixosModules.home-manager
         stylix.nixosModules.stylix
@@ -61,6 +79,7 @@
     darwinConfigurations.macbook-air-m1 = nix-darwin.lib.darwinSystem {
       specialArgs = { inherit inputs; };
       modules = [
+        macbook-air-m1.mainModule
         home-manager.darwinModules.home-manager
         stylix.darwinModules.stylix
         ./hosts/macbook-air-m1/configuration.nix
