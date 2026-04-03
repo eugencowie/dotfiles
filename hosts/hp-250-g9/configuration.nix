@@ -9,15 +9,15 @@
     ../../options/user.nix
 
     # Basic system configuration
-    ../../modules/system/boot/wsl.nix
-    ../../modules/system/time/europe/london.nix
-    ../../modules/system/locale/english/british.nix
+    ../../legacy/system/boot/wsl.nix
+    ../../legacy/system/time/europe/london.nix
+    ../../legacy/system/locale/english/british.nix
 
     # Customise login environment
-    ../../modules/system/shell/zsh.nix
-    ../../modules/system/home/homeManager.nix
-    ../../modules/system/theme/stylix.nix
-    ../../modules/system/nix/flakes.nix
+    ../../legacy/system/shell/zsh.nix
+    ../../legacy/system/home/homeManager.nix
+    ../../legacy/system/theme/stylix.nix
+    ../../legacy/system/nix/flakes.nix
 
   ];
 
