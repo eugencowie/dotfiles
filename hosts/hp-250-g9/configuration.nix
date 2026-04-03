@@ -21,9 +21,6 @@
 
   ];
 
-  # Define the hostname
-  networking.hostName = "hp-250-g9";
-
   # Define user configuration
   my.user.name = "nixos";
   my.user.config = import ./home.nix;

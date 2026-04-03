@@ -29,9 +29,6 @@
 
   ];
 
-  # Define the hostname
-  networking.hostName = "nzxt-h1";
-
   # Define user configuration
   my.user.name = "echo";
   my.user.config = import ./home.nix;

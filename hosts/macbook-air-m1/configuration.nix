@@ -16,9 +16,6 @@
 
   ];
 
-  # Define the hostname
-  networking.hostName = "macbook-air-m1";
-
   # Define user configuration
   my.user.name = "eugen";
   my.user.config = import ./home.nix;
