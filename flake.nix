@@ -35,7 +35,7 @@
 
   };
 
-  outputs = inputs@{ self, flake-utils, nixpkgs, nix-darwin, nixos-wsl, home-manager, stylix, ... }: {
+  outputs = inputs@{ flake-utils, nixpkgs, nix-darwin, nixos-wsl, home-manager, stylix, ... }: {
 
     # Configuration for NZXT H1
     nixosConfigurations.nzxt-h1 = nixpkgs.lib.nixosSystem {
