@@ -20,7 +20,4 @@
   my.user.name = "eugen";
   my.user.config = import ./home.nix;
 
-  # Define the user account
-  users.users.eugen.home = "/Users/eugen";
-
 }

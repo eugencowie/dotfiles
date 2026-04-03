@@ -17,8 +17,15 @@
     imports = [ ../hosts/macbook-air-m1/configuration.nix ];
   };
 
-  # Define the hostname
-  den.default.includes = [ den.provides.hostname ];
+  den.default.includes = [
+
+    # Define the hostname
+    den.provides.hostname
+
+    # Define the user account
+    den.provides.define-user
+
+  ];
 
   # Manage user environments
   den.schema.user.classes = lib.mkDefault [ "homeManager" ];
