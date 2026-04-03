@@ -17,6 +17,9 @@
     imports = [ ../hosts/macbook-air-m1/configuration.nix ];
   };
 
+  # Manage user environments
+  den.schema.user.classes = lib.mkDefault [ "homeManager" ];
+
   # This option defines the first version of NixOS you have installed on this
   # particular machine, and is used to maintain compatibility with application
   # data (e.g. databases) created on older NixOS versions.
