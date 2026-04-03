@@ -59,7 +59,6 @@
         nzxt-h1.mainModule
         home-manager.nixosModules.home-manager
         stylix.nixosModules.stylix
-        ./hosts/nzxt-h1/configuration.nix
       ];
     };
 
@@ -71,7 +70,6 @@
         nixos-wsl.nixosModules.default
         home-manager.nixosModules.home-manager
         stylix.nixosModules.stylix
-        ./hosts/hp-250-g9/configuration.nix
       ];
     };
 
@@ -82,7 +80,6 @@
         macbook-air-m1.mainModule
         home-manager.darwinModules.home-manager
         stylix.darwinModules.stylix
-        ./hosts/macbook-air-m1/configuration.nix
       ];
     };
 
