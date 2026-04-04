@@ -30,7 +30,6 @@
 
       # Customise login environment
       ../../legacy/system/shell/zsh.nix
-      ../../legacy/system/home/homeManager.nix
       ../../legacy/system/nix/flakes.nix
 
       # Configure desktop environment
@@ -43,7 +42,6 @@
 
     # Define user configuration
     os.my.user.name = "echo";
-    os.my.user.config = import ../../hosts/nzxt-h1/home.nix;
 
   };
 

@@ -27,14 +27,12 @@
 
       # Customise login environment
       ../../legacy/system/shell/zsh.nix
-      ../../legacy/system/home/homeManager.nix
       ../../legacy/system/nix/flakes.nix
 
     ];
 
     # Define user configuration
     os.my.user.name = "nixos";
-    os.my.user.config = import ../../hosts/hp-250-g9/home.nix;
 
     # Enable support for running NixOS as a WSL distribution
     wsl.enable = true;

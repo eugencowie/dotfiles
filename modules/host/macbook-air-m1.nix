@@ -20,14 +20,12 @@
 
       # Customise login environment
       ../../legacy/system/shell/zsh.nix
-      ../../legacy/system/home/homeManager.nix
       ../../legacy/system/nix/flakes.nix
 
     ];
 
     # Define user configuration
     os.my.user.name = "eugen";
-    os.my.user.config = import ../../hosts/macbook-air-m1/home.nix;
 
   };
 
