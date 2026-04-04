@@ -9,23 +9,23 @@
     ../../options/user.nix
 
     # Basic system configuration
-    ../../modules/system/boot/grub.nix
-    ../../modules/system/kernel/latest.nix
-    ../../modules/system/network/networkManager.nix
-    ../../modules/system/time/europe/london.nix
-    ../../modules/system/locale/english/british.nix
+    ../../legacy/system/boot/grub.nix
+    ../../legacy/system/kernel/latest.nix
+    ../../legacy/system/network/networkManager.nix
+    ../../legacy/system/time/europe/london.nix
+    ../../legacy/system/locale/english/british.nix
 
     # Customise login environment
-    ../../modules/system/shell/zsh.nix
-    ../../modules/system/home/homeManager.nix
-    ../../modules/system/theme/stylix.nix
-    ../../modules/system/nix/flakes.nix
+    ../../legacy/system/shell/zsh.nix
+    ../../legacy/system/home/homeManager.nix
+    ../../legacy/system/theme/stylix.nix
+    ../../legacy/system/nix/flakes.nix
 
     # Configure desktop environment
-    ../../modules/system/gpu/nvidia.nix
-    ../../modules/system/desktop/gnome.nix
-    ../../modules/system/sound/pipewire.nix
-    ../../modules/system/streaming/sunshine.nix
+    ../../legacy/system/gpu/nvidia.nix
+    ../../legacy/system/desktop/gnome.nix
+    ../../legacy/system/sound/pipewire.nix
+    ../../legacy/system/streaming/sunshine.nix
 
   ];
 

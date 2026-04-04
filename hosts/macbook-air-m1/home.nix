@@ -3,14 +3,14 @@
   imports = [
 
     # Configure terminal environment
-    ../../modules/user/shell/zsh.nix
-    ../../modules/user/shell/direnv.nix
-    ../../modules/user/prompts/starship.nix
-    ../../modules/user/term/ghostty.nix
+    ../../legacy/user/shell/zsh.nix
+    ../../legacy/user/shell/direnv.nix
+    ../../legacy/user/prompts/starship.nix
+    ../../legacy/user/term/ghostty.nix
 
     # Configure development environment
-    ../../modules/user/vcs/git.nix
-    ../../modules/user/vcs/jujutsu.nix
+    ../../legacy/user/vcs/git.nix
+    ../../legacy/user/vcs/jujutsu.nix
 
   ];
 
