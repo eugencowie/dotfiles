@@ -7,9 +7,6 @@
   # Define user accounts
   den.hosts.x86_64-linux.hp-250-g9.users.nixos = {};
 
-  # Define legacy options
-  den.aspects.hp-250-g9.os.my.user.name = "nixos";
-
   # Include host aspects
   den.aspects.hp-250-g9.includes = [
 
@@ -23,9 +20,6 @@
 
   # Import legacy configuration
   den.aspects.hp-250-g9.os.imports = [
-
-    # Include custom option definitions
-    ../../options/user.nix
 
     # Basic system configuration
     ../../legacy/system/time/europe/london.nix

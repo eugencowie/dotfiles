@@ -9,6 +9,9 @@
     # Customise login environment
     (den.provides.user-shell "zsh")
 
+    # Configure remote access
+    den.aspects.remote._.sunshine
+
   ];
 
   # Import legacy configuration
