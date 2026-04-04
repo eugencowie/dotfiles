@@ -3,6 +3,10 @@
   # Use Den framework for dendritic modules
   imports = [ inputs.den.flakeModule ];
 
+  # Temporary bridge for accessing flake inputs in legacy modules
+  den.default.nixos._module.args.inputs = inputs;
+  den.default.darwin._module.args.inputs = inputs;
+
   # Define hostname and user accounts
   den.default.includes = [
     den.provides.hostname
