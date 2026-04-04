@@ -40,7 +40,7 @@
 
   };
 
-  outputs = inputs@{ flake-utils, import-tree, nixpkgs, nix-darwin, nixos-wsl, home-manager, stylix, ... }: let
+  outputs = inputs@{ flake-utils, import-tree, nixpkgs, nix-darwin, nixos-wsl, stylix, ... }: let
 
     den = (nixpkgs.lib.evalModules {
       modules = [ (import-tree ./modules) ];
@@ -57,7 +57,6 @@
       specialArgs = { inherit inputs; };
       modules = [
         nzxt-h1.mainModule
-        home-manager.nixosModules.home-manager
         stylix.nixosModules.stylix
       ];
     };
@@ -68,7 +67,6 @@
       modules = [
         hp-250-g9.mainModule
         nixos-wsl.nixosModules.default
-        home-manager.nixosModules.home-manager
         stylix.nixosModules.stylix
       ];
     };
@@ -78,7 +76,6 @@
       specialArgs = { inherit inputs; };
       modules = [
         macbook-air-m1.mainModule
-        home-manager.darwinModules.home-manager
         stylix.darwinModules.stylix
       ];
     };
