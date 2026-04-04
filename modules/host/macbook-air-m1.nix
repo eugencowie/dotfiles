@@ -13,7 +13,7 @@
     os.imports = [
 
       # Include the results of the hardware scan
-      ../../hosts/macbook-air-m1/hardware-configuration.nix
+      ../../hardware/macbook-air-m1.nix
 
       # Include custom option definitions
       ../../options/user.nix

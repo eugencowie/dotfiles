@@ -16,7 +16,7 @@
     os.imports = [
 
       # Include the results of the hardware scan
-      ../../hosts/nzxt-h1/hardware-configuration.nix
+      ../../hardware/nzxt-h1.nix
 
       # Include custom option definitions
       ../../options/user.nix

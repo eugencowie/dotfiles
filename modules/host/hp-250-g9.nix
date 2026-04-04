@@ -16,7 +16,7 @@
     os.imports = [
 
       # Include the results of the hardware scan
-      ../../hosts/hp-250-g9/hardware-configuration.nix
+      ../../hardware/hp-250-g9.nix
       
       # Include custom option definitions
       ../../options/user.nix
