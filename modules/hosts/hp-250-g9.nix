@@ -32,7 +32,6 @@
     ../../legacy/system/locale/english/british.nix
 
     # Customise login environment
-    ../../legacy/system/shell/zsh.nix
     ../../legacy/system/nix/flakes.nix
 
   ];

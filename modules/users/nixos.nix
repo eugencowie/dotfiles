@@ -6,6 +6,9 @@
     # Mark as primary user
     den.provides.primary-user
 
+    # Customise login environment
+    (den.provides.user-shell "zsh")
+
   ];
 
   # Import legacy configuration
