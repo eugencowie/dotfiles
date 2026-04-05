@@ -1,36 +1,12 @@
 { inputs, den, lib, ... }: {
 
+  # Use Den framework for dendritic modules
   imports = [ inputs.den.flakeModule ];
 
-  den.hosts.x86_64-linux.nzxt-h1.users.echo = {};
-  den.aspects.nzxt-h1.nixos = { ... }: {
-    imports = [ ../hosts/nzxt-h1/configuration.nix ];
-  };
-  den.aspects.echo = {
-    includes = [ den.provides.primary-user ];
-    user.description = "Eugén Cowie";
-  };
-
-  den.hosts.x86_64-linux.hp-250-g9.users.nixos = {};
-  den.aspects.hp-250-g9.nixos = { ... }: {
-    imports = [ ../hosts/hp-250-g9/configuration.nix ];
-  };
-  den.aspects.nixos.includes = [ den.provides.primary-user ];
-
-  den.hosts.aarch64-darwin.macbook-air-m1.users.eugen = {};
-  den.aspects.macbook-air-m1.darwin = { ... }: {
-    imports = [ ../hosts/macbook-air-m1/configuration.nix ];
-  };
-  den.aspects.eugen.includes = [ den.provides.primary-user ];
-
+  # Define hostname and user accounts
   den.default.includes = [
-
-    # Define the hostname
     den.provides.hostname
-
-    # Define the user account
     den.provides.define-user
-
   ];
 
   # Manage user environments
