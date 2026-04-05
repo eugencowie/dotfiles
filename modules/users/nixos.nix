@@ -11,6 +11,7 @@
 
     # Configure terminal environment
     den.aspects.shell._.zsh
+    den.aspects.shell._.direnv
 
   ];
 
@@ -18,7 +19,6 @@
   den.aspects.nixos.homeManager.imports = [
 
     # Configure terminal environment
-    ../../legacy/user/shell/direnv.nix
     ../../legacy/user/prompts/starship.nix
     ../../legacy/user/term/ghostty.nix
 
