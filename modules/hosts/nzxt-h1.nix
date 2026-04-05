@@ -17,6 +17,9 @@
     # Customise login environment
     den.aspects.theme._.stylix
 
+    # Configure desktop environment
+    den.aspects.gpu._.nvidia
+
     # Configure remote access
     den.aspects.remote._.vscodeserver
 
@@ -29,7 +32,6 @@
     ../../hardware/nzxt-h1/hardware-configuration.nix
 
     # Configure desktop environment
-    ../../legacy/system/gpu/nvidia.nix
     ../../legacy/system/desktop/gnome.nix
     ../../legacy/system/sound/pipewire.nix
 
