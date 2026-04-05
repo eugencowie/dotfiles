@@ -9,6 +9,7 @@
     # Basic system configuration
     den.aspects.boot._.grub
     den.aspects.kernel._.latest
+    den.aspects.network._.networkmanager
 
     # Customise login environment
     den.aspects.theme._.stylix
@@ -25,7 +26,6 @@
     ../../hardware/nzxt-h1/hardware-configuration.nix
 
     # Basic system configuration
-    ../../legacy/system/network/networkManager.nix
     ../../legacy/system/time/europe/london.nix
     ../../legacy/system/locale/english/british.nix
 
