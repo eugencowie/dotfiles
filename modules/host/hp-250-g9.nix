@@ -12,6 +12,9 @@
     # Import legacy configuration
     os.imports = [ ../../hosts/hp-250-g9/configuration.nix ];
 
+    # Enable support for running NixOS as a WSL distribution
+    wsl.enable = true;
+
   };
 
 }

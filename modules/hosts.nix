@@ -10,6 +10,7 @@
     # Configuration for HP 250 G9
     x86_64-linux.hp-250-g9 = {
       users.nixos = {};
+      wsl.enable = true;
     };
 
     # Configuration for MacBook Air M1
