@@ -18,6 +18,7 @@
     # Configure development environment
     den.aspects.vcs._.git
     den.aspects.vcs._.jujutsu
+    den.aspects.diff._.meld
 
   ];
 
@@ -25,7 +26,6 @@
   den.aspects.nixos.homeManager.imports = [
 
     # Configure development environment
-    ../../legacy/user/diff/meld.nix
     ../../legacy/user/editor/lazyvim.nix
     ../../legacy/user/ai/opencode.nix
 
