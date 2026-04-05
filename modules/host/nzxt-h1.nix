@@ -4,6 +4,9 @@
 
     includes = [
 
+      # Customise login environment
+      den.aspects.stylix
+
       # Configure remote access
       den.aspects.vscode-server
 

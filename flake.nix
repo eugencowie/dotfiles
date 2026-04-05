@@ -40,7 +40,7 @@
 
   };
 
-  outputs = inputs@{ flake-utils, import-tree, nixpkgs, nix-darwin, stylix, ... }: let
+  outputs = inputs@{ flake-utils, import-tree, nixpkgs, nix-darwin, ... }: let
 
     den = (nixpkgs.lib.evalModules {
       modules = [ (import-tree ./modules) ];
@@ -57,7 +57,6 @@
       specialArgs = { inherit inputs; };
       modules = [
         nzxt-h1.mainModule
-        stylix.nixosModules.stylix
       ];
     };
 
@@ -66,7 +65,6 @@
       specialArgs = { inherit inputs; };
       modules = [
         hp-250-g9.mainModule
-        stylix.nixosModules.stylix
       ];
     };
 
@@ -75,7 +73,6 @@
       specialArgs = { inherit inputs; };
       modules = [
         macbook-air-m1.mainModule
-        stylix.darwinModules.stylix
       ];
     };
 
