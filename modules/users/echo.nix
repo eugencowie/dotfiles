@@ -29,14 +29,7 @@
 
     # Configure desktop environment
     den.aspects.desktop._.gnome
-
-  ];
-
-  # Import legacy configuration
-  den.aspects.echo.homeManager.imports = [
-
-    # Configure desktop environment
-    ../../legacy/user/browser/zen.nix
+    den.aspects.browser._.zen
 
   ];
 
