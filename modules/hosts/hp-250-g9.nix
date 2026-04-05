@@ -5,10 +5,10 @@
     includes = [
 
       # Customise login environment
-      den.aspects.stylix
+      den.aspects.theme._.stylix
 
       # Configure remote access
-      den.aspects.vscode-server
+      den.aspects.remote._.vscodeserver
 
     ];
 

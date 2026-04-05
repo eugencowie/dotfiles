@@ -1,6 +1,6 @@
 { inputs, ... }: {
 
-  den.aspects.stylix = { host, ... }: {
+  den.aspects.theme.provides.stylix = { host, ... }: {
 
     os = { pkgs, ... }: {
 
