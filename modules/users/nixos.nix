@@ -20,14 +20,7 @@
     den.aspects.vcs._.jujutsu
     den.aspects.diff._.meld
     den.aspects.editor._.lazyvim
-
-  ];
-
-  # Import legacy configuration
-  den.aspects.nixos.homeManager.imports = [
-
-    # Configure development environment
-    ../../legacy/user/ai/opencode.nix
+    den.aspects.ai._.opencode
 
   ];
 
