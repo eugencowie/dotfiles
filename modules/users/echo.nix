@@ -23,6 +23,7 @@
     den.aspects.vcs._.git
     den.aspects.vcs._.jujutsu
     den.aspects.diff._.meld
+    den.aspects.editor._.lazyvim
 
   ];
 
@@ -30,7 +31,6 @@
   den.aspects.echo.homeManager.imports = [
 
     # Configure development environment
-    ../../legacy/user/editor/lazyvim.nix
     ../../legacy/user/editor/zed.nix
     ../../legacy/user/ai/opencode.nix
 
