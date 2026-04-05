@@ -20,6 +20,7 @@
     # Modules for managing macOS using Nix
     nix-darwin.url = "github:nix-darwin/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    darwin.follows = "nix-darwin";
 
     # System for managing user environments using Nix
     home-manager.url = "github:nix-community/home-manager";
@@ -40,43 +41,13 @@
 
   };
 
-  outputs = inputs@{ flake-utils, import-tree, nixpkgs, nix-darwin, ... }: let
+  outputs = inputs@{ flake-utils, import-tree, nixpkgs, ... }: (nixpkgs.lib.evalModules {
 
-    den = (nixpkgs.lib.evalModules {
-      modules = [ (import-tree ./modules) ];
-      specialArgs = { inherit inputs; };
-    }).config;
+    # Import all modules
+    modules = [ (import-tree ./modules) ];
+    specialArgs = { inherit inputs; };
 
-    inherit (den.den.hosts.x86_64-linux) nzxt-h1 hp-250-g9;
-    inherit (den.den.hosts.aarch64-darwin) macbook-air-m1;
-
-  in {
-
-    # Configuration for NZXT H1
-    nixosConfigurations.nzxt-h1 = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
-      modules = [
-        nzxt-h1.mainModule
-      ];
-    };
-
-    # Configuration for HP 250 G9
-    nixosConfigurations.hp-250-g9 = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
-      modules = [
-        hp-250-g9.mainModule
-      ];
-    };
-
-    # Configuration for MacBook Air M1
-    darwinConfigurations.macbook-air-m1 = nix-darwin.lib.darwinSystem {
-      specialArgs = { inherit inputs; };
-      modules = [
-        macbook-air-m1.mainModule
-      ];
-    };
-
-  } // flake-utils.lib.eachDefaultSystem (system: {
+  }).config.flake // flake-utils.lib.eachDefaultSystem (system: {
 
     # Development shell for this project
     devShells.default = import ./shell.nix {

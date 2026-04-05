@@ -347,6 +347,9 @@
     },
     "root": {
       "inputs": {
+        "darwin": [
+          "nix-darwin"
+        ],
         "den": "den",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
