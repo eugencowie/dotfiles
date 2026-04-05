@@ -19,6 +19,7 @@
 
     # Configure desktop environment
     den.aspects.gpu._.nvidia
+    den.aspects.desktop._.gnome
 
     # Configure remote access
     den.aspects.remote._.vscodeserver
@@ -32,7 +33,6 @@
     ../../hardware/nzxt-h1/hardware-configuration.nix
 
     # Configure desktop environment
-    ../../legacy/system/desktop/gnome.nix
     ../../legacy/system/sound/pipewire.nix
 
   ];
