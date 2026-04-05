@@ -17,14 +17,12 @@
     den.aspects.shell._.direnv
     den.aspects.prompts._.starship
     den.aspects.multiplex._.zellij
+    den.aspects.term._.ghostty
 
   ];
 
   # Import legacy configuration
   den.aspects.echo.homeManager.imports = [
-
-    # Configure terminal environment
-    ../../legacy/user/term/ghostty.nix
 
     # Configure development environment
     ../../legacy/user/vcs/git.nix
