@@ -27,13 +27,15 @@
     den.aspects.editor._.zed
     den.aspects.ai._.opencode
 
+    # Configure desktop environment
+    den.aspects.desktop._.gnome
+
   ];
 
   # Import legacy configuration
   den.aspects.echo.homeManager.imports = [
 
     # Configure desktop environment
-    ../../legacy/user/desktop/gnome.nix
     ../../legacy/user/browser/zen.nix
 
   ];
