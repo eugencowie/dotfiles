@@ -6,6 +6,9 @@
   # Include host aspects
   den.aspects.nzxt-h1.includes = [
 
+    # Basic system configuration
+    den.aspects.boot._.grub
+
     # Customise login environment
     den.aspects.theme._.stylix
 
@@ -21,7 +24,6 @@
     ../../hardware/nzxt-h1/hardware-configuration.nix
 
     # Basic system configuration
-    ../../legacy/system/boot/grub.nix
     ../../legacy/system/kernel/latest.nix
     ../../legacy/system/network/networkManager.nix
     ../../legacy/system/time/europe/london.nix
