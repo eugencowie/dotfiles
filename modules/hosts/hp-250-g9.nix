@@ -13,20 +13,13 @@
     # Basic system configuration
     den.aspects.time._.london
     den.aspects.locale._.british
+    den.aspects.nix._.flakes
 
     # Customise login environment
     den.aspects.theme._.stylix
 
     # Configure remote access
     den.aspects.remote._.vscodeserver
-
-  ];
-
-  # Import legacy configuration
-  den.aspects.hp-250-g9.os.imports = [
-
-    # Customise login environment
-    ../../legacy/system/nix/flakes.nix
 
   ];
 

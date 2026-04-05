@@ -6,16 +6,11 @@
   # Include host aspects
   den.aspects.macbook-air-m1.includes = [
 
+    # Basic system configuration
+    den.aspects.nix._.flakes
+
     # Customise login environment
     den.aspects.theme._.stylix
-
-  ];
-
-  # Import legacy configuration
-  den.aspects.macbook-air-m1.os.imports = [
-
-    # Customise login environment
-    ../../legacy/system/nix/flakes.nix
 
   ];
 
