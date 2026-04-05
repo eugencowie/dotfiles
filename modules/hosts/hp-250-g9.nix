@@ -15,9 +15,6 @@
     # Import legacy configuration
     os.imports = [
 
-      # Include the results of the hardware scan
-      ../../hardware/hp-250-g9.nix
-      
       # Include custom option definitions
       ../../options/user.nix
 

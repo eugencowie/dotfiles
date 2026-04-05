@@ -12,9 +12,6 @@
     # Import legacy configuration
     os.imports = [
 
-      # Include the results of the hardware scan
-      ../../hardware/macbook-air-m1.nix
-
       # Include custom option definitions
       ../../options/user.nix
 
