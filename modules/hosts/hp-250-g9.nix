@@ -10,6 +10,9 @@
   # Include host aspects
   den.aspects.hp-250-g9.includes = [
 
+    # Basic system configuration
+    den.aspects.time._.london
+
     # Customise login environment
     den.aspects.theme._.stylix
 
@@ -22,7 +25,6 @@
   den.aspects.hp-250-g9.os.imports = [
 
     # Basic system configuration
-    ../../legacy/system/time/europe/london.nix
     ../../legacy/system/locale/english/british.nix
 
     # Customise login environment
