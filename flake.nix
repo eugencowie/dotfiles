@@ -4,7 +4,7 @@
     # Pure Nix flake utility functions
     flake-utils.url = "github:numtide/flake-utils";
 
-    # Import all nix files in a directory tree
+    # Import all Nix files in a directory tree
     import-tree.url = "github:vic/import-tree";
 
     # Aspect-oriented, context-driven dendritic Nix configurations
