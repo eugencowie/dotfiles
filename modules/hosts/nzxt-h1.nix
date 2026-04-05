@@ -1,5 +1,8 @@
 { den, ... }: {
 
+  # Include the results of the hardware scan
+  den.aspects.nzxt-h1.os.imports = [ ../../hardware/nzxt-h1/hardware-configuration.nix ];
+
   # Define user accounts
   den.hosts.x86_64-linux.nzxt-h1.users.echo = {};
 
@@ -20,20 +23,10 @@
     # Configure desktop environment
     den.aspects.gpu._.nvidia
     den.aspects.desktop._.gnome
+    den.aspects.sound._.pipewire
 
     # Configure remote access
     den.aspects.remote._.vscodeserver
-
-  ];
-
-  # Import legacy configuration
-  den.aspects.nzxt-h1.os.imports = [
-
-    # Include the results of the hardware scan
-    ../../hardware/nzxt-h1/hardware-configuration.nix
-
-    # Configure desktop environment
-    ../../legacy/system/sound/pipewire.nix
 
   ];
 
