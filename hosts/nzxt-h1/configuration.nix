@@ -33,7 +33,4 @@
   my.user.name = "echo";
   my.user.config = import ./home.nix;
 
-  # Required for VS Code Server
-  programs.nix-ld.enable = true;
-
 }
