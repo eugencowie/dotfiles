@@ -9,7 +9,6 @@
     ../../options/user.nix
 
     # Basic system configuration
-    ../../legacy/system/boot/wsl.nix
     ../../legacy/system/time/europe/london.nix
     ../../legacy/system/locale/english/british.nix
 

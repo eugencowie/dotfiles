@@ -40,7 +40,7 @@
 
   };
 
-  outputs = inputs@{ flake-utils, import-tree, nixpkgs, nix-darwin, nixos-wsl, stylix, ... }: let
+  outputs = inputs@{ flake-utils, import-tree, nixpkgs, nix-darwin, stylix, ... }: let
 
     den = (nixpkgs.lib.evalModules {
       modules = [ (import-tree ./modules) ];
@@ -66,7 +66,6 @@
       specialArgs = { inherit inputs; };
       modules = [
         hp-250-g9.mainModule
-        nixos-wsl.nixosModules.default
         stylix.nixosModules.stylix
       ];
     };
