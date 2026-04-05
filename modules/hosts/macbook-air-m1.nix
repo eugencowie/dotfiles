@@ -1,29 +1,29 @@
 { den, ... }: {
 
-  den.aspects.macbook-air-m1 = {
+  # Define user accounts
+  den.hosts.aarch64-darwin.macbook-air-m1.users.eugen = {};
 
-    includes = [
+  # Define legacy options
+  den.aspects.macbook-air-m1.os.my.user.name = "eugen";
 
-      # Customise login environment
-      den.aspects.theme._.stylix
+  # Include host aspects
+  den.aspects.macbook-air-m1.includes = [
 
-    ];
+    # Customise login environment
+    den.aspects.theme._.stylix
 
-    # Import legacy configuration
-    os.imports = [
+  ];
 
-      # Include custom option definitions
-      ../../options/user.nix
+  # Import legacy configuration
+  den.aspects.macbook-air-m1.os.imports = [
 
-      # Customise login environment
-      ../../legacy/system/shell/zsh.nix
-      ../../legacy/system/nix/flakes.nix
+    # Include custom option definitions
+    ../../options/user.nix
 
-    ];
+    # Customise login environment
+    ../../legacy/system/shell/zsh.nix
+    ../../legacy/system/nix/flakes.nix
 
-    # Define user configuration
-    os.my.user.name = "eugen";
-
-  };
+  ];
 
 }
