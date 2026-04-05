@@ -15,13 +15,15 @@
     den.aspects.prompts._.starship
     den.aspects.term._.ghostty
 
+    # Configure development environment
+    den.aspects.vcs._.git
+
   ];
 
   # Import legacy configuration
   den.aspects.eugen.homeManager.imports = [
 
     # Configure development environment
-    ../../legacy/user/vcs/git.nix
     ../../legacy/user/vcs/jujutsu.nix
 
   ];
