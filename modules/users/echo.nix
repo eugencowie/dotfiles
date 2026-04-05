@@ -24,6 +24,7 @@
     den.aspects.vcs._.jujutsu
     den.aspects.diff._.meld
     den.aspects.editor._.lazyvim
+    den.aspects.editor._.zed
 
   ];
 
@@ -31,7 +32,6 @@
   den.aspects.echo.homeManager.imports = [
 
     # Configure development environment
-    ../../legacy/user/editor/zed.nix
     ../../legacy/user/ai/opencode.nix
 
     # Configure desktop environment
