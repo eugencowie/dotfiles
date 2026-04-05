@@ -21,6 +21,7 @@
 
     # Configure development environment
     den.aspects.vcs._.git
+    den.aspects.vcs._.jujutsu
 
   ];
 
@@ -28,7 +29,6 @@
   den.aspects.echo.homeManager.imports = [
 
     # Configure development environment
-    ../../legacy/user/vcs/jujutsu.nix
     ../../legacy/user/diff/meld.nix
     ../../legacy/user/editor/lazyvim.nix
     ../../legacy/user/editor/zed.nix

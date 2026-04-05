@@ -17,14 +17,7 @@
 
     # Configure development environment
     den.aspects.vcs._.git
-
-  ];
-
-  # Import legacy configuration
-  den.aspects.eugen.homeManager.imports = [
-
-    # Configure development environment
-    ../../legacy/user/vcs/jujutsu.nix
+    den.aspects.vcs._.jujutsu
 
   ];
 
