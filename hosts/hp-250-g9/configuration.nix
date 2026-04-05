@@ -15,7 +15,6 @@
     # Customise login environment
     ../../legacy/system/shell/zsh.nix
     ../../legacy/system/home/homeManager.nix
-    ../../legacy/system/theme/stylix.nix
     ../../legacy/system/nix/flakes.nix
 
   ];
