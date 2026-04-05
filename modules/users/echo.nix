@@ -16,6 +16,7 @@
     den.aspects.shell._.zsh
     den.aspects.shell._.direnv
     den.aspects.prompts._.starship
+    den.aspects.multiplex._.zellij
 
   ];
 
@@ -23,7 +24,6 @@
   den.aspects.echo.homeManager.imports = [
 
     # Configure terminal environment
-    ../../legacy/user/multiplex/zellij.nix
     ../../legacy/user/term/ghostty.nix
 
     # Configure development environment
