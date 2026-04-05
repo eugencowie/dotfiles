@@ -11,6 +11,7 @@
     den.aspects.kernel._.latest
     den.aspects.network._.networkmanager
     den.aspects.time._.london
+    den.aspects.locale._.british
 
     # Customise login environment
     den.aspects.theme._.stylix
@@ -25,9 +26,6 @@
 
     # Include the results of the hardware scan
     ../../hardware/nzxt-h1/hardware-configuration.nix
-
-    # Basic system configuration
-    ../../legacy/system/locale/english/british.nix
 
     # Customise login environment
     ../../legacy/system/nix/flakes.nix

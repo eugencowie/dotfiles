@@ -12,6 +12,7 @@
 
     # Basic system configuration
     den.aspects.time._.london
+    den.aspects.locale._.british
 
     # Customise login environment
     den.aspects.theme._.stylix
@@ -23,9 +24,6 @@
 
   # Import legacy configuration
   den.aspects.hp-250-g9.os.imports = [
-
-    # Basic system configuration
-    ../../legacy/system/locale/english/british.nix
 
     # Customise login environment
     ../../legacy/system/nix/flakes.nix
