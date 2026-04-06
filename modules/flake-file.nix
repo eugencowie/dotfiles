@@ -5,25 +5,6 @@
     # Generate flake.nix from module options
     flake-file.url = "github:vic/flake-file";
 
-    # Aspect-oriented, context-driven dendritic Nix configurations
-    den.url = "github:vic/den";
-
-    # Nix packages collection and NixOS
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
-    # Modules for running NixOS on Windows Subsystem for Linux
-    nixos-wsl.url = "github:nix-community/NixOS-WSL";
-    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Modules for managing macOS using Nix
-    nix-darwin.url = "github:nix-darwin/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    darwin.follows = "nix-darwin";
-
-    # System for managing user environments using Nix
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
     # Theming framework for NixOS, Home Manager, and nix-darwin
     stylix.url = "github:nix-community/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
