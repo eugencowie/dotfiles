@@ -5,10 +5,6 @@
     # Generate flake.nix from module options
     flake-file.url = "github:vic/flake-file";
 
-    # Flake basics described using the module system
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
-
     # Aspect-oriented, context-driven dendritic Nix configurations
     den.url = "github:vic/den";
 
