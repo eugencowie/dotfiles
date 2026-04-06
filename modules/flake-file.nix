@@ -5,10 +5,6 @@
     # Generate flake.nix from module options
     flake-file.url = "github:vic/flake-file";
 
-    # Theming framework for NixOS, Home Manager, and nix-darwin
-    stylix.url = "github:nix-community/stylix";
-    stylix.inputs.nixpkgs.follows = "nixpkgs";
-
     # Module for managing LazyVim in Home Manager
     lazyvim-nix.url = "github:pfassina/lazyvim-nix";
     lazyvim-nix.inputs.nixpkgs.follows = "nixpkgs";
