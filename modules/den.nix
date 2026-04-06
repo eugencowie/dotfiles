@@ -4,18 +4,16 @@
   imports = [ inputs.den.flakeModule ];
 
   # Temporary bridge for accessing flake inputs in legacy modules
-  den.default.nixos._module.args.inputs = inputs;
-  den.default.darwin._module.args.inputs = inputs;
-  den.default.nixos.home-manager.extraSpecialArgs = { inherit inputs; };
-  den.default.darwin.home-manager.extraSpecialArgs = { inherit inputs; };
+  den.default.os._module.args.inputs = inputs;
+  den.default.os.home-manager.extraSpecialArgs = { inherit inputs; };
 
-  # Define hostname and user accounts
+  # Define hostname and user accounts on all systems
   den.default.includes = [
     den.provides.hostname
     den.provides.define-user
   ];
 
-  # Manage user environments
+  # Manage user environments on all systems
   den.schema.user.classes = lib.mkDefault [ "homeManager" ];
 
   # This option defines the first version of NixOS you have installed on this
@@ -38,8 +36,8 @@
   #
   # For more information, see `man configuration.nix` or
   # https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion
-  den.default.nixos.system.stateVersion = "25.11";
-  den.default.darwin.system.stateVersion = 6;
+  den.default.nixos.system.stateVersion = lib.mkDefault "25.11";
+  den.default.darwin.system.stateVersion = lib.mkDefault 6;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -49,6 +47,6 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  den.default.homeManager.home.stateVersion = "25.11";
+  den.default.homeManager.home.stateVersion = lib.mkDefault "25.11";
 
 }
