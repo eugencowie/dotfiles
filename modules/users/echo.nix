@@ -12,13 +12,15 @@
     # Configure remote access
     den.aspects.remote._.sunshine
 
+    # Configure terminal environment
+    den.aspects.shell._.zsh
+
   ];
 
   # Import legacy configuration
   den.aspects.echo.homeManager.imports = [
 
     # Configure terminal environment
-    ../../legacy/user/shell/zsh.nix
     ../../legacy/user/shell/direnv.nix
     ../../legacy/user/prompts/starship.nix
     ../../legacy/user/multiplex/zellij.nix

@@ -9,13 +9,15 @@
     # Customise login environment
     (den.provides.user-shell "zsh")
 
+    # Configure terminal environment
+    den.aspects.shell._.zsh
+
   ];
 
   # Import legacy configuration
   den.aspects.eugen.homeManager.imports = [
 
     # Configure terminal environment
-    ../../legacy/user/shell/zsh.nix
     ../../legacy/user/shell/direnv.nix
     ../../legacy/user/prompts/starship.nix
     ../../legacy/user/term/ghostty.nix
