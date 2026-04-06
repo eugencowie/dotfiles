@@ -1,5 +1,11 @@
 { inputs, ... }: {
 
+  # Theming framework for NixOS, Home Manager, and nix-darwin
+  flake-file.inputs.stylix = {
+    url = "github:nix-community/stylix";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
   den.aspects.theme.provides.stylix = { host, ... }: {
 
     os = { pkgs, ... }: {
