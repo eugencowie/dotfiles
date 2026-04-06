@@ -5,10 +5,6 @@
     # Generate flake.nix from module options
     flake-file.url = "github:vic/flake-file";
 
-    # Module for managing LazyVim in Home Manager
-    lazyvim-nix.url = "github:pfassina/lazyvim-nix";
-    lazyvim-nix.inputs.nixpkgs.follows = "nixpkgs";
-
     # Module for managing Zen Browser in Home Manager
     zen-browser.url = "github:0xc000022070/zen-browser-flake/beta";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
