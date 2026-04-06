@@ -1,8 +1,9 @@
 {
   inputs = {
 
-    # Pure Nix flake utility functions
-    flake-utils.url = "github:numtide/flake-utils";
+    # Flake basics described using the module system
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
 
     # Import all Nix files in a directory tree
     import-tree.url = "github:vic/import-tree";
@@ -41,18 +42,5 @@
 
   };
 
-  outputs = inputs@{ flake-utils, import-tree, nixpkgs, ... }: (nixpkgs.lib.evalModules {
-
-    # Import all modules
-    modules = [ (import-tree ./modules) ];
-    specialArgs = { inherit inputs; };
-
-  }).config.flake // flake-utils.lib.eachDefaultSystem (system: {
-
-    # Development shell for this project
-    devShells.default = import ./shell.nix {
-      pkgs = nixpkgs.legacyPackages.${system};
-    };
-
-  });
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }
