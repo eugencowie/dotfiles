@@ -21,6 +21,7 @@
 
     # Configure development environment
     den.aspects.vcs._.git
+    den.aspects.vcs._.gitbutler
     den.aspects.vcs._.jujutsu
     den.aspects.diff._.meld
     den.aspects.editor._.lazyvim
