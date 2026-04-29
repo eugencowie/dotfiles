@@ -1,19 +1,16 @@
-write-flake:
+flake.nix:
 	nix run .#write-flake
 
-check: write-flake
-	nix flake check
-
-show: write-flake
-	nix flake show
-
-update: write-flake
+flake.lock: flake.nix
 	nix flake update
 
-install: write-flake
+hardware/%/hardware-configuration.nix: flake.nix
+	nixos-generate-config --show-hardware-config > hardware/$${HOSTNAME:-$$(hostname)}/hardware-configuration.nix
+
+install: flake.nix
 	@case "$$(uname -s)" in \
 		Darwin) darwin-rebuild switch --flake . ;; \
 		*) nixos-rebuild switch --flake . ;; \
 	esac
 
-.PHONY: write-flake check show update install
+.PHONY: flake.nix
