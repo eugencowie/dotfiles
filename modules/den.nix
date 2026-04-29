@@ -24,7 +24,7 @@
   };
 
   # Use Den framework for dendritic modules
-  imports = [ (inputs.den.flakeModules.dendritic or { }) ];
+  imports = [ inputs.den.flakeModules.dendritic ];
 
   # Define hostname and user accounts on all systems
   den.default.includes = [
