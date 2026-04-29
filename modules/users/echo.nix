@@ -29,7 +29,6 @@
     den.aspects.ai._.opencode
 
     # Configure desktop environment
-    den.aspects.desktop._.gnome
     den.aspects.browser._.zen
 
   ];

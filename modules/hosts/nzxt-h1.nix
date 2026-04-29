@@ -17,9 +17,6 @@
     den.aspects.locale._.british
     den.aspects.nix._.flakes
 
-    # Customise login environment
-    den.aspects.theme._.stylix
-
     # Configure desktop environment
     den.aspects.gpu._.nvidia
     den.aspects.desktop._.gnome
