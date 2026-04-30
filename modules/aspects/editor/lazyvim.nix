@@ -1,11 +1,11 @@
 { den, inputs, ... }: {
 
+  # Module for managing LazyVim in Home Manager
   flake-file.inputs.lazyvim-nix = {
     url = "github:pfassina/lazyvim-nix";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  # Module for managing LazyVim in Home Manager
   den.aspects.editor.provides.lazyvim.homeManager = {
 
     imports = [ inputs.lazyvim-nix.homeManagerModules.default ];
