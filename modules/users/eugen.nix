@@ -1,23 +1,23 @@
 { den, ... }: {
 
   # Include user aspects
-  den.aspects.eugen.includes = [
+  den.aspects.eugen.includes = with den.provides; with den.aspects; [
 
     # Mark as primary user
-    den.provides.primary-user
+    primary-user
 
     # Customise login environment
-    (den.provides.user-shell "zsh")
+    (user-shell "zsh")
 
     # Configure terminal environment
-    den.aspects.shell._.zsh
-    den.aspects.shell._.direnv
-    den.aspects.prompts._.starship
-    den.aspects.term._.ghostty
+    shell._.zsh
+    shell._.direnv
+    prompts._.starship
+    term._.ghostty
 
     # Configure development environment
-    den.aspects.vcs._.git
-    den.aspects.vcs._.jujutsu
+    vcs._.git
+    vcs._.jujutsu
 
   ];
 

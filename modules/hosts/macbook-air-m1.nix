@@ -1,17 +1,19 @@
 { den, ... }: {
 
-  # Define user accounts
-  den.hosts.aarch64-darwin.macbook-air-m1.users.eugen = {};
-
   # Include host aspects
-  den.aspects.macbook-air-m1.includes = [
+  den.aspects.macbook-air-m1.includes = with den.aspects; [
 
     # Basic system configuration
-    den.aspects.nix._.flakes
+    nix._.flakes
 
     # Customise login environment
-    den.aspects.theme._.stylix
+    theme._.stylix
 
   ];
+
+  # Define user accounts
+  den.hosts.aarch64-darwin.macbook-air-m1.users = {
+    eugen = {};
+  };
 
 }
