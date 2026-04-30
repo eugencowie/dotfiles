@@ -6,6 +6,7 @@
     inputs.home-manager.follows = "home-manager";
   };
 
+  # Module for managing Zen Browser in Home Manager
   den.aspects.browser.provides.zen.homeManager = {
 
     imports = [ inputs.zen-browser.homeModules.beta ];
