@@ -2,7 +2,6 @@
 
   den.aspects.prompts.provides.starship.homeManager = { lib, pkgs, ... }: {
 
-    # Enable Starship
     programs.starship = {
       enable = true;
       enableZshIntegration = true;

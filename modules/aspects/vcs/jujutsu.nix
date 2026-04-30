@@ -2,7 +2,6 @@
 
   den.aspects.vcs.provides.jujutsu.homeManager = { config, ... }: {
 
-    # Enable Jujutsu
     programs.jujutsu = {
       enable = true;
       settings = {

@@ -1,6 +1,5 @@
 { den, inputs, ... }: {
 
-  # Module for managing Zen Browser in Home Manager
   flake-file.inputs.zen-browser = {
     url = "github:0xc000022070/zen-browser-flake/beta";
     inputs.nixpkgs.follows = "nixpkgs";

@@ -1,6 +1,5 @@
 { inputs, ... }: {
 
-  # Theming framework for NixOS, Home Manager, and nix-darwin
   flake-file.inputs.stylix = {
     url = "github:nix-community/stylix";
     inputs.nixpkgs.follows = "nixpkgs";
@@ -12,7 +11,6 @@
 
       imports = [ inputs.stylix."${host.class}Modules".stylix ];
 
-      # Enable Stylix
       stylix = {
         enable = true;
         base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
