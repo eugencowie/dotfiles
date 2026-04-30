@@ -5,7 +5,7 @@ flake.lock: flake.nix
 	nix flake update
 
 hardware/%/hardware-configuration.nix: flake.nix
-	nixos-generate-config --show-hardware-config > hardware/$${HOSTNAME:-$$(hostname)}/hardware-configuration.nix
+	nixos-generate-config --show-hardware-config > hardware/$$(hostname)/hardware-configuration.nix
 
 install: flake.nix
 	@case "$$(uname -s)" in \

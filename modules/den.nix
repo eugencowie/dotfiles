@@ -1,36 +1,28 @@
 { inputs, den, lib, ... }: {
 
-  flake-file.inputs = {
+  # Aspect-oriented, context-driven dendritic Nix configurations
+  flake-file.inputs.den.url = "github:vic/den";
 
-    # Aspect-oriented, context-driven dendritic Nix configurations
-    den.url = "github:vic/den";
+  # Nix packages collection and NixOS
+  flake-file.inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    # Nix packages collection and NixOS
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  # Modules for running NixOS on Windows Subsystem for Linux
+  flake-file.inputs.nixos-wsl.url = "github:nix-community/NixOS-WSL";
+  flake-file.inputs.nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Modules for running NixOS on Windows Subsystem for Linux
-    nixos-wsl.url = "github:nix-community/NixOS-WSL";
-    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
+  # Modules for managing macOS using Nix
+  flake-file.inputs.darwin.url = "github:nix-darwin/nix-darwin";
+  flake-file.inputs.darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Modules for managing macOS using Nix
-    nix-darwin.url = "github:nix-darwin/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    darwin.follows = "nix-darwin";
-
-    # System for managing user environments using Nix
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-  };
+  # System for managing user environments using Nix
+  flake-file.inputs.home-manager.url = "github:nix-community/home-manager";
+  flake-file.inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
   # Use Den framework for dendritic modules
   imports = [ inputs.den.flakeModules.dendritic ];
 
   # Define hostname and user accounts on all systems
-  den.default.includes = [
-    den.provides.hostname
-    den.provides.define-user
-  ];
+  den.default.includes = with den.provides; [ hostname define-user ];
 
   # Manage user environments on all systems
   den.schema.user.classes = lib.mkDefault [ "homeManager" ];
