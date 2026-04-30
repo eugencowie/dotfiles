@@ -1,13 +1,12 @@
 { den, ... }: {
 
-  den.aspects.vcs.provides.git.homeManager = {
+  den.aspects.vcs.provides.git = { name, email }: {
 
     # Enable Git
-    programs.git = {
+    homeManager.programs.git = {
       enable = true;
       settings.user = {
-        name = "Eugén Cowie";
-        email = "eugencowie@users.noreply.github.com";
+        inherit name email;
       };
     };
 
