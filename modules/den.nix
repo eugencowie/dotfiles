@@ -58,6 +58,6 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  den.default.homeManager.home.stateVersion = lib.mkDefault "25.11";
+  den.default.homeManager.home.stateVersion = lib.mkDefault "26.05";
 
 }
