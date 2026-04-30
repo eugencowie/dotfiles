@@ -1,4 +1,4 @@
-{ inputs, lib, ... }: {
+{ inputs, ... }: {
 
   # Generate flake.nix from module options
   flake-file.inputs.flake-file.url = "github:vic/flake-file";
