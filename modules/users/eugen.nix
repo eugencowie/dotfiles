@@ -11,7 +11,6 @@
 
     # Configure terminal environment
     shell._.zsh
-    shell._.direnv
     prompts._.starship
     term._.ghostty
 
