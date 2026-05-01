@@ -16,7 +16,10 @@
     term._.ghostty
 
     # Configure development environment
-    vcs._.git
+    (vcs._.git {
+      name = "Eugén Cowie";
+      email = "eugencowie@users.noreply.github.com";
+    })
     vcs._.jujutsu
     diff._.meld
     editor._.lazyvim

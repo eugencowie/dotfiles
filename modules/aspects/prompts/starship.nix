@@ -1,23 +1,15 @@
 { den, ... }: {
 
-  den.aspects.prompts.provides.starship.homeManager = { lib, pkgs, ... }: {
+  den.aspects.prompts.provides.starship = {
+
+    # Zsh is required for Zsh integration
+    includes = with den.aspects; [ shell._.zsh ];
 
     # Enable Starship
-    programs.starship = {
+    homeManager.programs.starship = {
       enable = true;
       enableZshIntegration = true;
-      settings = {
-        git_branch.disabled = true;
-        git_status.disabled = true;
-        custom.jj = {
-          when = "jj-starship detect";
-          shell = [ "jj-starship" ];
-          format = "$output ";
-        };
-      };
     };
-
-    home.packages = lib.mkAfter [ pkgs.jj-starship ];
 
   };
 

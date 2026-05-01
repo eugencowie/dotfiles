@@ -27,6 +27,13 @@
 
     };
 
+    homeManager = {
+
+      # Disable KDE Stylix target (not needed on GNOME/non-KDE hosts)
+      stylix.targets.kde.enable = false;
+
+    };
+
   };
 
 }
