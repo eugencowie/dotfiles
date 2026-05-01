@@ -1,9 +1,12 @@
 { den, ... }: {
 
-  den.aspects.prompts.provides.starship.homeManager = {
+  den.aspects.prompts.provides.starship = {
+
+    # Zsh is required for Zsh integration
+    includes = with den.aspects; [ shell._.zsh ];
 
     # Enable Starship
-    programs.starship = {
+    homeManager.programs.starship = {
       enable = true;
       enableZshIntegration = true;
     };
