@@ -1,6 +1,6 @@
 { den, ... }: {
 
-  den.aspects.vcs.provides.gitbutler =
+  den.aspects.vcs.provides.gitbutler = {
 
     # Git is required
     includes = with den.aspects; [ vcs._.git ];

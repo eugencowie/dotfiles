@@ -1,11 +1,11 @@
-{ den, lib, pkgs, ... }: {
+{ den, ... }: {
 
-  den.aspects.vcs.provides.jujutsu =
+  den.aspects.vcs.provides.jujutsu = {
 
     # Git is required
     includes = with den.aspects; [ vcs._.git ];
 
-    homeManager = { config, ... }: {
+    homeManager = { config, lib, pkgs, ... }: {
 
       # Enable Jujutsu
       programs.jujutsu = {
