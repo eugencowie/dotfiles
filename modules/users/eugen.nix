@@ -22,6 +22,7 @@
     })
     vcs._.jujutsu
     ai._.opencode
+    ai._.codex
 
   ];
 
