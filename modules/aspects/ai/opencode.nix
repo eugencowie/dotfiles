@@ -7,15 +7,12 @@
       enable = true;
       settings = {
         permission.bash = "ask";
+        plugin = ["@simonwjackson/opencode-direnv"];
       };
     };
 
-  };
-
-  den.aspects.ai.provides.opencode.os = {
-
-    # Allow OpenCode Web to be accessed from the local network
-    networking.firewall.allowedTCPPorts = lib.mkAfter [ 4096 ];
+    # Enable ripgrep
+    programs.ripgrep.enable = true;
 
   };
 

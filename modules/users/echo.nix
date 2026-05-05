@@ -29,7 +29,7 @@
     diff._.meld
     editor._.lazyvim
     editor._.zed
-    ai._.opencode
+    ai._.opencode-web
 
     # Configure desktop environment
     browser._.zen

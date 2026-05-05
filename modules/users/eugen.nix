@@ -21,6 +21,7 @@
       email = "eugencowie@users.noreply.github.com";
     })
     vcs._.jujutsu
+    ai._.opencode
 
   ];
 
