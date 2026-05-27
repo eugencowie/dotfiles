@@ -12,6 +12,7 @@
     # Configure terminal environment
     shell._.zsh
     shell._.direnv
+    shell._.mise
     prompts._.starship
     term._.ghostty
 
