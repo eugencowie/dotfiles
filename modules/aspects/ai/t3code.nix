@@ -12,11 +12,10 @@
       # Start the T3 Code server automatically at boot
       systemd.services.t3code = {
         description = "T3 Code server";
-        after = [ "network.target" ];
+        wants = [ "network-online.target" ];
+        after = [ "network-online.target" ];
         wantedBy = [ "multi-user.target" ];
-
         environment.HOME = home;
-
         serviceConfig = {
           User = user.userName;
           Group = config.users.users.${user.userName}.group;
@@ -28,8 +27,17 @@
         };
       };
 
-      # Allow T3 Code to be accessed from the local network
-      networking.firewall.allowedTCPPorts = lib.mkAfter [ 3773 ];
+      # Expose T3 Code as a named Tailscale Service over HTTPS
+      services.tailscale.serve = {
+        enable = true;
+        services.t3code.endpoints."tcp:443" = "http://127.0.0.1:3773";
+      };
+
+      # Work around tailscale serve set-config creating an HTTP listener on port 443
+      systemd.services.tailscale-serve.serviceConfig.ExecStartPost = lib.mkAfter [
+        "-${config.services.tailscale.package}/bin/tailscale serve --yes --service=svc:t3code --http=443 off"
+        "${config.services.tailscale.package}/bin/tailscale serve --yes --service=svc:t3code --https=443 127.0.0.1:3773"
+      ];
 
     };
 
