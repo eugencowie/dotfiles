@@ -31,6 +31,7 @@
     editor._.lazyvim
     editor._.zed
     ai._.codex
+    ai._.claude
     ai._.opencode-web
 
     # Configure desktop environment
