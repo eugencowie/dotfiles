@@ -30,7 +30,10 @@
     diff._.meld
     editor._.lazyvim
     editor._.zed
+    ai._.codex
+    ai._.claude
     ai._.opencode-web
+    ai._.ccusage
 
     # Configure desktop environment
     browser._.zen
