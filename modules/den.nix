@@ -27,6 +27,10 @@
   # Manage user environments on all systems
   den.schema.user.classes = lib.mkDefault [ "homeManager" ];
 
+  # Use the system package set for Home Manager
+  den.default.nixos.home-manager.useGlobalPkgs = true;
+  den.default.darwin.home-manager.useGlobalPkgs = true;
+
   # This option defines the first version of NixOS you have installed on this
   # particular machine, and is used to maintain compatibility with application
   # data (e.g. databases) created on older NixOS versions.
