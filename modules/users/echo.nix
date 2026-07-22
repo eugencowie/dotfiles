@@ -11,13 +11,13 @@
 
     # Configure remote access
     remote._.sunshine
+    multiplex._.zellij
 
     # Configure terminal environment
     shell._.zsh
     shell._.direnv
     shell._.mise
     prompts._.starship
-    multiplex._.zellij
     term._.ghostty
 
     # Configure development environment

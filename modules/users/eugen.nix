@@ -11,6 +11,9 @@
 
     # Configure terminal environment
     shell._.zsh
+    shell._.dotnet
+    shell._.homebrew
+    shell._.hermes
     shell._.direnv
     shell._.mise
     prompts._.starship
@@ -24,6 +27,7 @@
     vcs._.jujutsu
     ai._.opencode
     ai._.codex
+    ai._.claude
 
   ];
 
