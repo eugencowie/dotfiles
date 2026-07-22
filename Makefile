@@ -1,3 +1,17 @@
+help:
+	@printf '%s\n' \
+		'Available targets:' \
+		'init        Initialise development environment' \
+		'flake.nix   Generate flake.nix using flake-file' \
+		'flake.lock  Update flake lock file' \
+		'hardware/<hostname>/hardware-configuration.nix' \
+		'            Update hardware configuration' \
+		'install     Rebuild and activate the system configuration (run using sudo)'
+
+init:
+	skills experimental_install
+	cp -r .agents/. .claude
+
 flake.nix:
 	nix run .#write-flake
 
@@ -14,4 +28,4 @@ install: flake.nix
 		*) nixos-rebuild switch --flake . ;; \
 	esac
 
-.PHONY: flake.nix
+.PHONY: help init flake.nix
