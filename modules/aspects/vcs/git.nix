@@ -5,16 +5,23 @@
     # Meld is configured as the merge tool
     includes = with den.aspects; [ diff._.meld ];
 
-    # Enable Git
-    homeManager.programs.git = {
-      enable = true;
-      settings = {
-        user = {
-          inherit name email;
+    homeManager = { pkgs, ... }: {
+
+      # Enable Git
+      programs.git = {
+        enable = true;
+        settings = {
+          user = {
+            inherit name email;
+          };
+          merge.tool = "meld";
+          mergetool.meld.cmd = "meld \"$LOCAL\" \"$BASE\" \"$REMOTE\" --output \"$MERGED\"";
         };
-        merge.tool = "meld";
-        mergetool.meld.cmd = "meld \"$LOCAL\" \"$BASE\" \"$REMOTE\" --output \"$MERGED\"";
       };
+
+      # Enable git-absorb
+      home.packages = with pkgs; [ git-absorb ];
+
     };
 
   };
