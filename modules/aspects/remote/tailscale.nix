@@ -4,15 +4,18 @@
 
     os = { config, lib, ... }: let
       cfg = config.services.tailscale.serve.https;
-      endpoints = lib.flatten (lib.mapAttrsToList (serviceName: service:
-        lib.mapAttrsToList (endpoint: target: let
-          match = builtins.match "tcp:([0-9]+)" endpoint;
-        in {
-          inherit endpoint serviceName target;
-          port = if match == null then null else builtins.head match;
-        }) service.endpoints
-      ) cfg.services);
-      validEndpoints = builtins.filter (endpoint: endpoint.port != null) endpoints;
+      mkEndpoint = serviceName: endpoint: target: let
+        match = builtins.match "tcp:([0-9]+)" endpoint;
+        port = builtins.head match;
+      in
+        assert lib.assertMsg (match != null)
+          "services.tailscale.serve.https endpoint '${endpoint}' must use the tcp:<port> format";
+        ''
+          tailscale serve --yes --service=${lib.escapeShellArg "svc:${serviceName}"} --http=${port} off || true
+          tailscale serve --yes --service=${lib.escapeShellArg "svc:${serviceName}"} --https=${port} ${lib.escapeShellArg target}
+        '';
+      mkService = serviceName: service:
+        lib.concatMapAttrsStringSep "\n" (mkEndpoint serviceName) service.endpoints;
     in {
 
       options.services.tailscale.serve.https = {
@@ -34,16 +37,10 @@
         # Enable the Tailscale mesh VPN
         services.tailscale.enable = true;
 
-        assertions = lib.optionals cfg.enable (
-          [{
-            assertion = cfg.services != {};
-            message = "services.tailscale.serve.https requires at least one service";
-          }]
-          ++ map (endpoint: {
-            assertion = endpoint.port != null;
-            message = "services.tailscale.serve.https endpoint '${endpoint.endpoint}' must use the tcp:<port> format";
-          }) endpoints
-        );
+        assertions = lib.optional cfg.enable {
+          assertion = cfg.services != {};
+          message = "services.tailscale.serve.https requires at least one service";
+        };
 
         # Configure HTTPS services directly until the Tailscale Serve config format
         # can preserve the protocol used by the frontend listener.
@@ -61,10 +58,7 @@
             Type = "oneshot";
             RemainAfterExit = true;
           };
-          script = lib.concatStringsSep "\n" (map (endpoint: ''
-            tailscale serve --yes --service=${lib.escapeShellArg "svc:${endpoint.serviceName}"} --http=${endpoint.port} off || true
-            tailscale serve --yes --service=${lib.escapeShellArg "svc:${endpoint.serviceName}"} --https=${endpoint.port} ${lib.escapeShellArg endpoint.target}
-          '') validEndpoints);
+          script = lib.concatMapAttrsStringSep "\n" mkService cfg.services;
         };
 
       };
