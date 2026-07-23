@@ -9,6 +9,9 @@
     # Customise login environment
     (user-shell "zsh")
 
+    # Configure remote access
+    remote._.wakeonlan
+
     # Configure terminal environment
     shell._.zsh
     shell._.dotnet

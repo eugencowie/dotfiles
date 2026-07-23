@@ -6,7 +6,7 @@ help:
 		'flake.lock  Update flake lock file' \
 		'hardware/<hostname>/hardware-configuration.nix' \
 		'            Update hardware configuration' \
-		'install     Rebuild and activate the system configuration (run using sudo)'
+		'install     Rebuild and activate the system configuration (requires sudo)'
 
 init:
 	skills experimental_install
