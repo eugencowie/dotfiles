@@ -1,4 +1,4 @@
-{ den, lib, ... }: {
+{ den, ... }: {
 
   den.aspects.ai.provides.t3code = { user, ... }: {
 
@@ -26,18 +26,6 @@
           RestartSec = 5;
         };
       };
-
-      # Expose T3 Code as a named Tailscale Service over HTTPS
-      services.tailscale.serve = {
-        enable = true;
-        services.t3code.endpoints."tcp:443" = "http://127.0.0.1:3773";
-      };
-
-      # Work around tailscale serve set-config creating an HTTP listener on port 443
-      systemd.services.tailscale-serve.serviceConfig.ExecStartPost = lib.mkAfter [
-        "-${config.services.tailscale.package}/bin/tailscale serve --yes --service=svc:t3code --http=443 off"
-        "${config.services.tailscale.package}/bin/tailscale serve --yes --service=svc:t3code --https=443 127.0.0.1:3773"
-      ];
 
     };
 
