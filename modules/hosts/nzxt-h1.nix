@@ -22,7 +22,7 @@
     sound._.pipewire
 
     # Configure remote access
-    remote._.vscodeserver
+    remote._.code-server
 
   ];
 
