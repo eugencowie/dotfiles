@@ -2,6 +2,8 @@
 
   den.aspects.ai.provides.t3code = { user, ... }: {
 
+    includes = with den.aspects; [ remote._.tailscale ];
+
     # Enable T3 Code
     homeManager.programs.t3code.enable = true;
 
@@ -26,6 +28,9 @@
           RestartSec = 5;
         };
       };
+
+      # Expose T3 Code as a named Tailscale Service over HTTPS
+      services.tailscale.httpsServices.t3code = "http://127.0.0.1:3773";
 
     };
 

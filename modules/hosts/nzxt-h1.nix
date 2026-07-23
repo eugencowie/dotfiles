@@ -22,12 +22,6 @@
     sound._.pipewire
 
     # Configure remote access
-    (remote._.tailscale {
-      httpsServices = {
-        code-server = "http://127.0.0.1:4444";
-        t3code = "http://127.0.0.1:3773";
-      };
-    })
     remote._.code-server
 
   ];
