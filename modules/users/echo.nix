@@ -32,8 +32,8 @@
     editor._.zed
     ai._.codex
     ai._.claude
-    ai._.opencode-web
     ai._.ccusage
+    ai._.t3code
 
     # Configure desktop environment
     browser._.zen
