@@ -17,7 +17,10 @@
       };
 
       # Expose code-server as a named Tailscale Service over HTTPS
-      services.tailscale.httpsServices.code-server = "http://127.0.0.1:4444";
+      services.tailscale.serve.https = {
+        enable = true;
+        services.code-server.endpoints."tcp:443" = "http://127.0.0.1:4444";
+      };
 
     };
 
