@@ -36,6 +36,7 @@
     ai._.t3code
 
     # Configure desktop environment
+    browser._.helium
     browser._.zen
 
   ];
