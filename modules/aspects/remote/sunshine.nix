@@ -41,6 +41,13 @@
 
     };
 
+    homeManager = {
+
+      # Keep the display active after resuming for remote capture
+      dconf.settings."org/gnome/desktop/screensaver".lock-enabled = false;
+
+    };
+
   };
 
 }
