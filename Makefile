@@ -11,6 +11,7 @@ help:
 init:
 	skills experimental_install
 	cp -r .agents/. .claude
+	echo '@AGENTS.md' > CLAUDE.md
 
 flake.nix:
 	nix run .#write-flake
