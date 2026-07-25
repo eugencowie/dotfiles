@@ -22,7 +22,7 @@
           User = user.userName;
           Group = config.users.users.${user.userName}.group;
           WorkingDirectory = home;
-          # Binding only to localhost enables local-only mode, which prevents linking other devices.
+          # Bind to all interfaces, as binding only to localhost enables local-only mode, which prevents linking other devices.
           ExecStart = "${pkgs.t3code}/bin/t3 serve --host 0.0.0.0 --port 3773";
           Restart = "always";
           RestartSec = 5;
