@@ -1,14 +1,17 @@
-{ den, lib, ... }: {
+{ den, flake-file, inputs, lib, ... }: {
+
+  flake-file.inputs.llm-agents.url = "github:numtide/llm-agents.nix";
 
   den.aspects.ai.provides.claude = {
 
     os.nixpkgs.config.allowUnfree = true;
 
-    homeManager = {
+    homeManager = { pkgs, ... }: {
 
       # Enable Claude Code
       programs.claude-code = {
         enable = true;
+        package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code;
         settings = {
           theme = "dark";
           model = "opus";
