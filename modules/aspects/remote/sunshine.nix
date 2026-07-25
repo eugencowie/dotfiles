@@ -17,6 +17,9 @@
         }];
       };
 
+      # Do not start the global user service for the GDM greeter
+      systemd.user.services.sunshine.unitConfig.ConditionUser = user.userName;
+
       # Allow the user to control the virtual input device
       hardware.uinput.enable = true;
       users.users.${user.userName}.extraGroups = lib.mkAfter [ "uinput" ];
