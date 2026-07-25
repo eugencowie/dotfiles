@@ -26,6 +26,16 @@
         user = user.userName;
       };
 
+      # Allow remote clients to wake and suspend the streaming host
+      networking.interfaces.enp9s0.wakeOnLan.enable = true;
+      security.sudo.extraRules = [{
+        users = [ user.userName ];
+        commands = [{
+          command = "/run/current-system/sw/bin/systemctl --no-block suspend";
+          options = [ "NOPASSWD" ];
+        }];
+      }];
+
       # Enable SSH as a backup in case streaming fails
       services.openssh.enable = true;
 
