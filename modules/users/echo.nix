@@ -33,7 +33,7 @@
     ai._.codex
     ai._.claude
     ai._.ccusage
-    ai._.t3code
+    ai._.t3code-nightly
 
     # Configure desktop environment
     browser._.helium
