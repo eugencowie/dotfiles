@@ -1,12 +1,27 @@
-{ den, lib, ... }: {
+{ inputs, ... }: {
 
-  den.aspects.ai.provides.codex.homeManager = { pkgs, ... }: {
+  # Nix packages for AI coding agents
+  # No nixpkgs follows: it would break numtide's binary cache (cache.numtide.com)
+  flake-file.inputs.llm-agents.url = "github:numtide/llm-agents.nix";
 
-    # Enable Codex
-    programs.codex.enable = true;
+  den.aspects.ai.provides.codex = {
 
-    # Enable ripgrep
-    programs.ripgrep.enable = true;
+    # Prebuilt llm-agents packages, avoiding a local build from source
+    os.nix.settings.extra-substituters = [ "https://cache.numtide.com" ];
+    os.nix.settings.extra-trusted-public-keys = [ "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=" ];
+
+    homeManager = { pkgs, ... }: {
+
+      # Enable Codex
+      programs.codex = {
+        enable = true;
+        package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.codex;
+      };
+
+      # Enable ripgrep
+      programs.ripgrep.enable = true;
+
+    };
 
   };
 
