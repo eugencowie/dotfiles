@@ -1,5 +1,7 @@
-{ den, flake-file, inputs, lib, ... }: {
+{ inputs, ... }: {
 
+  # Nix packages for AI coding agents
+  # No nixpkgs follows: it would break numtide's binary cache (cache.numtide.com)
   flake-file.inputs.llm-agents.url = "github:numtide/llm-agents.nix";
 
   den.aspects.ai.provides.codex.homeManager = { pkgs, ... }: {
