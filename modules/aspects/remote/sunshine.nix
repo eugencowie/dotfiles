@@ -10,6 +10,7 @@
         autoStart = true;
         capSysAdmin = true;
         openFirewall = true;
+        settings.csrf_allowed_origins = "https://192.168.0.10:47990";
         applications.apps = [{
           name = "Desktop";
           image-path = "desktop.png";
