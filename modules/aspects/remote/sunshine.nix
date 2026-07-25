@@ -10,6 +10,34 @@
         autoStart = true;
         capSysAdmin = true;
         openFirewall = true;
+        applications = {
+          env.PATH = "$(PATH):$(HOME)/.local/bin";
+          apps = [
+            {
+              name = "Desktop";
+              image-path = "desktop.png";
+            }
+            {
+              name = "Low Res Desktop";
+              image-path = "desktop.png";
+              prep-cmd = [{
+                do = "xrandr --output HDMI-1 --mode 1920x1080";
+                undo = "xrandr --output HDMI-1 --mode 1920x1200";
+              }];
+            }
+            {
+              name = "Steam Big Picture";
+              detached = [
+                "setsid steam steam://open/bigpicture"
+              ];
+              prep-cmd = [{
+                do = "";
+                undo = "setsid steam steam://close/bigpicture";
+              }];
+              image-path = "steam.png";
+            }
+          ];
+        };
       };
 
       # Allow the user to control the virtual input device
