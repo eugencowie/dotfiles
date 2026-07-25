@@ -15,6 +15,12 @@
         settings = {
           theme = "dark";
           model = "opus";
+          effortLevel = "medium";
+          attribution = {
+            commit = "";
+            pr = "";
+            sessionUrl = false;
+          };
           # Disable system prompt bloat: https://www.youtube.com/shorts/oLx4yCbeklQ
           permissions.deny = [
             "EnterPlanMode"
