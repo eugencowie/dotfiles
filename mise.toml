@@ -1,0 +1,44 @@
+[plugins]
+nix = "https://github.com/jbadeau/mise-nix#e310c4c20e8273ba850298c10fbe97d0c858c300" # 0.21.0
+
+[tools]
+"nix:nixd" = "latest"
+"nix:skills" = "latest"
+
+[tasks.init]
+description = "Initialise development environment"
+run = [
+  "skills experimental_install",
+  "cp -r .agents/. .claude",
+  "echo @AGENTS.md > CLAUDE.md"
+]
+
+[tasks.check]
+description = "Verify flake evaluates"
+run = "nix flake check"
+
+[tasks.codegen]
+description = "Regenerate flake file"
+run = "nix run .#write-flake"
+
+[tasks.update]
+description = "Update lock file"
+depends = ["codegen"]
+run = "nix flake update"
+
+[tasks.hardware]
+description = "Regenerate hardware configuration for this machine"
+run = [
+  'mkdir -p "hardware/$(hostname)"',
+  'nixos-generate-config --show-hardware-config > "hardware/$(hostname)/hardware-configuration.nix"'
+]
+
+[tasks.apply]
+description = "Activate system configuration"
+depends = ["codegen"]
+run = '''
+case "$(uname -s)" in
+  Darwin) sudo darwin-rebuild switch --flake . ;;
+  *)      sudo  nixos-rebuild switch --flake . ;;
+esac
+'''

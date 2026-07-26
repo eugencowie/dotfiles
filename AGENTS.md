@@ -2,9 +2,9 @@
 
 ## Development environment
 
-This project uses Nix to manage the development environment.
+This project uses mise to manage the development environment.
 
-- Run `nix develop -c make help` to see the available targets.
-- Use `nix develop -c make <target>` for standard operations.
-- Run `cat shell.nix` to see the managed tools in the development shell.
-- When invoking a managed tool directly, use `nix develop -c <command> [args]` rather than invoking the tool by its bare name.
+- Run `mise tasks` to see the available tasks.
+- Use `mise run <task>` for standard operations.
+- Run `mise ls -l` to see the managed tools.
+- When invoking a managed tool directly, use `mise exec -- <command> [args]` rather than invoking the tool by its bare name.
