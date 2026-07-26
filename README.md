@@ -27,6 +27,7 @@ This is done automatically by `mise run update` and `mise run apply`.
 - `mise run check` - Verify flake evaluates
 - `mise run codegen` - Regenerate flake file
 - `mise run update` - Update lock file
+- `mise run update:auth` - Update lock file using GitHub token
 - `mise run hardware` - Regenerate hardware configuration for this machine
 - `mise run apply` - Activate system configuration
 

@@ -2,6 +2,7 @@
 nix = "https://github.com/jbadeau/mise-nix#e310c4c20e8273ba850298c10fbe97d0c858c300" # 0.21.0
 
 [tools]
+"nix:gh" = "latest"
 "nix:nixd" = "latest"
 "nix:skills" = "latest"
 
@@ -25,6 +26,10 @@ run = "nix run .#write-flake"
 description = "Update lock file"
 depends = ["codegen"]
 run = "nix flake update"
+
+[tasks."update:auth"]
+description = "Update lock file using GitHub token"
+run = ['nix flake update --option access-tokens "github.com=$(gh auth token)"']
 
 [tasks.hardware]
 description = "Regenerate hardware configuration for this machine"
