@@ -1,4 +1,4 @@
-{ den, ... }: {
+{
 
   den.aspects.sound.provides.pipewire.os = {
 

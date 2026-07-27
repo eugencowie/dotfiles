@@ -1,4 +1,4 @@
-{ den, inputs, ... }: {
+{ inputs, ... }: {
 
   # Module for managing Helium Browser in Home Manager
   flake-file.inputs.helium-browser = {

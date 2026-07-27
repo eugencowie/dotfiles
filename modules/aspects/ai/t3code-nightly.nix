@@ -5,7 +5,7 @@
     includes = with den.aspects; [ ai._.t3code ];
 
     # Build T3 Code from a nightly release instead of the version in nixpkgs
-    os.nixpkgs.overlays = [(final: prev: {
+    os.nixpkgs.overlays = [(_final: prev: {
 
       t3code = let
 

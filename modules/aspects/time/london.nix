@@ -1,4 +1,4 @@
-{ den, ... }: {
+{
 
   den.aspects.time.provides.london.os = {
 

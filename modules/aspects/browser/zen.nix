@@ -1,4 +1,4 @@
-{ den, inputs, ... }: {
+{ inputs, ... }: {
 
   # Module for managing Zen Browser in Home Manager
   flake-file.inputs.zen-browser = {

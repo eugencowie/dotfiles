@@ -1,4 +1,4 @@
-{ den, inputs, ... }: {
+{ inputs, ... }: {
 
   # Module for managing LazyVim in Home Manager
   flake-file.inputs.lazyvim-nix = {

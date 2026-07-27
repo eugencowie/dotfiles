@@ -1,4 +1,4 @@
-{ den, ... }: {
+{
 
   den.aspects.network.provides.networkmanager.os = {
 
