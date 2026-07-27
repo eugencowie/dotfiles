@@ -1,6 +1,6 @@
 { den, lib, ... }: {
 
-  den.aspects.shell.provides.mise = { host, ... }: {
+  den.aspects.env.provides.mise = { host, ... }: {
 
     homeManager = { pkgs, ... }: let
       opensslLib = lib.getLib pkgs.openssl;

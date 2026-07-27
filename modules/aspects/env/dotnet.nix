@@ -1,6 +1,6 @@
 { den, lib, ... }: {
 
-  den.aspects.shell.provides.dotnet = {
+  den.aspects.env.provides.dotnet = {
 
     # Zsh is required for profile configuration
     includes = with den.aspects; [ shell._.zsh ];

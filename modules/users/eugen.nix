@@ -14,23 +14,22 @@
 
     # Configure terminal environment
     shell._.zsh
-    shell._.dotnet
-    shell._.homebrew
-    shell._.hermes
-    shell._.direnv
-    shell._.mise
     prompts._.starship
     term._.ghostty
 
     # Configure development environment
+    env._.mise
+    env._.homebrew
+    env._.dotnet
+    env._.hermes
     (vcs._.git {
       name = "Eugén Cowie";
       email = "eugencowie@users.noreply.github.com";
     })
     vcs._.jujutsu
-    ai._.opencode
     ai._.codex
     ai._.claude
+    ai._.ccusage
 
   ];
 

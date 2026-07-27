@@ -1,6 +1,6 @@
 { den, ... }: {
 
-  den.aspects.remote.provides.code-server = { user, ... }: {
+  den.aspects.editor.provides.code-server = { user, ... }: {
 
     includes = with den.aspects; [ remote._.tailscale ];
 

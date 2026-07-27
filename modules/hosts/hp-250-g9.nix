@@ -12,12 +12,6 @@
     locale._.british
     nix._.flakes
 
-    # Customise login environment
-    theme._.stylix
-
-    # Configure remote access
-    remote._.vscodeserver
-
   ];
 
   # Define user accounts
