@@ -30,8 +30,8 @@
       };
 
       # Expose T3 Code as a named Tailscale Service over HTTPS
-      services.tailscale.serve.https = {
-        enable = true;
+      services.tailscale.serve = {
+        enableWithHttps = true;
         services.t3code.endpoints."tcp:443" = "http://127.0.0.1:3773";
       };
 
