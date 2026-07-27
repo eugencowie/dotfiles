@@ -1,6 +1,6 @@
 { den, lib, ... }: {
 
-  den.aspects.shell.provides.hermes = {
+  den.aspects.env.provides.hermes = {
 
     # Zsh is required for profile configuration
     includes = with den.aspects; [ shell._.zsh ];

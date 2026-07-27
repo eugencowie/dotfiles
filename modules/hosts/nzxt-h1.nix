@@ -21,9 +21,6 @@
     desktop._.gnome
     sound._.pipewire
 
-    # Configure remote access
-    remote._.code-server
-
   ];
 
   # Define user accounts

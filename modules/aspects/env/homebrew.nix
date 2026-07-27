@@ -1,6 +1,6 @@
 { den, lib, ... }: {
 
-  den.aspects.shell.provides.homebrew = {
+  den.aspects.env.provides.homebrew = {
 
     # Zsh is required for profile configuration
     includes = with den.aspects; [ shell._.zsh ];

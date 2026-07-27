@@ -6,9 +6,6 @@
     # Basic system configuration
     nix._.flakes
 
-    # Customise login environment
-    theme._.stylix
-
   ];
 
   # Define user accounts
