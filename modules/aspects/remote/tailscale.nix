@@ -54,6 +54,11 @@
           wants = [ "tailscaled.service" ];
           wantedBy = [ "multi-user.target" ];
           path = [ config.services.tailscale.package ];
+          # Ordering after tailscaled.service only waits for the daemon to start,
+          # not for its backend to leave NoState, so wait for readiness explicitly.
+          preStart = ''
+            tailscale wait --timeout=30s
+          '';
           serviceConfig = {
             Type = "oneshot";
             RemainAfterExit = true;
