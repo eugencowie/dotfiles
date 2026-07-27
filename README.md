@@ -24,7 +24,7 @@ This is done automatically by `mise run update` and `mise run apply`.
 ## Commands
 
 - `mise run init` - Initialise development environment
-- `mise run check` - Verify flake evaluates
+- `mise run check` - Verify flake evaluates and perform checks
 - `mise run codegen` - Regenerate flake file
 - `mise run update` - Update lock file
 - `mise run update:auth` - Update lock file using GitHub token
@@ -39,6 +39,7 @@ Mise is an optional task runner and project-local development-tool manager. It i
 nix run .#write-flake                                   # codegen
 nix flake update                                        # update
 nix flake check                                         # check
+nix run nixpkgs#deadnix -- --fail --exclude hardware -- . # lint
 sudo nixos-rebuild switch --flake .                     # apply on NixOS
 sudo darwin-rebuild switch --flake .                    # apply on macOS
 

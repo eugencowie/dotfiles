@@ -2,6 +2,7 @@
 nix = "https://github.com/jbadeau/mise-nix#e310c4c20e8273ba850298c10fbe97d0c858c300" # 0.21.0
 
 [tools]
+"nix:deadnix" = "latest"
 "nix:gh" = "latest"
 "nix:nixd" = "latest"
 "nix:skills" = "latest"
@@ -15,8 +16,11 @@ run = [
 ]
 
 [tasks.check]
-description = "Verify flake evaluates"
-run = "nix flake check"
+description = "Verify flake evaluates and perform checks"
+run = [
+  "nix flake check",
+  "deadnix --fail --exclude hardware -- ."
+]
 
 [tasks.codegen]
 description = "Regenerate flake file"
