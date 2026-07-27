@@ -27,6 +27,8 @@
             pr = "";
             sessionUrl = false;
           };
+          # Disable auto-memory: https://www.youtube.com/shorts/A0scuiiGBC4
+          autoMemoryEnabled = false;
           # Disable system prompt bloat: https://www.youtube.com/shorts/oLx4yCbeklQ
           permissions.deny = [
             "EnterPlanMode"
