@@ -10,17 +10,17 @@
     (user-shell "zsh")
 
     # Configure remote access
+    remote._.tailscale
     remote._.sunshine
-    multiplex._.zellij
 
     # Configure terminal environment
     shell._.zsh
-    shell._.direnv
-    shell._.mise
     prompts._.starship
+    multiplex._.zellij
     term._.ghostty
 
     # Configure development environment
+    env._.mise
     (vcs._.git {
       name = "Eugén Cowie";
       email = "eugencowie@users.noreply.github.com";
@@ -30,6 +30,7 @@
     diff._.meld
     editor._.lazyvim
     editor._.zed
+    editor._.code-server
     ai._.codex
     ai._.claude
     ai._.ccusage
@@ -37,7 +38,6 @@
 
     # Configure desktop environment
     browser._.helium
-    browser._.zen
 
   ];
 
