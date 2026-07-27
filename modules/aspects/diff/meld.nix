@@ -1,4 +1,4 @@
-{ den, ... }: {
+{
 
   den.aspects.diff.provides.meld.homeManager = { lib, pkgs, ... }: {
 

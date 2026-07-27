@@ -1,4 +1,4 @@
-{ den, ... }: {
+{
 
   den.aspects.desktop.provides.gnome.os = {
 

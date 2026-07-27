@@ -1,4 +1,4 @@
-{ den, lib, ... }: {
+{
 
   den.aspects.ai.provides.opencode.homeManager = {
 
