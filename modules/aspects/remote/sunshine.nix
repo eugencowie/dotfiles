@@ -45,10 +45,17 @@
 
     };
 
-    homeManager = {
+    homeManager = { lib, ... }: {
 
-      # Keep the display active after resuming for remote capture
-      dconf.settings."org/gnome/desktop/screensaver".lock-enabled = false;
+      # Keep the session awake so remote capture keeps working. Suspend stays
+      # remote-controlled through wake-on-lan and the sudo rule above, so the
+      # idle timer must never suspend the host on its own. These are enforced
+      # rather than seeded, as a stray change in Settings would break streaming.
+      dconf.settings = {
+        "org/gnome/desktop/screensaver".lock-enabled = false;
+        "org/gnome/desktop/session".idle-delay = lib.hm.gvariant.mkUint32 0;
+        "org/gnome/settings-daemon/plugins/power".sleep-inactive-ac-type = "nothing";
+      };
 
     };
 
