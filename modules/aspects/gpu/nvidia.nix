@@ -1,4 +1,4 @@
-{ den, ... }: {
+{
 
   den.aspects.gpu.provides.nvidia.os = {
 

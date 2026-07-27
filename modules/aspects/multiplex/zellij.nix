@@ -1,4 +1,4 @@
-{ den, ... }: {
+{
 
   den.aspects.multiplex.provides.zellij.homeManager = {
 

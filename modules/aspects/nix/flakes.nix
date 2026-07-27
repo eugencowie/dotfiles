@@ -1,4 +1,4 @@
-{ den, ... }: {
+{
 
   den.aspects.nix.provides.flakes.os = {
 

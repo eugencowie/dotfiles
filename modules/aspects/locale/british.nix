@@ -1,4 +1,4 @@
-{ den, ... }: {
+{
 
   den.aspects.locale.provides.british.os = {
 

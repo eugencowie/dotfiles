@@ -1,4 +1,4 @@
-{ den, ... }: {
+{
 
   den.aspects.ai.provides.ccusage.homeManager = { pkgs, ... }: {
 

@@ -21,6 +21,10 @@
           model_reasoning_effort = "high";
           sandbox_mode = "workspace-write";
         };
+        context = ''
+          # Global Instructions
+          - Always ask before using subagents, unless the user explicitly requests them.
+        '';
       };
 
       # Enable ripgrep

@@ -1,4 +1,4 @@
-{ den, ... }: {
+{
 
   den.aspects.remote.provides.sunshine = { user, ... }: {
 

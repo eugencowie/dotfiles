@@ -1,4 +1,4 @@
-{ den, ... }: {
+{
 
   den.aspects.shell.provides.zsh.homeManager = {
 

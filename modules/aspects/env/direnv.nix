@@ -1,4 +1,4 @@
-{ den, ... }: {
+{
 
   den.aspects.env.provides.direnv.homeManager = {
 

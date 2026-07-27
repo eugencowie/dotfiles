@@ -1,4 +1,4 @@
-{ den, ... }: {
+{
 
   den.aspects.kernel.provides.latest.os = { pkgs, ... }: {
 
