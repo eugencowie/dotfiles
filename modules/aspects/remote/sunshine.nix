@@ -18,7 +18,7 @@
           }
           {
             name = "Low Res Desktop";
-            image-path = "desktop.png";
+            image-path = "desktop-alt.png";
             prep-cmd = [{
               do = "${lib.getExe pkgs.gnome-randr} modify --mode 1680x1050@59.954 DP-2";
               undo = "${lib.getExe pkgs.gnome-randr} modify --mode 2560x1440@165.080 DP-2";
