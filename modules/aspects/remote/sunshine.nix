@@ -2,7 +2,7 @@
 
   den.aspects.remote.provides.sunshine = { user, ... }: {
 
-    os = { lib, ... }: {
+    os = { lib, pkgs, ... }: {
 
       # Enable streaming with Sunshine
       services.sunshine = {
@@ -11,10 +11,20 @@
         capSysAdmin = true;
         openFirewall = true;
         settings.csrf_allowed_origins = "https://192.168.0.10:47990";
-        applications.apps = [{
-          name = "Desktop";
-          image-path = "desktop.png";
-        }];
+        applications.apps = [
+          {
+            name = "Desktop";
+            image-path = "desktop.png";
+          }
+          {
+            name = "Low Res Desktop";
+            image-path = "desktop.png";
+            prep-cmd = [{
+              do = "${lib.getExe pkgs.gnome-randr} modify --mode 1680x1050@59.954 DP-2";
+              undo = "${lib.getExe pkgs.gnome-randr} modify --mode 2560x1440@165.080 DP-2";
+            }];
+          }
+        ];
       };
 
       # Do not start the global user service for the GDM greeter
