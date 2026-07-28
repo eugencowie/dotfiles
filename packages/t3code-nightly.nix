@@ -3,6 +3,16 @@
 # There is no top-level `t3code-unwrapped` attribute, so the nightly is built by
 # overriding the unwrapped package reached through the wrapper's passthru, then
 # re-wrapping it.
+#
+# Currently unreferenced and therefore not covered by `nix flake check`, kept as
+# a reference for switching back to nightlies. To do so, point the helper in
+# modules/aspects/ai/t3code.nix back at this file via `pkgs.callPackage`.
+#
+# Beware when bumping past the version pinned below: t3code replaced
+# `process.env.HOST?.trim()` with `explicitHost` in apps/web/vite.config.ts in
+# releases after 2026-07-26, which makes the `postPatch` inherited from nixpkgs
+# fail its `--replace-fail`. Newer nightlies additionally need that substitution
+# updated, as done in https://github.com/NixOS/nixpkgs/pull/546533.
 
 { t3code, pnpm_11, fetchFromGitHub, fetchPnpmDeps }: let
 
