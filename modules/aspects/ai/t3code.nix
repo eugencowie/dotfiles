@@ -1,6 +1,6 @@
 { den, inputs, ... }: {
 
-  # T3 Code 0.0.29 from an unmerged nixpkgs pull request, as the pinned nixpkgs
+  # T3 Code 0.0.30 from an unmerged nixpkgs pull request, as the pinned nixpkgs
   # is still on 0.0.28. Deliberately not following nixpkgs: this input is itself
   # a nixpkgs, pinned to the pull request head.
   #
