@@ -1,16 +1,16 @@
 { inputs, ... }: {
 
   # Nix packages for AI coding agents
-  # No nixpkgs follows: it would break numtide's binary cache (cache.numtide.com)
   flake-file.inputs.llm-agents.url = "github:numtide/llm-agents.nix";
 
   den.aspects.ai.provides.claude = {
 
-    os.nixpkgs.config.allowUnfree = true;
-
-    # Prebuilt llm-agents packages, avoiding a local build from source
+    # Use binary cache (input must not follow system nixpkgs for this to work)
     os.nix.settings.extra-substituters = [ "https://cache.numtide.com" ];
     os.nix.settings.extra-trusted-public-keys = [ "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=" ];
+
+    # Allow unfree packages
+    os.nixpkgs.config.allowUnfree = true;
 
     homeManager = { pkgs, ... }: {
 
@@ -53,8 +53,13 @@
         };
       };
 
-      # Enable ripgrep
+      # https://medium.com/@kibotu/your-ai-coding-agent-uses-your-terminals-tools-give-it-better-ones-bdcfb6737ac9
       programs.ripgrep.enable = true;
+      programs.fd.enable = true;
+      programs.jq.enable = true;
+      home.packages = with pkgs; [ tree ];
+      programs.bat.enable = true;
+      programs.fzf.enable = true;
 
     };
 

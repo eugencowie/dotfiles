@@ -1,12 +1,8 @@
 {
 
+  # Enable ccusage
   den.aspects.ai.provides.ccusage.homeManager = { pkgs, ... }: {
-
-    # Enable ccusage
-    home.packages = with pkgs; [
-      ccusage
-    ];
-
+    home.packages = with pkgs; [ ccusage ];
   };
 
 }
