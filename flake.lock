@@ -433,22 +433,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-t3code": {
-      "locked": {
-        "lastModified": 1785296780,
-        "narHash": "sha256-YhsrN2Fvc9MHeiV4t8zFDu1JXtnxEoQMxlq4bwBnuO8=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "326c564c0155683d7aa443ffe17f4c71abcce70b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "refs/pull/546533/head",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1785454630,
@@ -503,7 +487,6 @@
         "llm-agents": "llm-agents",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-t3code": "nixpkgs-t3code",
         "stylix": "stylix",
         "zen-browser": "zen-browser"
       }
