@@ -28,4 +28,19 @@
     echo = {};
   };
 
+  # Work around a GNOME Shell autologin crash caused when these GPU HDMI/DP
+  # audio devices briefly expose PipeWire ports without any profiles. They are
+  # unused here, so keep them out of PipeWire while retaining onboard audio.
+  den.aspects.nzxt-h1.os.services.pipewire.wireplumber.extraConfig."51-disable-gpu-audio" = {
+    "monitor.alsa.rules" = [
+      {
+        matches = [
+          { "device.name" = "alsa_card.pci-0000_01_00.1"; }
+          { "device.name" = "alsa_card.pci-0000_0c_00.1"; }
+        ];
+        actions.update-props."device.disabled" = true;
+      }
+    ];
+  };
+
 }
