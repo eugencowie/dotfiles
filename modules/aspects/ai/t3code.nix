@@ -1,11 +1,20 @@
 { den, ... }: {
 
-  den.aspects.ai.provides.t3code = { user, ... }: {
+  den.aspects.ai.provides.t3code = { user, ... }: let
+    t3code-nightly = pkgs: pkgs.callPackage ../../../packages/t3code-nightly.nix { };
+  in {
 
     includes = with den.aspects; [ remote._.tailscale ];
 
-    # Enable T3 Code
-    homeManager.programs.t3code.enable = true;
+    homeManager = { pkgs, ... }: {
+
+      # Enable T3 Code
+      programs.t3code = {
+        enable = true;
+        package = t3code-nightly pkgs;
+      };
+
+    };
 
     os = { config, pkgs, ... }: let
       home = config.users.users.${user.userName}.home;
@@ -23,7 +32,7 @@
           Group = config.users.users.${user.userName}.group;
           WorkingDirectory = home;
           # Bind to all interfaces, as binding only to localhost enables local-only mode, which prevents linking other devices.
-          ExecStart = "${pkgs.t3code}/bin/t3 serve --host 0.0.0.0 --port 3773";
+          ExecStart = "${t3code-nightly pkgs}/bin/t3 serve --host 0.0.0.0 --port 3773";
           Restart = "always";
           RestartSec = 5;
         };
