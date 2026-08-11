@@ -4,34 +4,16 @@
 # overriding the unwrapped package reached through the wrapper's passthru, then
 # re-wrapping it.
 #
-# Currently unreferenced and therefore not covered by `nix flake check`, kept as
-# a reference for switching back to nightlies. To do so, point the helper in
-# modules/aspects/ai/t3code.nix back at this file via `pkgs.callPackage`.
-#
-# Beware when bumping past the version pinned below: t3code replaced
-# `process.env.HOST?.trim()` with `explicitHost` in apps/web/vite.config.ts in
-# releases after 2026-07-26, which makes the `postPatch` inherited from nixpkgs
-# fail its `--replace-fail`. Newer nightlies additionally need that substitution
-# updated, as done in https://github.com/NixOS/nixpkgs/pull/546533.
-
 { t3code, pnpm_11, fetchFromGitHub, fetchPnpmDeps }: let
 
   # Update these three together when bumping to a newer nightly
-  version = "0.0.29-nightly.20260725.899";
-  srcHash = "sha256-hlXyQiLeJfhMv8XQ/+B0lADZbDSzku6Bj95tIeoscjQ=";
-  pnpmDepsHash = "sha256-QNVBRvXVUOKZEdIqKY2dfjvmivMTaJJSh2cexvtdJ6k=";
+  version = "0.0.34-nightly.20260811.1068";
+  srcHash = "sha256-GHNMeNLFh0Ytn3IbrOkwNgOw8OadlU5sAmKuhXok+gs=";
+  pnpmDepsHash = "sha256-OWX1U2RCDjs6sUBZ6qcAGJExVgsYy1HNDrgPP1YE/2I=";
 
-  # The nightly uses pnpm 11, while the pinned stable recipe still uses pnpm 10.
-  unwrapped = (t3code.unwrapped.override {
-    pnpm_10 = pnpm_11;
-  }).overrideAttrs (finalAttrs: previousAttrs: {
+  unwrapped = t3code.unwrapped.overrideAttrs (finalAttrs: previousAttrs: {
 
     inherit version;
-
-    # Avoid pnpm 11 checking and installing dependencies for filtered-out workspaces.
-    env = (previousAttrs.env or { }) // {
-      pnpm_config_verify_deps_before_run = "false";
-    };
 
     src = fetchFromGitHub {
       owner = "pingdotgg";
@@ -39,6 +21,10 @@
       tag = "v${version}";
       hash = srcHash;
     };
+
+    # The web app is a development dependency of the server, so the inherited
+    # transitive workspace filters do not include its patched dependencies.
+    pnpmWorkspaces = previousAttrs.pnpmWorkspaces ++ [ "@t3tools/web..." ];
 
     pnpmDeps = fetchPnpmDeps {
       pnpm = pnpm_11;
