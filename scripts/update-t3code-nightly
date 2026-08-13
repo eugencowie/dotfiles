@@ -1,0 +1,171 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+readonly fake_hash="sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+readonly script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+readonly repo_root="$(cd -- "$script_dir/.." && pwd)"
+readonly package_file="$repo_root/packages/t3code-nightly.nix"
+
+usage() {
+  cat <<'EOF'
+Usage: scripts/update-t3code-nightly [version]
+
+Update packages/t3code-nightly.nix to a new T3 Code nightly release,
+calculate its source and pnpm dependency hashes, and verify the package build.
+
+With no version, use the newest nightly published on GitHub Releases.
+The optional leading "v" used by GitHub tags may be included or omitted.
+
+Examples:
+  scripts/update-t3code-nightly
+  scripts/update-t3code-nightly 0.0.34-nightly.20260813.1087
+EOF
+}
+
+if [[ ${1:-} == "-h" || ${1:-} == "--help" ]]; then
+  usage
+  exit 0
+fi
+
+if [[ $# -gt 1 ]]; then
+  usage >&2
+  exit 2
+fi
+
+if [[ $# -eq 0 ]]; then
+  printf 'Finding the latest T3 Code nightly release...\n' >&2
+  version=$(
+    mise exec -- gh api 'repos/pingdotgg/t3code/releases?per_page=100' \
+      --jq '[.[] | select(.prerelease and (.tag_name | contains("-nightly.")))] | first | .tag_name // empty'
+  )
+
+  if [[ -z $version ]]; then
+    printf 'GitHub returned no nightly releases.\n' >&2
+    exit 1
+  fi
+
+  version=${version#v}
+  printf 'Latest nightly: %s\n' "$version" >&2
+else
+  version=${1#v}
+fi
+
+if [[ ! $version =~ ^[0-9A-Za-z][0-9A-Za-z.+_-]*-nightly\.[0-9A-Za-z.+_-]+$ ]]; then
+  printf 'Invalid nightly version: %q\n' "$version" >&2
+  exit 2
+fi
+
+readonly work_dir="$(mktemp -d)"
+readonly backup_file="$work_dir/t3code-nightly.nix"
+restore_on_error=1
+
+cp -p -- "$package_file" "$backup_file"
+
+cleanup() {
+  local status=$?
+  trap - EXIT
+
+  if [[ $status -ne 0 && $restore_on_error -eq 1 ]]; then
+    cp -p -- "$backup_file" "$package_file"
+    printf '\nUpdate failed; restored %s\n' "$package_file" >&2
+  fi
+
+  rm -rf -- "$work_dir"
+  exit "$status"
+}
+trap cleanup EXIT
+
+rewrite_pins() {
+  local new_version=$1
+  local new_src_hash=$2
+  local new_pnpm_hash=$3
+  local replacement_file="$work_dir/replacement.nix"
+
+  awk \
+    -v version="$new_version" \
+    -v src_hash="$new_src_hash" \
+    -v pnpm_hash="$new_pnpm_hash" '
+      /^  version = "/ {
+        print "  version = \"" version "\";"
+        versions++
+        next
+      }
+      /^  srcHash = "/ {
+        print "  srcHash = \"" src_hash "\";"
+        src_hashes++
+        next
+      }
+      /^  pnpmDepsHash = "/ {
+        print "  pnpmDepsHash = \"" pnpm_hash "\";"
+        pnpm_hashes++
+        next
+      }
+      { print }
+      END {
+        if (versions != 1 || src_hashes != 1 || pnpm_hashes != 1) {
+          exit 1
+        }
+      }
+    ' "$package_file" > "$replacement_file" || {
+      printf 'Could not find exactly one version and hash declaration in %s\n' \
+        "$package_file" >&2
+      return 1
+    }
+
+  # Copy over the existing file so its permissions remain unchanged on both
+  # GNU/Linux and macOS.
+  cp "$replacement_file" "$package_file"
+}
+
+readonly package_expr='
+  let
+    flake = builtins.getFlake (toString ./.);
+    pkgs = flake.inputs.nixpkgs.legacyPackages.${builtins.currentSystem};
+  in
+    pkgs.callPackage ./packages/t3code-nightly.nix {}
+'
+
+calculate_hash() {
+  local label=$1
+  local output=$2
+  local log_file="$work_dir/$output.log"
+  local hash
+
+  printf '\nCalculating %s hash...\n' "$label" >&2
+
+  if nix build --no-link -L --impure \
+    --expr "($package_expr).unwrapped.$output" 2>&1 \
+    | tee "$log_file" >&2; then
+    printf 'Expected the placeholder hash to cause a hash mismatch.\n' >&2
+    return 1
+  fi
+
+  hash=$(awk '$1 == "got:" { print $2 }' "$log_file" | tail -n 1)
+  if [[ ! $hash =~ ^sha256-[A-Za-z0-9+/]{43}=$ ]]; then
+    printf 'Could not extract a SHA-256 hash from the Nix build output.\n' >&2
+    return 1
+  fi
+
+  printf '%s' "$hash"
+}
+
+cd -- "$repo_root"
+
+rewrite_pins "$version" "$fake_hash" "$fake_hash"
+src_hash=$(calculate_hash "source" src)
+
+rewrite_pins "$version" "$src_hash" "$fake_hash"
+pnpm_hash=$(calculate_hash "pnpm dependencies" pnpmDeps)
+
+rewrite_pins "$version" "$src_hash" "$pnpm_hash"
+
+printf '\nVerifying the complete package build...\n' >&2
+nix build --no-link -L --impure --expr "$package_expr"
+
+restore_on_error=0
+
+printf '\nUpdated %s\n' "$package_file"
+printf '  version:      %s\n' "$version"
+printf '  srcHash:      %s\n' "$src_hash"
+printf '  pnpmDepsHash: %s\n' "$pnpm_hash"
