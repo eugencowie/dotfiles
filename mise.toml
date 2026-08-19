@@ -31,13 +31,17 @@ description = "Update lock file"
 depends = ["codegen"]
 run = "nix flake update"
 
-[tasks."update:t3code"]
-description = "Update T3 Code nightly and its fixed-output hashes"
-run = "./scripts/update-t3code-nightly"
-
 [tasks."update:auth"]
 description = "Update lock file using GitHub token"
 run = ['nix flake update --option access-tokens "github.com=$(gh auth token)"']
+
+[tasks."update:skills"]
+description = "Update T3 Code nightly and its fixed-output hashes"
+run = "skills update"
+
+[tasks."update:t3code"]
+description = "Update T3 Code nightly and its fixed-output hashes"
+run = "./scripts/update-t3code-nightly"
 
 [tasks.hardware]
 description = "Regenerate hardware configuration for this machine"
@@ -47,7 +51,7 @@ run = [
 ]
 
 [tasks.apply]
-description = "Activate system configuration"
+description = "Activate system configuration (requires password)"
 depends = ["codegen"]
 run = '''
 case "$(uname -s)" in

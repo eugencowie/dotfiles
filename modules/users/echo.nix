@@ -9,6 +9,9 @@
     # Customise login environment
     (user-shell "zsh")
 
+    # Configure system monitoring
+    monitoring._.ncdu
+
     # Configure remote access
     remote._.tailscale
     remote._.sunshine
