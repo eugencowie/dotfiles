@@ -15,16 +15,17 @@ run = [
   "echo @AGENTS.md > CLAUDE.md"
 ]
 
+[tasks.codegen]
+description = "Regenerate flake file"
+run = "nix run .#write-flake"
+
 [tasks.check]
 description = "Verify flake evaluates and perform checks"
+depends = ["codegen"]
 run = [
   "nix flake check",
   "deadnix --fail --exclude hardware -- ."
 ]
-
-[tasks.codegen]
-description = "Regenerate flake file"
-run = "nix run .#write-flake"
 
 [tasks.update]
 description = "Update lock file"
