@@ -5,15 +5,6 @@ nix = "https://github.com/jbadeau/mise-nix#e310c4c20e8273ba850298c10fbe97d0c858c
 "nix:deadnix" = "latest"
 "nix:gh" = "latest"
 "nix:nixd" = "latest"
-"nix:skills" = "latest"
-
-[tasks.init]
-description = "Initialise development environment"
-run = [
-  "skills experimental_install",
-  "cp -r .agents/. .claude",
-  "echo @AGENTS.md > CLAUDE.md"
-]
 
 [tasks.codegen]
 description = "Regenerate flake file"
@@ -35,10 +26,6 @@ run = "nix flake update"
 [tasks."update:auth"]
 description = "Update lock file using GitHub token"
 run = ['nix flake update --option access-tokens "github.com=$(gh auth token)"']
-
-[tasks."update:skills"]
-description = "Update T3 Code nightly and its fixed-output hashes"
-run = "skills update"
 
 [tasks."update:t3code"]
 description = "Update T3 Code nightly and its fixed-output hashes"

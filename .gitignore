@@ -16,8 +16,6 @@ result-*
 # https://github.com/github/gitignore/blob/main/Global/Agents.gitignore
 #
 
-.agents/
-CLAUDE.md
 GEMINI.md
 WARP.md
 CRUSH.md
