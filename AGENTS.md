@@ -8,3 +8,7 @@ This project uses mise to manage the development environment.
 - Use `mise run <task>` for standard operations.
 - Run `mise ls -l` to see the managed tools.
 - When invoking a managed tool directly, use `mise exec -- <command> [args]` rather than invoking the tool by its bare name.
+
+# Nix guidelines
+
+- Check requires files to be tracked by Git, use `git add --intent-to-add <file>` to add untracked files without staging.
