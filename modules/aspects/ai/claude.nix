@@ -1,9 +1,11 @@
-{ inputs, ... }: {
+{ den, inputs, ... }: {
 
   # Nix packages for AI coding agents
   flake-file.inputs.llm-agents.url = "github:numtide/llm-agents.nix";
 
   den.aspects.ai.provides.claude = {
+
+    includes = with den.aspects; [ ai._.agent-skills ];
 
     # Use binary cache (input must not follow system nixpkgs for this to work)
     os.nix.settings.extra-substituters = [ "https://cache.numtide.com" ];
@@ -12,12 +14,13 @@
     # Allow unfree packages
     os.nixpkgs.config.allowUnfree = true;
 
-    homeManager = { pkgs, ... }: {
+    homeManager = { agentSkills, pkgs, ... }: {
 
       # Enable Claude Code
       programs.claude-code = {
         enable = true;
         package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code;
+        skills = agentSkills;
         settings = {
           theme = "dark";
           model = "opus";
