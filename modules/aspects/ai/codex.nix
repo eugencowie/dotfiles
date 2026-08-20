@@ -36,10 +36,6 @@
             };
           };
         };
-        context = ''
-          # Global Instructions
-          - Always ask before using subagents, unless the user explicitly requests them.
-        '';
       };
 
       # https://medium.com/@kibotu/your-ai-coding-agent-uses-your-terminals-tools-give-it-better-ones-bdcfb6737ac9

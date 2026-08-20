@@ -21,10 +21,15 @@
         enable = true;
         package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code;
         skills = agentSkills;
+        context = ''
+          # Global Instructions
+          - Use the unslop skill, apply it to your own output.
+        '';
         settings = {
           theme = "dark";
-          model = "opus";
-          effortLevel = "medium";
+          model = "fable";
+          effortLevel = "high";
+          outputStyle = "Concise";
           attribution = {
             commit = "";
             pr = "";
