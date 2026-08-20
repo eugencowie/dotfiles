@@ -1,17 +1,22 @@
 { inputs, ... }: {
 
-  flake-file.inputs.cursor-plugins = {
-    url = "github:cursor/plugins";
-    flake = false;
-  };
-
+  # Agent skills for real engineering
   flake-file.inputs.mattpocock-skills = {
     url = "github:mattpocock/skills";
     flake = false;
   };
 
+  # Rigorous agent workflows you can parallelise with confidence
+  flake-file.inputs.cursor-plugins = {
+    url = "github:cursor/plugins";
+    flake = false;
+  };
+
   den.aspects.ai.provides.agent-skills.homeManager = {
+
     _module.args.agentSkills = {
+
+      # Matt Pocock's skills
       ask-matt = "${inputs.mattpocock-skills}/skills/engineering/ask-matt";
       code-review = "${inputs.mattpocock-skills}/skills/engineering/code-review";
       codebase-design = "${inputs.mattpocock-skills}/skills/engineering/codebase-design";
@@ -33,12 +38,16 @@
       to-spec = "${inputs.mattpocock-skills}/skills/engineering/to-spec";
       to-tickets = "${inputs.mattpocock-skills}/skills/engineering/to-tickets";
       triage = "${inputs.mattpocock-skills}/skills/engineering/triage";
-      unslop = "${inputs.cursor-plugins}/pstack/skills/unslop";
       wait-what = "${inputs.mattpocock-skills}/skills/productivity/wait-what";
       wayfinder = "${inputs.mattpocock-skills}/skills/engineering/wayfinder";
       wizard = "${inputs.mattpocock-skills}/skills/engineering/wizard";
       writing-for-agents = "${inputs.mattpocock-skills}/skills/productivity/writing-for-agents";
+
+      # Lauren Tan's skills
+      unslop = "${inputs.cursor-plugins}/pstack/skills/unslop";
+
     };
+
   };
 
 }
