@@ -7,7 +7,7 @@
     programs.ripgrep.enable = true;
     programs.fd.enable = true;
     programs.jq.enable = true;
-    home.packages = with pkgs; [ tree ];
+    home.packages = with pkgs; [ tree python3 ];
     programs.bat.enable = true;
     programs.fzf.enable = true;
 
