@@ -9,6 +9,20 @@ This project uses mise to manage the development environment.
 - Run `mise ls -l` to see the managed tools.
 - When invoking a managed tool directly, use `mise exec -- <command> [args]` rather than invoking the tool by its bare name.
 
-# Nix guidelines
+## Nix guidelines
 
 - Check requires files to be tracked by Git, use `git add --intent-to-add <file>` to add untracked files without staging.
+
+## Agent skills
+
+### Issue tracker
+
+Tickets live as local Markdown files in `docs/planning/`. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default canonical labels. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context layout: `docs/context.md` and ADRs in `docs/architecture/`. See `docs/agents/domain.md`.
