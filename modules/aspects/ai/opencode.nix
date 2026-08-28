@@ -1,19 +1,16 @@
-{ den, ... }: {
+{ den, inputs, ... }: {
 
   den.aspects.ai.provides.opencode = {
 
-    includes = with den.aspects; [ ai._.agent-skills ai._.agent-tools ];
+    includes = with den.aspects; [ ai._.llm-agents ];
 
-    homeManager = { agentSkills, ... }: {
+    homeManager = { agentSkills, pkgs, ... }: {
 
       # Enable OpenCode
       programs.opencode = {
         enable = true;
+        package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode;
         skills = agentSkills;
-        settings = {
-          permission.bash = "ask";
-          plugin = ["@simonwjackson/opencode-direnv"];
-        };
       };
 
     };
