@@ -8,11 +8,7 @@
       options = "--delete-older-than 30d";
     } // (
       if host.class == "darwin" then {
-        interval = [{
-          Weekday = 7;
-          Hour = 3;
-          Minute = 15;
-        }];
+        interval = [{ Weekday = 7; Hour = 3; Minute = 15; }];
       } else {
         dates = "weekly";
       }
