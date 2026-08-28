@@ -15,6 +15,7 @@
     time._.london
     locale._.british
     nix._.flakes
+    nix._.gc
 
     # Configure desktop environment
     gpu._.nvidia
