@@ -34,6 +34,7 @@
     editor._.lazyvim
     editor._.zed
     editor._.code-server
+    ai._.opencode
     ai._.codex
     ai._.claude
     ai._.ccusage
