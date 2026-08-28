@@ -20,10 +20,16 @@
 
     # Clean each user's profile generations
     home-manager.sharedModules = [{
-      nix.gc = {
-        automatic = true;
-        options = "--delete-older-than 30d";
-        dates = "weekly";
+      # Home Manager's nix.gc passes its options string as one launchd argument
+      # on Darwin, autoExpire runs the retention commands through a script.
+      services.home-manager.autoExpire = {
+        enable = true;
+        timestamp = "-30 days";
+        frequency = "weekly";
+        store = {
+          cleanup = true;
+          options = "--delete-older-than 30d";
+        };
       };
     }];
 

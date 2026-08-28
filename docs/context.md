@@ -1,6 +1,6 @@
 # Dotfiles
 
-Nix flake configuring the author's hosts and users, organised as dendritic aspects.
+Nix configurations for my machines (NixOS, Darwin, WSL), organised as dendritic aspects.
 
 ## Language
 
@@ -11,3 +11,7 @@ _Avoid_: agent tools, plugins
 **Agent tools**:
 CLI utilities (ripgrep, fd, jq, tree, bat, fzf) installed for AI coding agents to shell out to.
 _Avoid_: terminal tools, agent skills
+
+**Generation-retention policy**:
+The shared host policy that preserves recent system, root, and user profile generations while removing older ones. Store garbage collection happens after generation retention and is not the policy itself.
+_Avoid_: garbage-collection policy
