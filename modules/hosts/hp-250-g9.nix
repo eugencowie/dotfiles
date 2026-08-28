@@ -11,6 +11,7 @@
     time._.london
     locale._.british
     nix._.flakes
+    nix._.gc
 
   ];
 

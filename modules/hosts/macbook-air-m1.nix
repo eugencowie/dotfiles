@@ -5,6 +5,7 @@
 
     # Basic system configuration
     nix._.flakes
+    nix._.gc
 
   ];
 
