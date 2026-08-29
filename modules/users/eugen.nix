@@ -9,7 +9,7 @@
     # Customise login environment
     (user-shell "zsh")
 
-    # Configure remote access
+    # Configure system utilities
     remote._.wakeonlan
 
     # Configure terminal environment
@@ -28,6 +28,7 @@
     })
     vcs._.github
     vcs._.jujutsu
+    ai._.opencode
     ai._.codex
     ai._.claude
     ai._.ccusage
