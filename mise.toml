@@ -2,11 +2,10 @@
 nix = "https://github.com/jbadeau/mise-nix#e310c4c20e8273ba850298c10fbe97d0c858c300" # 0.21.0
 
 [tools]
+"nix:cruft" = "latest"
 "nix:deadnix" = "latest"
 "nix:gh" = "latest"
 "nix:nixd" = "latest"
-pipx = "latest"
-"pipx:cruft" = "latest"
 
 [tasks.codegen]
 description = "Regenerate flake file"
