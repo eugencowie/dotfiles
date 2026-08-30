@@ -2,6 +2,7 @@
 nix = "https://github.com/jbadeau/mise-nix#e310c4c20e8273ba850298c10fbe97d0c858c300" # 0.21.0
 
 [tools]
+"nix:cruft" = "latest"
 "nix:deadnix" = "latest"
 "nix:gh" = "latest"
 "nix:nixd" = "latest"
@@ -47,3 +48,11 @@ case "$(uname -s)" in
   *)      sudo  nixos-rebuild switch --flake . ;;
 esac
 '''
+
+[tasks."template:update"]
+description = "Update project with the latest changes from the template"
+run = "cruft update"
+
+[tasks."template:restore"]
+description = "Restore template-managed files"
+run = "cruft diff | git apply"
