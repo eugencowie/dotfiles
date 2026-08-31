@@ -13,6 +13,22 @@ result-*
 **/.nixos-test-history
 
 #
+# https://github.com/github/gitignore/blob/main/Global/mise.gitignore
+#
+
+# https://mise.jdx.dev/configuration.html
+# https://mise.jdx.dev/configuration/environments.html
+.mise.*.local.toml
+.mise.local.toml
+mise.*.local.toml
+mise.local.toml
+.mise/*.local.toml
+mise/*.local.toml
+
+# https://mise.jdx.dev/configuration.html#tool-versions
+.tool-versions
+
+#
 # https://github.com/github/gitignore/blob/main/Global/Agents.gitignore
 #
 
@@ -78,25 +94,33 @@ cline.json
 replit.nix
 
 #
-# https://github.com/github/gitignore/blob/main/Global/Linux.gitignore
+# https://github.com/github/gitignore/blob/main/Global/Windows.gitignore
 #
 
-*~
+# Windows thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
 
-# temporary files which can be created if a process still has a handle open of a deleted file
-.fuse_hidden*
+# Dump file
+*.stackdump
 
-# Metadata left by Dolphin file manager, which comes with KDE Plasma
-.directory
+# Folder config file
+[Dd]esktop.ini
 
-# Linux trash folder which might appear on any partition or disk
-.Trash-*
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
 
-# .nfs files are created when an open file is removed but is still being accessed
-.nfs*
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
 
-# Log files created by default by the nohup command
-nohup.out
+# Windows shortcuts
+*.lnk
 
 #
 # https://github.com/github/gitignore/blob/main/Global/macOS.gitignore
@@ -163,30 +187,22 @@ MobileBackups.trash
 tmbootpicker.efi
 
 #
-# https://github.com/github/gitignore/blob/main/Global/Windows.gitignore
+# https://github.com/github/gitignore/blob/main/Global/Linux.gitignore
 #
 
-# Windows thumbnail cache files
-Thumbs.db
-Thumbs.db:encryptable
-ehthumbs.db
-ehthumbs_vista.db
+*~
 
-# Dump file
-*.stackdump
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
 
-# Folder config file
-[Dd]esktop.ini
+# Metadata left by Dolphin file manager, which comes with KDE Plasma
+.directory
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
 
-# Windows Installer files
-*.cab
-*.msi
-*.msix
-*.msm
-*.msp
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
 
-# Windows shortcuts
-*.lnk
+# Log files created by default by the nohup command
+nohup.out
