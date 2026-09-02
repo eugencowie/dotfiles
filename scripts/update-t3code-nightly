@@ -6,6 +6,10 @@ readonly fake_hash="sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
 readonly script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 readonly repo_root="$(cd -- "$script_dir/.." && pwd)"
 readonly package_file="$repo_root/packages/t3code-nightly.nix"
+readonly -a nix_args=(
+  --extra-experimental-features nix-command
+  --extra-experimental-features flakes
+)
 
 usage() {
   cat <<'EOF'
@@ -134,7 +138,7 @@ calculate_hash() {
 
   printf '\nCalculating %s hash...\n' "$label" >&2
 
-  if nix build --no-link -L --impure \
+  if nix "${nix_args[@]}" build --no-link -L --impure \
     --expr "($package_expr).unwrapped.$output" 2>&1 \
     | tee "$log_file" >&2; then
     printf 'Expected the placeholder hash to cause a hash mismatch.\n' >&2
@@ -161,7 +165,7 @@ pnpm_hash=$(calculate_hash "pnpm dependencies" pnpmDeps)
 rewrite_pins "$version" "$src_hash" "$pnpm_hash"
 
 printf '\nVerifying the complete package build...\n' >&2
-nix build --no-link -L --impure --expr "$package_expr"
+nix "${nix_args[@]}" build --no-link -L --impure --expr "$package_expr"
 
 restore_on_error=0
 
