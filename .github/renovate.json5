@@ -61,7 +61,6 @@
         installTools: {
           mise: {},
           python: {},
-          nix: {},
         },
       },
     },
