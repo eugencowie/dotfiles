@@ -60,6 +60,7 @@
         fileFilters: ['**/*'],
         installTools: {
           mise: {},
+          python: {},
           nix: {},
         },
       },
