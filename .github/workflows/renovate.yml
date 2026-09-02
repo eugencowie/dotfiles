@@ -15,12 +15,18 @@ jobs:
   renovate:
     runs-on: ubuntu-latest
     steps:
+      # Expose Nix client to Renovate
+      - uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31.11.1
+      - run: ln --symbolic "$(realpath "$(command -v nix)")" /tmp/renovate-host-nix
       - uses: renovatebot/github-action@39b914146caeff8cd512e61c8992f1d5913af85c # v46.2.5
         with:
           token: ${{ secrets.RENOVATE_TOKEN || github.token }}
+          # Share Renovate's checkout, the host Nix client, and the host Nix daemon
+          docker-volumes: '/tmp:/tmp ; /nix:/nix'
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
           RENOVATE_ONBOARDING: 'false'
           RENOVATE_ALLOWED_COMMANDS: '[".+"]'
-          # Renovate filters child environments, so pass GH_TOKEN explicitly to post-upgrade tasks.
-          RENOVATE_CUSTOM_ENV_VARIABLES: '{"GH_TOKEN":"${{ github.token }}"}'
+          # Renovate filters child environments, so pass the token and host Nix connection explicitly
+          RENOVATE_CUSTOM_ENV_VARIABLES: >-
+            {"GH_TOKEN":"${{ github.token }}","T3CODE_NIX_BIN":"/tmp/renovate-host-nix","T3CODE_NIX_STORE":"unix:///nix/var/nix/daemon-socket/socket"}
