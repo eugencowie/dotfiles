@@ -30,6 +30,17 @@
       currentValueTemplate: 'v0.0.0',
       autoReplaceStringTemplate: '"checkout": "{{{newValue}}}"',
     },
+    {
+      description: 'Track T3 Code nightly releases',
+      customType: 'regex',
+      managerFilePatterns: ['/^packages\\/t3code-nightly\\.nix$/'],
+      matchStrings: ['version\\s*=\\s*"(?<currentValue>[^"]+)";'],
+      datasourceTemplate: 'github-releases',
+      depNameTemplate: 'pingdotgg/t3code',
+      extractVersionTemplate:
+        '^v(?<version>\\d+\\.\\d+\\.\\d+-nightly\\.\\d+\\.\\d+)$',
+      versioningTemplate: 'semver',
+    },
   ],
 
   packageRules: [
@@ -52,12 +63,14 @@
       },
     },
     {
-      description: 'Update T3 Code during lock file maintenance',
-      matchUpdateTypes: ['lockFileMaintenance'],
+      description: 'Update T3 Code nightly and its fixed-output hashes',
+      matchManagers: ['custom.regex'],
+      matchDepNames: ['pingdotgg/t3code'],
+      ignoreUnstable: false,
       postUpgradeTasks: {
-        commands: ['mise run update:t3code'],
-        executionMode: 'branch',
-        fileFilters: ['**/*'],
+        commands: ['mise run update:t3code -- {{{newValue}}}'],
+        executionMode: 'update',
+        fileFilters: ['packages/t3code-nightly.nix'],
         installTools: {
           mise: {},
           python: {},
