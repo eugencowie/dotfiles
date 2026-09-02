@@ -51,5 +51,18 @@
         },
       },
     },
+    {
+      description: 'Update T3 Code during lock file maintenance',
+      matchUpdateTypes: ['lockFileMaintenance'],
+      postUpgradeTasks: {
+        commands: ['mise run update:t3code'],
+        executionMode: 'branch',
+        fileFilters: ['**/*'],
+        installTools: {
+          mise: {},
+          nix: {},
+        },
+      },
+    },
   ],
 }
