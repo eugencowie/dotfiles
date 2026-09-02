@@ -3,6 +3,14 @@
   extends: ['config:best-practices'],
   labels: ['chore'],
 
+  lockFileMaintenance: {
+    schedule: ['at any time'],
+  },
+
+  nix: {
+    enabled: true,
+  },
+
   customManagers: [
     {
       description: 'Track template updates',
