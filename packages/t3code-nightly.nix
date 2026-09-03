@@ -7,8 +7,8 @@
 { t3code, pnpm_11, fetchFromGitHub, fetchPnpmDeps }: let
 
   # Update these three together when bumping to a newer nightly
-  version = "0.0.39-nightly.20260903.1268";
-  srcHash = "sha256-undnTP1gg6AwGuSWVkJi6IAvWJ/p5aCqwmFFnMmHVdk=";
+  version = "0.0.39-nightly.20260903.1270";
+  srcHash = "sha256-yZbD8VB+wgluLn4LANIIPlXZnMy987oGbmFK3OIzaLs=";
   pnpmDepsHash = "sha256-H1wn6RohCREpPISkBhGVci+bR5BreqNPOkICLhtAk+o=";
 
   unwrapped = t3code.unwrapped.overrideAttrs (finalAttrs: previousAttrs: {
