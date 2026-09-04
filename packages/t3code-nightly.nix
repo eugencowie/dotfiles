@@ -7,7 +7,7 @@
 { t3code, pnpm_11, fetchFromGitHub, fetchPnpmDeps }: let
 
   # Update these three together when bumping to a newer nightly
-  version = "0.0.39-nightly.20260903.1270";
+  version = "0.0.39-nightly.20260904.1277";
   srcHash = "sha256-yZbD8VB+wgluLn4LANIIPlXZnMy987oGbmFK3OIzaLs=";
   pnpmDepsHash = "sha256-H1wn6RohCREpPISkBhGVci+bR5BreqNPOkICLhtAk+o=";
 
