@@ -4,12 +4,21 @@
 # overriding the unwrapped package reached through the wrapper's passthru, then
 # re-wrapping it.
 #
-{ t3code, pnpm_11, fetchFromGitHub, fetchPnpmDeps }: let
+{
+  t3code,
+  pnpm_11,
+  fetchFromGitHub,
+  fetchPnpmDeps,
+  lib,
+  libsecret,
+  pkg-config,
+  stdenv,
+}: let
 
   # Update these three together when bumping to a newer nightly
-  version = "0.0.39-nightly.20260903.1270";
-  srcHash = "sha256-yZbD8VB+wgluLn4LANIIPlXZnMy987oGbmFK3OIzaLs=";
-  pnpmDepsHash = "sha256-H1wn6RohCREpPISkBhGVci+bR5BreqNPOkICLhtAk+o=";
+  version = "0.0.39-nightly.20260904.1278";
+  srcHash = "sha256-TjMHZQOdlZIRbGftmop97yZQrPdWjh6BrFqTFkGEE98=";
+  pnpmDepsHash = "sha256-A9llQc6umnGZTNlvzG7yt+qu39scGHho8Xvf0vScLtU=";
 
   unwrapped = t3code.unwrapped.overrideAttrs (finalAttrs: previousAttrs: {
 
@@ -25,6 +34,19 @@
     # The web app is a development dependency of the server, so the inherited
     # transitive workspace filters do not include its patched dependencies.
     pnpmWorkspaces = previousAttrs.pnpmWorkspaces ++ [ "@t3tools/web..." ];
+
+    nativeBuildInputs = previousAttrs.nativeBuildInputs
+      ++ lib.optionals stdenv.hostPlatform.isLinux [ pkg-config ];
+
+    buildInputs = (previousAttrs.buildInputs or [])
+      ++ lib.optionals stdenv.hostPlatform.isLinux [ libsecret ];
+
+    postInstall = (previousAttrs.postInstall or "")
+      + lib.optionalString stdenv.hostPlatform.isLinux ''
+        mkdir --parents "$out"/libexec/t3code/native/browser-secret
+        cp --recursive native/browser-secret/build \
+          "$out"/libexec/t3code/native/browser-secret/
+      '';
 
     pnpmDeps = fetchPnpmDeps {
       pnpm = pnpm_11;
