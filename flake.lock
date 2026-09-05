@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "anthropic-skills": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1788453433,
+        "narHash": "sha256-sjgPv9tZZVTXPxZWaCOc7JwFceNn3C1ghy8mSHqgqB8=",
+        "owner": "anthropics",
+        "repo": "skills",
+        "rev": "41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anthropics",
+        "repo": "skills",
+        "type": "github"
+      }
+    },
     "base16": {
       "inputs": {
         "fromYaml": "fromYaml"
@@ -507,8 +523,25 @@
         "type": "github"
       }
     },
+    "ponytail": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1788525329,
+        "narHash": "sha256-ytmLscDv7OVFyX/9gsfGaZmTpEnaMDTZnwzUtcbbcS0=",
+        "owner": "DietrichGebert",
+        "repo": "ponytail",
+        "rev": "974d940a1c5344210874150b98ff0d2c861fab6a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DietrichGebert",
+        "repo": "ponytail",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
+        "anthropic-skills": "anthropic-skills",
         "cursor-plugins": "cursor-plugins",
         "darwin": "darwin",
         "den": "den",
@@ -522,6 +555,7 @@
         "mattpocock-skills": "mattpocock-skills",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_2",
+        "ponytail": "ponytail",
         "stylix": "stylix",
         "zen-browser": "zen-browser"
       }

@@ -4,6 +4,10 @@
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
   inputs = {
+    anthropic-skills = {
+      url = "github:anthropics/skills";
+      flake = false;
+    };
     cursor-plugins = {
       url = "github:cursor/plugins";
       flake = false;
@@ -41,6 +45,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    ponytail = {
+      url = "github:DietrichGebert/ponytail";
+      flake = false;
+    };
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
