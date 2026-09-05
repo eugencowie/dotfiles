@@ -65,6 +65,33 @@
       install -Dm644 ${openaiExplicitInvocationPolicy} "$out/agents/openai.yaml"
     ''}";
 
+    mkImplicit = source: let
+      name = builtins.baseNameOf source;
+    in "${pkgs.runCommandLocal "${name}-implicit" { } ''
+      mkdir -p "$out"
+      cp -r "${source}/." "$out/"
+      chmod -R u+w "$out"
+
+      head -n 1 "$out/SKILL.md" | grep -qx -- '---' || {
+        echo "${name}: SKILL.md has unexpected frontmatter" >&2
+        exit 1
+      }
+
+      awk '
+        NR == 1 {
+        print
+        frontmatter = 1
+        next
+        }
+        frontmatter && /^disable-model-invocation:/ { next }
+        frontmatter && /^---$/ { frontmatter = 0 }
+        { print }
+      ' "$out/SKILL.md" > "$out/SKILL.md.new"
+
+      mv "$out/SKILL.md.new" "$out/SKILL.md"
+      rm -f "$out/agents/openai.yaml"
+    ''}";
+
   in {
 
     _module.args.agentSkills = {
@@ -100,7 +127,7 @@
       writing-for-agents = "${inputs.mattpocock-skills}/skills/productivity/writing-for-agents";
 
       # Lauren Tan's skills
-      unslop = "${inputs.cursor-plugins}/pstack/skills/unslop";
+      unslop = mkImplicit "${inputs.cursor-plugins}/pstack/skills/unslop";
 
       # Ponytail skills
       ponytail = mkExplicit "${inputs.ponytail}/skills/ponytail";
