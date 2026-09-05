@@ -24,47 +24,25 @@
     flake = false;
   };
 
-  den.aspects.ai.provides.agent-skills.homeManager = { pkgs, ... }: let
+  den.aspects.ai.provides.agent-skills.homeManager = { lib, pkgs, ... }: let
 
-    openaiExplicitInvocationPolicy = pkgs.writeText "openai-explicit-invocation-policy.yaml" ''
-      policy:
-        allow_implicit_invocation: false
-    '';
+    # Patch a skill to allow/disallow implicit model invocation
+    mkInvocation = mode: source: pkgs.applyPatches {
+      name = "${baseNameOf source}-${mode}";
+      src = source;
+      postPatch = ''
+        sed -i '1,/^---$/ { /^disable-model-invocation:/d; }' SKILL.md
+        rm -f agents/openai.yaml
+      '' + lib.optionalString (mode == "explicit") ''
+        sed -i '1a disable-model-invocation: true' SKILL.md
+        mkdir -p agents && echo 'policy: { allow_implicit_invocation: false }' > agents/openai.yaml
+      '';
+    };
 
-    mkInvocation = mode: source: let
-      name = builtins.baseNameOf source;
-    in pkgs.runCommandLocal "${name}-${mode}" { } ''
-      mkdir -p "$out"
-      cp -r "${source}/." "$out/"
-      chmod -R u+w "$out"
-
-      head -n 1 "$out/SKILL.md" | grep -qx -- '---' || {
-        echo "${name}: SKILL.md has unexpected frontmatter" >&2
-        exit 1
-      }
-
-      sed -i '1,/^---$/ { /^disable-model-invocation:/d; }' "$out/SKILL.md"
-
-      ${
-        if mode == "explicit" then
-          ''
-            sed -i '1a disable-model-invocation: true' "$out/SKILL.md"
-
-            if [[ -e "$out/agents/openai.yaml" ]]; then
-              echo "${name}: agents/openai.yaml already exists upstream" >&2
-              exit 1
-            fi
-
-            install -Dm644 ${openaiExplicitInvocationPolicy} "$out/agents/openai.yaml"
-          ''
-        else
-          ''
-            rm -f "$out/agents/openai.yaml"
-          ''
-      }
-    '';
-
+    # Patch a skill to require explicit user invocation
     mkExplicit = mkInvocation "explicit";
+
+    # Patch a skill to allow implicit model invocation
     mkImplicit = mkInvocation "implicit";
 
   in {
