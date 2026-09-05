@@ -31,9 +31,9 @@
         allow_implicit_invocation: false
     '';
 
-    mkExplicit = source: let
+    mkInvocation = mode: source: let
       name = builtins.baseNameOf source;
-    in "${pkgs.runCommandLocal "${name}-explicit-only" { } ''
+    in pkgs.runCommandLocal "${name}-${mode}" { } ''
       mkdir -p "$out"
       cp -r "${source}/." "$out/"
       chmod -R u+w "$out"
@@ -43,54 +43,29 @@
         exit 1
       }
 
-      awk '
-        NR == 1 {
-        print
-        print "disable-model-invocation: true"
-        frontmatter = 1
-        next
-        }
-        frontmatter && /^disable-model-invocation:/ { next }
-        frontmatter && /^---$/ { frontmatter = 0 }
-        { print }
-      ' "$out/SKILL.md" > "$out/SKILL.md.new"
+      sed -i '1,/^---$/ { /^disable-model-invocation:/d; }' "$out/SKILL.md"
 
-      mv "$out/SKILL.md.new" "$out/SKILL.md"
+      ${
+        if mode == "explicit" then
+          ''
+            sed -i '1a disable-model-invocation: true' "$out/SKILL.md"
 
-      if [[ -e "$out/agents/openai.yaml" ]]; then
-        echo "${name}: agents/openai.yaml already exists upstream" >&2
-        exit 1
-      fi
+            if [[ -e "$out/agents/openai.yaml" ]]; then
+              echo "${name}: agents/openai.yaml already exists upstream" >&2
+              exit 1
+            fi
 
-      install -Dm644 ${openaiExplicitInvocationPolicy} "$out/agents/openai.yaml"
-    ''}";
-
-    mkImplicit = source: let
-      name = builtins.baseNameOf source;
-    in "${pkgs.runCommandLocal "${name}-implicit" { } ''
-      mkdir -p "$out"
-      cp -r "${source}/." "$out/"
-      chmod -R u+w "$out"
-
-      head -n 1 "$out/SKILL.md" | grep -qx -- '---' || {
-        echo "${name}: SKILL.md has unexpected frontmatter" >&2
-        exit 1
+            install -Dm644 ${openaiExplicitInvocationPolicy} "$out/agents/openai.yaml"
+          ''
+        else
+          ''
+            rm -f "$out/agents/openai.yaml"
+          ''
       }
+    '';
 
-      awk '
-        NR == 1 {
-        print
-        frontmatter = 1
-        next
-        }
-        frontmatter && /^disable-model-invocation:/ { next }
-        frontmatter && /^---$/ { frontmatter = 0 }
-        { print }
-      ' "$out/SKILL.md" > "$out/SKILL.md.new"
-
-      mv "$out/SKILL.md.new" "$out/SKILL.md"
-      rm -f "$out/agents/openai.yaml"
-    ''}";
+    mkExplicit = mkInvocation "explicit";
+    mkImplicit = mkInvocation "implicit";
 
   in {
 
