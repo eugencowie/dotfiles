@@ -523,6 +523,22 @@
         "type": "github"
       }
     },
+    "ponytail": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1788525329,
+        "narHash": "sha256-ytmLscDv7OVFyX/9gsfGaZmTpEnaMDTZnwzUtcbbcS0=",
+        "owner": "DietrichGebert",
+        "repo": "ponytail",
+        "rev": "974d940a1c5344210874150b98ff0d2c861fab6a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DietrichGebert",
+        "repo": "ponytail",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "anthropic-skills": "anthropic-skills",
@@ -539,6 +555,7 @@
         "mattpocock-skills": "mattpocock-skills",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_2",
+        "ponytail": "ponytail",
         "stylix": "stylix",
         "zen-browser": "zen-browser"
       }

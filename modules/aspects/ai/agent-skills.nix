@@ -18,6 +18,12 @@
     flake = false;
   };
 
+  # Lazy senior dev mode for AI agents
+  flake-file.inputs.ponytail = {
+    url = "github:DietrichGebert/ponytail";
+    flake = false;
+  };
+
   den.aspects.ai.provides.agent-skills.homeManager._module.args.agentSkills = {
 
     # Anthropic skills
@@ -52,6 +58,11 @@
 
     # Lauren Tan's skills
     unslop = "${inputs.cursor-plugins}/pstack/skills/unslop";
+
+    # Ponytail skills
+    ponytail = "${inputs.ponytail}/skills/ponytail";
+    ponytail-audit = "${inputs.ponytail}/skills/ponytail-audit";
+    ponytail-review = "${inputs.ponytail}/skills/ponytail-review";
 
   };
 
