@@ -4,6 +4,10 @@
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
   inputs = {
+    anthropic-skills = {
+      url = "github:anthropics/skills";
+      flake = false;
+    };
     cursor-plugins = {
       url = "github:cursor/plugins";
       flake = false;

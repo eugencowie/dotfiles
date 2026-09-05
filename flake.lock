@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "anthropic-skills": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1788453433,
+        "narHash": "sha256-sjgPv9tZZVTXPxZWaCOc7JwFceNn3C1ghy8mSHqgqB8=",
+        "owner": "anthropics",
+        "repo": "skills",
+        "rev": "41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anthropics",
+        "repo": "skills",
+        "type": "github"
+      }
+    },
     "base16": {
       "inputs": {
         "fromYaml": "fromYaml"
@@ -509,6 +525,7 @@
     },
     "root": {
       "inputs": {
+        "anthropic-skills": "anthropic-skills",
         "cursor-plugins": "cursor-plugins",
         "darwin": "darwin",
         "den": "den",

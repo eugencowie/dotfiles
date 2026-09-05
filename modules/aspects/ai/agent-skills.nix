@@ -1,5 +1,11 @@
 { inputs, ... }: {
 
+  # Anthropic example skills
+  flake-file.inputs.anthropic-skills = {
+    url = "github:anthropics/skills";
+    flake = false;
+  };
+
   # Agent skills for real engineering
   flake-file.inputs.mattpocock-skills = {
     url = "github:mattpocock/skills";
@@ -13,6 +19,9 @@
   };
 
   den.aspects.ai.provides.agent-skills.homeManager._module.args.agentSkills = {
+
+    # Anthropic skills
+    frontend-design = "${inputs.anthropic-skills}/skills/frontend-design";
 
     # Matt Pocock's skills
     ask-matt = "${inputs.mattpocock-skills}/skills/engineering/ask-matt";
