@@ -39,6 +39,13 @@
         enable = true;
         libraries = with pkgs; [
           openssl
+        ] ++ map (pkg: pkg.lib or pkg.out or pkg)
+          # Runtime dependencies for Playwright
+          playwright-driver.components.chromium-headless-shell.buildInputs ++ [
+          dbus
+          libx11
+          libxext
+          libxcb
         ];
       };
 
