@@ -18,7 +18,7 @@ jobs:
       - uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31.11.1
       - uses: renovatebot/github-action@37beffda261423addd537c33f2d126df7f6ffbab # v46.2.6
         with:
-          renovate-version: 44.65.5@sha256:4e10f76a79f1c597f427f83c788a9f5b14a6295784c4cb68307b89b0a954abce
+          renovate-version: 44.69.3@sha256:76b1bc6d6956dfe985b9ea2559398991e9277c3ce7316d1870fd7c2442106bd5
           token: ${{ secrets.RENOVATE_TOKEN || github.token }}
           # Share Renovate's checkout and the host Nix installation
           docker-volumes: '/tmp:/tmp ; /nix:/nix'
