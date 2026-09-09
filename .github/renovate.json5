@@ -67,6 +67,7 @@
       description: 'Update T3 Code nightly and its fixed-output hashes',
       matchManagers: ['custom.regex'],
       matchDepNames: ['pingdotgg/t3code'],
+      schedule: ['at any time'],
       ignoreUnstable: false,
       postUpgradeTasks: {
         commands: ['mise run update:t3code -- {{{newValue}}}'],
