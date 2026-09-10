@@ -27,15 +27,17 @@
   den.aspects.ai.provides.agent-skills.homeManager = { lib, pkgs, ... }: let
 
     # Patch a skill to allow/disallow implicit model invocation
-    mkInvocation = mode: source: pkgs.applyPatches {
+    mkInvocation = mode: source: let
+      explicit = mode == "explicit";
+      implicit = mode == "implicit";
+    in assert explicit || implicit; pkgs.applyPatches {
       name = "${baseNameOf source}-${mode}";
       src = source;
-      postPatch = ''
-        sed -i '1,/^---$/ { /^disable-model-invocation:/d; }' SKILL.md
-        rm -f agents/openai.yaml
-      '' + lib.optionalString (mode == "explicit") ''
-        sed -i '1a disable-model-invocation: true' SKILL.md
-        mkdir -p agents && echo 'policy: { allow_implicit_invocation: false }' > agents/openai.yaml
+      nativeBuildInputs = with pkgs; [ yq-go ];
+      postPatch = with lib; ''
+        mkdir -p agents && touch agents/openai.yaml
+        yq -i '.policy.allow_implicit_invocation = ${boolToString implicit}' agents/openai.yaml
+        yq --front-matter=process -i '.disable-model-invocation = ${boolToString explicit}' SKILL.md
       '';
     };
 
