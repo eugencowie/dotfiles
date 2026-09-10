@@ -27,15 +27,17 @@
   den.aspects.ai.provides.agent-skills.homeManager = { lib, pkgs, ... }: let
 
     # Patch a skill to allow/disallow implicit model invocation
-    mkInvocation = mode: source: pkgs.applyPatches {
+    mkInvocation = mode: source: let
+      explicit = mode == "explicit";
+      implicit = mode == "implicit";
+    in assert explicit || implicit; pkgs.applyPatches {
       name = "${baseNameOf source}-${mode}";
       src = source;
-      postPatch = ''
-        sed -i '1,/^---$/ { /^disable-model-invocation:/d; }' SKILL.md
-        rm -f agents/openai.yaml
-      '' + lib.optionalString (mode == "explicit") ''
-        sed -i '1a disable-model-invocation: true' SKILL.md
-        mkdir -p agents && echo 'policy: { allow_implicit_invocation: false }' > agents/openai.yaml
+      nativeBuildInputs = with pkgs; [ yq-go ];
+      postPatch = with lib; ''
+        mkdir -p agents && touch agents/openai.yaml
+        yq -i '.policy.allow_implicit_invocation = ${boolToString implicit}' agents/openai.yaml
+        yq --front-matter=process -i '.disable-model-invocation = ${boolToString explicit}' SKILL.md
       '';
     };
 
@@ -80,7 +82,24 @@
       writing-for-agents = "${inputs.mattpocock-skills}/skills/productivity/writing-for-agents";
 
       # Lauren Tan's skills
-      unslop = mkImplicit "${inputs.cursor-plugins}/pstack/skills/unslop";
+      principle-boundary-discipline = mkImplicit "${inputs.cursor-plugins}/pstack/skills/principle-boundary-discipline";
+      principle-fix-root-causes = mkImplicit "${inputs.cursor-plugins}/pstack/skills/principle-fix-root-causes";
+      principle-guard-the-context-window = mkImplicit "${inputs.cursor-plugins}/pstack/skills/principle-guard-the-context-window";
+      principle-laziness-protocol = mkImplicit "${inputs.cursor-plugins}/pstack/skills/principle-laziness-protocol";
+      principle-migrate-callers-then-delete-legacy-apis = mkImplicit "${inputs.cursor-plugins}/pstack/skills/principle-migrate-callers-then-delete-legacy-apis";
+      principle-minimize-reader-load = mkImplicit "${inputs.cursor-plugins}/pstack/skills/principle-minimize-reader-load";
+      principle-model-the-domain = mkImplicit "${inputs.cursor-plugins}/pstack/skills/principle-model-the-domain";
+      principle-outcome-oriented-execution = mkImplicit "${inputs.cursor-plugins}/pstack/skills/principle-outcome-oriented-execution";
+      principle-prove-it-works = mkImplicit "${inputs.cursor-plugins}/pstack/skills/principle-prove-it-works";
+      principle-redesign-from-first-principles = mkImplicit "${inputs.cursor-plugins}/pstack/skills/principle-redesign-from-first-principles";
+      principle-sequence-verifiable-units = mkImplicit "${inputs.cursor-plugins}/pstack/skills/principle-sequence-verifiable-units";
+      principle-subtract-before-you-add = mkImplicit "${inputs.cursor-plugins}/pstack/skills/principle-subtract-before-you-add";
+      principle-type-system-discipline = mkImplicit "${inputs.cursor-plugins}/pstack/skills/principle-type-system-discipline";
+      typescript-best-practices = mkImplicit "${inputs.cursor-plugins}/pstack/skills/typescript-best-practices";
+      unslop = mkExplicit "${inputs.cursor-plugins}/pstack/skills/unslop";
+
+      # Cursor skills
+      thermo-nuclear-code-quality-review = mkExplicit "${inputs.cursor-plugins}/thermos/skills/thermo-nuclear-code-quality-review";
 
       # Ponytail skills
       ponytail = mkExplicit "${inputs.ponytail}/skills/ponytail";
