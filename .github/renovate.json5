@@ -31,6 +31,16 @@
       currentValueTemplate: '{{#if currentValue}}{{{currentValue}}}{{else}}v0.0.0{{/if}}',
       autoReplaceStringTemplate: '"checkout": "{{{newValue}}}"',
     },
+    {
+      description: 'Update T3 Code version',
+      customType: 'regex',
+      managerFilePatterns: ['packages/t3code-nightly.nix'],
+      matchStrings: ['version\\s*=\\s*"(?<currentValue>[^"]+)";'],
+      datasourceTemplate: 'github-releases',
+      depNameTemplate: 'pingdotgg/t3code',
+      extractVersionTemplate: '^v(?<version>\\d+\\.\\d+\\.\\d+-nightly\\.\\d+\\.\\d+)$',
+      versioningTemplate: 'semver',
+    },
   ],
 
   packageRules: [
