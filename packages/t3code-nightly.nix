@@ -16,9 +16,17 @@
 }: let
 
   # Update these three together when bumping to a newer nightly
-  version = "0.0.41-nightly.20260911.1564";
-  srcHash = "sha256-PiwePgpKG67LWm+kWt7G3fTQyR3s5ms6UwV70q4dVe8=";
+  version = "0.0.41-nightly.20260912.1599";
+  srcHash = "sha256-hRu+Vw2lB1KH588I6knGfR62gBbzcWykHJRpMkjSu3A=";
   pnpmDepsHash = "sha256-EO844JyOlqtUG+mGWOeXlVtQjRpFFgwiXRvTgfEh7ao=";
+
+  # Match the SPDX revision in scripts/lib/third-party-licenses.ts upstream.
+  spdxLicenseList = fetchFromGitHub {
+    owner = "spdx";
+    repo = "license-list-data";
+    rev = "c4a7237ec8f4654e867546f9f409749300f1bf4c"; # v3.28.0
+    hash = "sha256-FbeeEBAg9ih6DkAsXdU6ruZwkC7A2u2zYBvblpl54q0=";
+  };
 
   unwrapped = t3code.unwrapped.overrideAttrs (finalAttrs: previousAttrs: {
 
@@ -40,6 +48,12 @@
 
     buildInputs = (previousAttrs.buildInputs or [])
       ++ lib.optionals stdenv.hostPlatform.isLinux [ libsecret ];
+
+    # Release builds generate license notices; seed their cache for offline builds.
+    preBuild = (previousAttrs.preBuild or "") + ''
+      mkdir -p .generated/third-party-licenses/spdx
+      cp -r ${spdxLicenseList}/json/details .generated/third-party-licenses/spdx/v3.28.0
+    '';
 
     postInstall = (previousAttrs.postInstall or "")
       + lib.optionalString stdenv.hostPlatform.isLinux ''
