@@ -1,4 +1,4 @@
-# dotfiles
+# Dotfiles
 
 Nix configurations for my machines, using [den](https://den.oeiuwq.com).
 
