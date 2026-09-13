@@ -2,9 +2,10 @@
 disable_backends = ["asdf"] # cannot be updated by Renovate
 
 [tools]
+"aqua:astral-sh/uv" = "latest"
 gh = "latest"
-pipx = "latest"
 "pipx:cruft" = "latest"
+python = "latest"
 
 [tasks.codegen]
 description = "Regenerate flake file"
