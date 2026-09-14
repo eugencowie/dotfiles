@@ -2,7 +2,11 @@ name: Renovate
 
 on:
   schedule:
-    - cron: '0 */6 * * *'
+    # Schedules aren't reliable, spam runs in the hope of landing in the Renovate window
+    - cron: "30 18-23 * * 0"
+    - cron: "30 0-3 * * 1"
+    # Update more frequently to keep the system packages up-to-date
+    - cron: "30 */6 * * *"
   workflow_dispatch:
 
 permissions:
@@ -21,7 +25,7 @@ jobs:
           renovate-version: 44.83.1@sha256:756b0c3ac88535d98fb714303653f4b34a12cdee1a499bf7fd12d218e3b0a120
           token: ${{ secrets.RENOVATE_TOKEN || github.token }}
           # Share Renovate's checkout and the host Nix installation
-          docker-volumes: '/tmp:/tmp ; /nix:/nix'
+          docker-volumes: "/tmp:/tmp ; /nix:/nix"
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
           RENOVATE_ALLOWED_COMMANDS: '[".+"]'

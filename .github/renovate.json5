@@ -1,10 +1,10 @@
 {
-  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
-  extends: ['config:best-practices', 'schedule:weekly'],
-  labels: ['chore'],
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: ["config:best-practices", "schedule:weekly"],
+  labels: ["chore"],
 
   lockFileMaintenance: {
-    schedule: ['at any time'],
+    schedule: ["at any time"],
   },
 
   nix: {
@@ -13,64 +13,65 @@
 
   customManagers: [
     {
-      description: 'Update Renovate version',
-      customType: 'regex',
-      managerFilePatterns: ['.github/workflows/renovate.yml'],
-      matchStrings: ['renovate-version:\\s*(?<currentValue>[^@\\s]+)(?:@(?<currentDigest>\\S+))?'],
-      datasourceTemplate: 'docker',
-      depNameTemplate: 'ghcr.io/renovatebot/renovate',
-      autoReplaceStringTemplate: 'renovate-version: {{{newValue}}}{{#if newDigest}}@{{{newDigest}}}{{/if}}',
+      description: "Update Renovate version",
+      customType: "regex",
+      managerFilePatterns: [".github/workflows/renovate.yml"],
+      matchStrings: [
+        "renovate-version:\\s*(?<currentValue>[^@\\s]+)(?:@(?<currentDigest>\\S+))?",
+      ],
+      datasourceTemplate: "docker",
+      depNameTemplate: "ghcr.io/renovatebot/renovate",
+      autoReplaceStringTemplate: "renovate-version: {{{newValue}}}{{#if newDigest}}@{{{newDigest}}}{{/if}}",
     },
     {
-      description: 'Update template version',
-      customType: 'regex',
-      managerFilePatterns: ['.cruft.json'],
+      description: "Update template version",
+      customType: "regex",
+      managerFilePatterns: [".cruft.json"],
       matchStrings: ['"checkout"\\s*:\\s*(?:"(?<currentValue>[^"]+)"|null)'],
-      datasourceTemplate: 'github-tags',
-      depNameTemplate: 'eugencowie/templates',
-      currentValueTemplate: '{{#if currentValue}}{{{currentValue}}}{{else}}v0.0.0{{/if}}',
+      datasourceTemplate: "github-tags",
+      depNameTemplate: "eugencowie/templates",
+      currentValueTemplate: "{{#if currentValue}}{{{currentValue}}}{{else}}v0.0.0{{/if}}",
       autoReplaceStringTemplate: '"checkout": "{{{newValue}}}"',
     },
     {
-      description: 'Update T3 Code version',
-      customType: 'regex',
-      managerFilePatterns: ['packages/t3code-nightly.nix'],
+      description: "Update T3 Code version",
+      customType: "regex",
+      managerFilePatterns: ["packages/t3code-nightly.nix"],
       matchStrings: ['version\\s*=\\s*"(?<currentValue>[^"]+)";'],
-      datasourceTemplate: 'github-releases',
-      depNameTemplate: 'pingdotgg/t3code',
-      extractVersionTemplate: '^v(?<version>\\d+\\.\\d+\\.\\d+-nightly\\.\\d+\\.\\d+)$',
-      versioningTemplate: 'semver',
+      datasourceTemplate: "github-releases",
+      depNameTemplate: "pingdotgg/t3code",
+      extractVersionTemplate: "^v(?<version>\\d+\\.\\d+\\.\\d+-nightly\\.\\d+\\.\\d+)$",
+      versioningTemplate: "semver",
     },
   ],
 
   packageRules: [
     {
-      description: 'Apply template update using cruft',
-      matchDepNames: ['eugencowie/templates'],
+      description: "Apply template update using cruft",
+      matchDepNames: ["eugencowie/templates"],
       postUpgradeTasks: {
-        executionMode: 'branch',
-        installTools: {
-          mise: {},
-          python: {},
-        },
+        executionMode: "branch",
+        installTools: { mise: {} },
         commands: [
-          'git restore -s HEAD .cruft.json',
-          'mise run template:update -- -y -c {{{newValue}}}',
+          "git restore -s HEAD .cruft.json",
+          "mise install --locked",
+          "mise run --skip-tools template:update -- -y -c {{{newValue}}}",
+          "mise lock",
         ],
       },
     },
     {
-      description: 'Update T3 Code hashes',
-      matchDepNames: ['pingdotgg/t3code'],
-      schedule: ['at any time'],
+      description: "Update T3 Code hashes",
+      matchDepNames: ["pingdotgg/t3code"],
+      schedule: ["at any time"],
       ignoreUnstable: false,
       postUpgradeTasks: {
-        installTools: {
-          mise: {},
-          python: {},
-        },
-        commands: ['mise run update:t3code -- {{{newValue}}}'],
-        fileFilters: ['packages/t3code-nightly.nix'],
+        installTools: { mise: {} },
+        commands: [
+          "mise install --locked",
+          "mise run --skip-tools update:t3code -- {{{newValue}}}",
+        ],
+        fileFilters: ["packages/t3code-nightly.nix"],
       },
     },
   ],
