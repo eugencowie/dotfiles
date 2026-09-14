@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31.11.1
-      - uses: renovatebot/github-action@37beffda261423addd537c33f2d126df7f6ffbab # v46.2.6
+      - uses: renovatebot/github-action@c314dda4a9a93b08239ec978f2043b9a433b9ac4 # v46.3.0
         with:
           renovate-version: 44.75.0@sha256:f45487eed297e0b29ca0bfa75843ac68b7669921c6f1bdca3de201df8df3ff4e
           token: ${{ secrets.RENOVATE_TOKEN || github.token }}
