@@ -68,7 +68,6 @@
       improve-codebase-architecture = "${inputs.mattpocock-skills}/skills/engineering/improve-codebase-architecture";
       prototype = "${inputs.mattpocock-skills}/skills/engineering/prototype";
       research = "${inputs.mattpocock-skills}/skills/engineering/research";
-      resolving-merge-conflicts = "${inputs.mattpocock-skills}/skills/engineering/resolving-merge-conflicts";
       setup-matt-pocock-skills = "${inputs.mattpocock-skills}/skills/engineering/setup-matt-pocock-skills";
       tdd = "${inputs.mattpocock-skills}/skills/engineering/tdd";
       teach = "${inputs.mattpocock-skills}/skills/productivity/teach";
