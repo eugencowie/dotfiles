@@ -65,9 +65,12 @@
       grilling = "${inputs.mattpocock-skills}/skills/productivity/grilling";
       handoff = "${inputs.mattpocock-skills}/skills/productivity/handoff";
       implement = "${inputs.mattpocock-skills}/skills/engineering/implement";
+      implement-spec = "${inputs.mattpocock-skills}/skills/engineering/implement-spec";
       improve-codebase-architecture = "${inputs.mattpocock-skills}/skills/engineering/improve-codebase-architecture";
+      pr = "${inputs.mattpocock-skills}/skills/engineering/pr";
       prototype = "${inputs.mattpocock-skills}/skills/engineering/prototype";
       research = "${inputs.mattpocock-skills}/skills/engineering/research";
+      retro = "${inputs.mattpocock-skills}/skills/engineering/retro";
       setup-matt-pocock-skills = "${inputs.mattpocock-skills}/skills/engineering/setup-matt-pocock-skills";
       tdd = "${inputs.mattpocock-skills}/skills/engineering/tdd";
       teach = "${inputs.mattpocock-skills}/skills/productivity/teach";
