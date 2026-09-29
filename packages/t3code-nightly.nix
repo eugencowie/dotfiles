@@ -16,8 +16,8 @@
 }: let
 
   # Update these three together when bumping to a newer nightly
-  version = "0.0.43-nightly.20260928.2375";
-  srcHash = "sha256-3H0Air6PGHxwWBca4nb0FsG4NenWP3UjerDaOilKe7Q=";
+  version = "0.0.43-nightly.20260929.2428";
+  srcHash = "sha256-UbO5630ajUvtY43a79Rsei3uMd9cVqfn/+gj2k+BNvs=";
   pnpmDepsHash = "sha256-z30cDexO3mOTGGhTaPw0eQD8RETM4e15Djx/vALoH+0=";
 
   # Match the SPDX revision in scripts/lib/third-party-licenses.ts upstream.
