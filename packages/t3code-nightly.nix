@@ -49,6 +49,13 @@
     buildInputs = (previousAttrs.buildInputs or [])
       ++ lib.optionals stdenv.hostPlatform.isLinux [ libsecret ];
 
+    # node-pty ships a prebuilt pty.node without a runpath to libstdc++, which
+    # fails to load in the desktop app's Electron backend. Build it from source
+    # instead, so that the compiled module gets a Nix runpath.
+    env = (previousAttrs.env or {}) // {
+      npm_config_build_from_source = "true";
+    };
+
     # Release builds generate license notices; seed their cache for offline builds.
     preBuild = (previousAttrs.preBuild or "") + ''
       mkdir -p .generated/third-party-licenses/spdx
