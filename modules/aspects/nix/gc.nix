@@ -5,7 +5,7 @@
     # Clean system and root profile generations
     nix.gc = {
       automatic = true;
-      options = "--delete-older-than 30d";
+      options = "--delete-older-than 7d";
     } // (
       if host.class == "darwin" then {
         interval = [{ Weekday = 7; Hour = 3; Minute = 15; }];
@@ -20,11 +20,11 @@
       # on Darwin, autoExpire runs the retention commands through a script.
       services.home-manager.autoExpire = {
         enable = true;
-        timestamp = "-30 days";
+        timestamp = "-7 days";
         frequency = "weekly";
         store = {
           cleanup = true;
-          options = "--delete-older-than 30d";
+          options = "--delete-older-than 7d";
         };
       };
     }];
