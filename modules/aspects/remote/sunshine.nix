@@ -11,6 +11,10 @@
         capSysAdmin = true;
         openFirewall = true;
         settings.csrf_allowed_origins = "https://192.168.0.10:47990";
+        # Pin KMS capture, as otherwise Sunshine also probes the XDG portal,
+        # which blocks startup on a GNOME permission dialog nobody can answer
+        # remotely
+        settings.capture = "kms";
         applications.apps = [
           {
             name = "Desktop";
