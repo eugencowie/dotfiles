@@ -16,7 +16,7 @@
         skills = agentSkills;
         settings = {
           theme = "dark";
-          model = "fable";
+          model = "opus";
           effortLevel = "high";
           outputStyle = "Concise";
           attribution = {
