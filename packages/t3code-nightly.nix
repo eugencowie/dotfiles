@@ -9,24 +9,12 @@
   pnpm_11,
   fetchFromGitHub,
   fetchPnpmDeps,
-  lib,
-  libsecret,
-  pkg-config,
-  stdenv,
 }: let
 
   # Update these three together when bumping to a newer nightly
   version = "0.1.1-nightly.20261016.3190";
   srcHash = "sha256-F4wtsef12vR7aTk0pX+diQn3NHSw9K4dygfqW/W3P30=";
   pnpmDepsHash = "sha256-XRgN5NIC94VsLIhoMsMj8ocLtxiVfLFvG+nlK1spqmI=";
-
-  # Match the SPDX revision in scripts/lib/third-party-licenses.ts upstream.
-  spdxLicenseList = fetchFromGitHub {
-    owner = "spdx";
-    repo = "license-list-data";
-    rev = "c4a7237ec8f4654e867546f9f409749300f1bf4c"; # v3.28.0
-    hash = "sha256-FbeeEBAg9ih6DkAsXdU6ruZwkC7A2u2zYBvblpl54q0=";
-  };
 
   unwrapped = t3code.unwrapped.overrideAttrs (finalAttrs: previousAttrs: {
 
@@ -42,32 +30,6 @@
     # The web app is a development dependency of the server, so the inherited
     # transitive workspace filters do not include its patched dependencies.
     pnpmWorkspaces = previousAttrs.pnpmWorkspaces ++ [ "@t3tools/web..." ];
-
-    nativeBuildInputs = previousAttrs.nativeBuildInputs
-      ++ lib.optionals stdenv.hostPlatform.isLinux [ pkg-config ];
-
-    buildInputs = (previousAttrs.buildInputs or [])
-      ++ lib.optionals stdenv.hostPlatform.isLinux [ libsecret ];
-
-    # node-pty ships a prebuilt pty.node without a runpath to libstdc++, which
-    # fails to load in the desktop app's Electron backend. Build it from source
-    # instead, so that the compiled module gets a Nix runpath.
-    env = (previousAttrs.env or {}) // {
-      npm_config_build_from_source = "true";
-    };
-
-    # Release builds generate license notices; seed their cache for offline builds.
-    preBuild = (previousAttrs.preBuild or "") + ''
-      mkdir -p .generated/third-party-licenses/spdx
-      cp -r ${spdxLicenseList}/json/details .generated/third-party-licenses/spdx/v3.28.0
-    '';
-
-    postInstall = (previousAttrs.postInstall or "")
-      + lib.optionalString stdenv.hostPlatform.isLinux ''
-        mkdir --parents "$out"/libexec/t3code/native/browser-secret
-        cp --recursive native/browser-secret/build \
-          "$out"/libexec/t3code/native/browser-secret/
-      '';
 
     pnpmDeps = fetchPnpmDeps {
       pnpm = pnpm_11;
