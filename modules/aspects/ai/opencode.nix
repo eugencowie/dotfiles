@@ -11,6 +11,7 @@
         enable = true;
         package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode2;
         skills = agentSkills;
+        enableMcpIntegration = true;
       };
 
     };
