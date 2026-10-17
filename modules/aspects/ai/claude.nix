@@ -14,6 +14,7 @@
         enable = true;
         package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code;
         skills = agentSkills;
+        enableMcpIntegration = true;
         settings = {
           theme = "dark";
           model = "opus";

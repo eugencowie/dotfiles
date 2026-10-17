@@ -11,6 +11,7 @@
         enable = true;
         package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.codex;
         skills = agentSkills;
+        enableMcpIntegration = true;
         settings = {
           model = "gpt-6.1-sol";
           model_reasoning_effort = "high";
