@@ -40,6 +40,10 @@ _Avoid_: agent tools, plugins
 CLI utilities installed for AI coding agents to shell out to.
 _Avoid_: terminal tools, agent skills
 
+**Agent MCPs**:
+MCP servers connected to AI coding agents so they can call external services.
+_Avoid_: MCP tools, connectors
+
 **LLM agent aspect**:
 The shared aspect inherited by AI coding-agent aspects whose packages come from llm-agents.nix.
 _Avoid_: agent base, common agent config
