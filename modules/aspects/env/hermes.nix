@@ -10,6 +10,11 @@
       export PATH="$HOME/.local/bin:$PATH"
     '';
 
+    # The Hermes installer also requires this in .zshrc, which home-manager makes read-only
+    homeManager.programs.zsh.initContent = ''
+      case ":$PATH:" in *":$HOME/.local/bin:"*) ;; *) export PATH="$HOME/.local/bin:$PATH" ;; esac
+    '';
+
   };
 
 }
