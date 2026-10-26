@@ -3,6 +3,12 @@
   extends: ["config:best-practices", "schedule:weekly"],
   labels: ["chore"],
 
+  constraints: {
+    // mise 2026.10.19 `mise lock` keeps platform URLs from the previously
+    // locked version after Renovate bumps `version`, leaving mise.lock broken.
+    mise: "2026.10.18",
+  },
+
   nix: {
     enabled: true,
     // Renovate only regenerates its lock file maintenance branch on rebase, so
