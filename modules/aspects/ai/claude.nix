@@ -25,6 +25,8 @@
             pr = "";
             sessionUrl = false;
           };
+          # Run tool commands in bash rather than the login shell
+          env.CLAUDE_CODE_SHELL = "${pkgs.bashInteractive}/bin/bash";
           # Disable auto-memory: https://www.youtube.com/shorts/A0scuiiGBC4
           autoMemoryEnabled = false;
           # Disable system prompt bloat: https://www.youtube.com/shorts/oLx4yCbeklQ
