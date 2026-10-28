@@ -10,9 +10,9 @@
 }: let
 
   # Update these three together when bumping to a newer nightly
-  version = "0.1.3-nightly.20261026.3710";
-  srcHash = "sha256-rk/oX6O5b98cOvH4mGOb7/tD4FCEhPi8HTnzu8ZaVp4=";
-  pnpmDepsHash = "sha256-t7DWJow4pdsqbFnMA+p3TDjYkr1asdFStnvnDxuxnFw=";
+  version = "0.1.4-nightly.20261028.3822";
+  srcHash = "sha256-Vd9Lh/H9BU6ibMUBxHhWGdxmVKZBgjusyz7FIt9T5ic=";
+  pnpmDepsHash = "sha256-vBr3PN+qbbWOdrXPHs+35rM6fkdaNvBKzJo4MGvVImA=";
 
   unwrapped = t3code.unwrapped.overrideAttrs (previousAttrs: {
 
