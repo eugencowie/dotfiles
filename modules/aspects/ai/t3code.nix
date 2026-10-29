@@ -1,7 +1,13 @@
-{ den, ... }: {
+{ den, inputs, ... }: {
+
+  # T3 Code packaged from upstream release binaries, updated hourly
+  flake-file.inputs.t3code = {
+    url = "github:omarcresp/t3code-flake";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
 
   den.aspects.ai.provides.t3code = { user, ... }: let
-    t3code-nightly = pkgs: pkgs.callPackage ../../../packages/t3code-nightly.nix { };
+    t3code-nightly = pkgs: inputs.t3code.packages.${pkgs.stdenv.hostPlatform.system}.t3-code-nightly;
   in {
 
     includes = with den.aspects; [ remote._.tailscale ];
@@ -16,7 +22,9 @@
 
     };
 
-    os = { config, pkgs, ... }: {
+    os = { config, pkgs, ... }: let
+      homeConfig = config.home-manager.users.${user.userName};
+    in {
 
       # Allow the service user to configure Tailscale Serve, which T3 Code does
       # itself when started with --tailscale-serve
@@ -27,7 +35,9 @@
         description = "T3 Code server";
         after = [ "tailscaled.service" "tailscaled-set.service" ];
         wantedBy = [ "multi-user.target" ];
-        path = [ config.services.tailscale.package ];
+        # The package doesn't wrap the CLIs T3 Code drives (git, gh, coding
+        # agents), so give the server the user's packages like their session
+        path = [ config.services.tailscale.package homeConfig.home.path ];
         serviceConfig = {
           User = user.userName;
           WorkingDirectory = "~";
