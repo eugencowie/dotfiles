@@ -557,6 +557,7 @@
         "nixpkgs": "nixpkgs_2",
         "ponytail": "ponytail",
         "stylix": "stylix",
+        "t3code": "t3code",
         "zen-browser": "zen-browser"
       }
     },
@@ -636,6 +637,26 @@
         "owner": "nix-systems",
         "ref": "future-26.11",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "t3code": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793301160,
+        "narHash": "sha256-wmpHyyFsF+6tv7AW8V+9+2rM356WiYBd0T5GE+5zFGY=",
+        "owner": "omarcresp",
+        "repo": "t3code-flake",
+        "rev": "e6a39f519ccaefcdab769a442e8d2f2d71c338e9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "omarcresp",
+        "repo": "t3code-flake",
         "type": "github"
       }
     },
