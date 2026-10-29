@@ -42,16 +42,6 @@
       currentValueTemplate: "{{#if currentValue}}{{{currentValue}}}{{else}}v0.0.0{{/if}}",
       autoReplaceStringTemplate: '"checkout": "{{{newValue}}}"',
     },
-    {
-      description: "Update T3 Code version",
-      customType: "regex",
-      managerFilePatterns: ["packages/t3code-nightly.nix"],
-      matchStrings: ['version\\s*=\\s*"(?<currentValue>[^"]+)";'],
-      datasourceTemplate: "github-releases",
-      depNameTemplate: "pingdotgg/t3code",
-      extractVersionTemplate: "^v(?<version>\\d+\\.\\d+\\.\\d+-nightly\\.\\d+\\.\\d+)$",
-      versioningTemplate: "semver",
-    },
   ],
 
   packageRules: [
@@ -67,20 +57,6 @@
           "mise run --skip-tools template:update --skip-apply-ask --checkout {{{newValue}}}",
           "mise lock",
         ],
-      },
-    },
-    {
-      description: "Update T3 Code hashes",
-      matchDepNames: ["pingdotgg/t3code"],
-      schedule: ["at any time"],
-      ignoreUnstable: false,
-      postUpgradeTasks: {
-        installTools: { mise: {} },
-        commands: [
-          "mise install --locked",
-          "mise run --skip-tools update:t3code -- {{{newValue}}}",
-        ],
-        fileFilters: ["packages/t3code-nightly.nix"],
       },
     },
   ],
