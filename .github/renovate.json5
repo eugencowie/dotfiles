@@ -6,7 +6,7 @@
   constraints: {
     // mise 2026.10.19 `mise lock` keeps platform URLs from the previously
     // locked version after Renovate bumps `version`, leaving mise.lock broken.
-    mise: "2026.10.18",
+    mise: "v2026.10.25",
   },
 
   nix: {
