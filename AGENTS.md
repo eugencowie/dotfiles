@@ -2,12 +2,10 @@
 
 ## Development Environment
 
-This project uses mise to manage the development environment.
+This project uses mise as its task runner. Tools come from the flake's pinned nixpkgs via `nix run --inputs-from . nixpkgs#<package>`, not from mise.
 
 - Run `mise tasks` to see the available tasks.
 - Use `mise run <task>` for standard operations.
-- Run `mise ls -l` to see the managed tools.
-- When invoking a managed tool directly, use `mise exec -- <command> [args]` rather than invoking the tool by its bare name.
 
 ## Nix Guidelines
 

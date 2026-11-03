@@ -25,9 +25,6 @@ jobs:
           token: ${{ secrets.RENOVATE_TOKEN || github.token }}
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
-          RENOVATE_ALLOWED_COMMANDS: '[".+"]'
-          # Renovate filters child environments, so pass GH_TOKEN explicitly to post-upgrade tasks.
-          RENOVATE_CUSTOM_ENV_VARIABLES: '{"GH_TOKEN":"${{ github.token }}"}'
 
   update-flake-lock:
     if: github.event.schedule == '30 */6 * * *' || github.event_name == 'workflow_dispatch'
