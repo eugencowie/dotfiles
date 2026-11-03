@@ -2,15 +2,4 @@
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
   extends: ["config:best-practices", "schedule:weekly"],
   labels: ["chore"],
-
-  nix: {
-    enabled: true,
-    // Renovate only regenerates its lock file maintenance branch on rebase, so
-    // the PR goes stale if not merged immediately. We use update-flake-lock in
-    // workflows/renovate.yml which force-pushes the same branch every time, so
-    // its PR always has the latest inputs.
-    lockFileMaintenance: {
-      enabled: false,
-    },
-  },
 }

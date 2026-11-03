@@ -27,6 +27,8 @@ jobs:
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
 
+  # Renovate only refreshes its flake.lock maintenance PR on rebase, so it goes
+  # stale. This force-pushes the same branch every run, so the PR stays current.
   update-flake-lock:
     if: github.event.schedule == '30 */6 * * *' || github.event_name == 'workflow_dispatch'
     name: Update flake lock
