@@ -19,7 +19,7 @@ jobs:
   renovate:
     runs-on: ubuntu-latest
     steps:
-      - uses: renovatebot/github-action@f0f41e5f2e706165f6814b1d0f0d0e319de7d1d9 # v46.3.8
+      - uses: renovatebot/github-action@v46.3.8
         with:
           token: ${{ secrets.RENOVATE_TOKEN || github.token }}
         env:
@@ -29,9 +29,9 @@ jobs:
     if: github.event.schedule == '30 */6 * * *' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: cachix/install-nix-action@75c75c31ebece974e48ebc36b4ad125bd97bd97b # 31.11.3
-      - uses: DeterminateSystems/update-flake-lock@da03c0f078bc4b2c37ee4f7e072d34bf8f188bb3 # v29
+      - uses: actions/checkout@v7.0.1
+      - uses: cachix/install-nix-action@v31.11.3
+      - uses: DeterminateSystems/update-flake-lock@v29
         with:
           branch: update/flake-lock
           pr-title: Update flake lock
