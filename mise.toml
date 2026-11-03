@@ -1,14 +1,18 @@
+[tasks.lint]
+description = "Run static linters"
+run = [
+  "nix run --inputs-from . nixpkgs#deadnix -- --fail --exclude hardware -- .",
+  "nix run --inputs-from . nixpkgs#jactionlint"
+]
+
 [tasks.codegen]
 description = "Regenerate flake file"
 run = "nix run .#write-flake"
 
 [tasks.check]
-description = "Verify flake evaluates and perform checks"
+description = "Evaluate and check flake"
 depends = ["codegen"]
-run = [
-  "nix flake check",
-  "nix run --inputs-from . nixpkgs#deadnix -- --fail --exclude hardware -- ."
-]
+run = "nix flake check"
 
 [tasks.update]
 description = "Update lock file"
