@@ -9,17 +9,19 @@ on:
     - cron: "30 */6 * * *"
   workflow_dispatch:
 
-permissions:
-  contents: write
-  pull-requests: write
-  issues: write
-  statuses: write
-
 jobs:
   renovate:
+    name: Renovate
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      statuses: write
     steps:
-      - uses: renovatebot/github-action@v46.3.8
+      - name: Renovate
+        uses: renovatebot/github-action@v46.3.8
         with:
           token: ${{ secrets.RENOVATE_TOKEN || github.token }}
         env:
@@ -27,11 +29,23 @@ jobs:
 
   update-flake-lock:
     if: github.event.schedule == '30 */6 * * *' || github.event_name == 'workflow_dispatch'
+    name: Update flake lock
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
-      - uses: actions/checkout@v7.0.1
-      - uses: cachix/install-nix-action@v31.11.3
-      - uses: DeterminateSystems/update-flake-lock@v29
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31.11.3
+
+      - name: Update flake lock
+        uses: DeterminateSystems/update-flake-lock@v29
         with:
           branch: update/flake-lock
           pr-title: Update flake lock
