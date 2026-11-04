@@ -1,23 +1,18 @@
-[settings]
-disable_backends = ["asdf"] # cannot be updated by Renovate
-
-[tools]
-"aqua:astral-sh/uv" = "latest"
-gh = "latest"
-"pipx:cruft" = "latest"
-python = "latest"
+[tasks.lint]
+description = "Run static linters"
+run = [
+  "nix run --inputs-from . nixpkgs#deadnix -- --fail --exclude hardware -- .",
+  "nix run --inputs-from . nixpkgs#jactionlint"
+]
 
 [tasks.codegen]
 description = "Regenerate flake file"
 run = "nix run .#write-flake"
 
 [tasks.check]
-description = "Verify flake evaluates and perform checks"
+description = "Evaluate and check flake"
 depends = ["codegen"]
-run = [
-  "nix flake check",
-  "nix run nixpkgs#deadnix -- --fail --exclude hardware -- ."
-]
+run = "nix flake check"
 
 [tasks.update]
 description = "Update lock file"
@@ -26,7 +21,7 @@ run = "nix flake update"
 
 [tasks."update:auth"]
 description = "Update lock file using GitHub token"
-run = ['nix flake update --option access-tokens "github.com=$(gh auth token)"']
+run = ['nix flake update --option access-tokens "github.com=$(nix run --inputs-from . nixpkgs#gh -- auth token)"']
 
 [tasks.hardware]
 description = "Regenerate hardware configuration for this machine"
@@ -44,11 +39,3 @@ case "$(uname -s)" in
   *)      sudo  nixos-rebuild switch --flake . ;;
 esac
 '''
-
-[tasks."template:update"]
-description = "Update project with the latest changes from the template"
-run = "cruft update"
-
-[tasks."template:restore"]
-description = "Restore template-managed files"
-run = "cruft diff | git apply"
