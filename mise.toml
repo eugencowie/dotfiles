@@ -2,7 +2,7 @@
 description = "Run static linters"
 run = [
   "nix run --inputs-from . nixpkgs#deadnix -- --fail --exclude hardware -- .",
-  "nix run --inputs-from . nixpkgs#jactionlint"
+  "nix shell --inputs-from . nixpkgs#jactionlint nixpkgs#shellcheck -c jactionlint"
 ]
 
 [tasks.codegen]
