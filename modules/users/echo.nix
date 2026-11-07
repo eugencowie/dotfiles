@@ -39,6 +39,7 @@
     ai._.claude
     ai._.ccusage
     ai._.t3code
+    ai._.comfyui
 
     # Configure desktop environment
     browser._.helium
