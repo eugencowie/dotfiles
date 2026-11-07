@@ -3,6 +3,10 @@
 # Docs: https://gh.io/actions-lockfile
 version: 'v0.0.3'
 workflows:
+    '.github/workflows/lint.yml':
+        - 'actions/checkout@v7.0.1'
+        - 'cachix/install-nix-action@v31.11.3'
+        - 'jdx/mise-action@v5.2.6'
     '.github/workflows/renovate.yml':
         - 'actions/checkout@v7.0.1'
         - 'cachix/install-nix-action@v31.11.3'
@@ -40,6 +44,11 @@ dependencies:
             - 'juliangruber/read-file-action@271ff311a4947af354c6abcd696a306553b9ec18'
             - 'pedrolamas/handlebars-action@2995d7eadacbc8f2f6ab8431a01d84a5fa3b8bb4'
             - 'peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1'
+    'jdx/mise-action@v5.2.6':
+        ref: 'v5.2.6'
+        commit: 'sha1-f5be966e4a917d54244728e6a5fdcd1d93a35e6c'
+        owner_id: 216188
+        repo_id: 738284564
     'juliangruber/read-file-action@271ff311a4947af354c6abcd696a306553b9ec18':
         ref: 'v1.1.8'
         commit: 'sha1-271ff311a4947af354c6abcd696a306553b9ec18'
