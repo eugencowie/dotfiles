@@ -10,7 +10,7 @@
     (user-shell "zsh")
 
     # Configure remote access
-    remote._.vscode
+    remote._.t3code-wsl
 
     # Configure terminal environment
     shell._.zsh
