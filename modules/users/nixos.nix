@@ -23,6 +23,7 @@
       name = "Eugén Cowie";
       email = "eugencowie@users.noreply.github.com";
     })
+    vcs._.gitlab
     vcs._.jujutsu
     diff._.meld
     editor._.lazyvim
