@@ -2,7 +2,9 @@
 description = "Run static linters"
 run = [
   "nix run --inputs-from . nixpkgs#deadnix -- --fail --exclude hardware -- .",
-  "nix shell --inputs-from . nixpkgs#jactionlint nixpkgs#shellcheck -c jactionlint"
+  # Uses the jactionlint override in modules/lint.nix; switch back to
+  # nixpkgs#jactionlint when that override is dropped.
+  "nix shell .#jactionlint --inputs-from . nixpkgs#shellcheck -c jactionlint"
 ]
 
 [tasks.codegen]
