@@ -49,6 +49,7 @@ jobs:
       - name: Update flake lock
         uses: DeterminateSystems/update-flake-lock@v29
         with:
+          token: ${{ secrets.RENOVATE_TOKEN || github.token }}
           branch: update/flake-lock
           pr-title: Update flake lock
           commit-msg: Update flake lock
