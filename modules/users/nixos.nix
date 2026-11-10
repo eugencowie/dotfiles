@@ -18,6 +18,7 @@
 
     # Configure development environment
     env._.mise
+    env._.dotnet
     (vcs._.git {
       name = "Eugén Cowie";
       email = "eugencowie@users.noreply.github.com";
