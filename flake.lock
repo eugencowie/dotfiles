@@ -647,11 +647,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794384979,
-        "narHash": "sha256-z22MvzAtGxwqQhnuDADZNuHRcX0J4guiQdzxxZU8SO0=",
+        "lastModified": 1794414736,
+        "narHash": "sha256-am74g+iYl5LSbWtqgE4yOYE1G0odVtWRxr6Z60nmMEk=",
         "owner": "omarcresp",
         "repo": "t3code-flake",
-        "rev": "2a596915bb918089730b315689ede782c3f3b912",
+        "rev": "1bb7dbf10218e6c907f0a3d490a498be6b5ef5d1",
         "type": "github"
       },
       "original": {
