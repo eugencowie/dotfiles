@@ -24,6 +24,10 @@
   # Define hostname and user accounts on all systems
   den.default.includes = with den.provides; [ hostname define-user ];
 
+  # Let user aspects configure the hosts they are on
+  den.schema.host.includes = [ den.batteries.user-aspects ];
+  den.migrations.user-host-content.acknowledged = true; # denful/den#694
+
   # Manage user environments on all systems
   den.schema.user.classes = lib.mkDefault [ "homeManager" ];
 
