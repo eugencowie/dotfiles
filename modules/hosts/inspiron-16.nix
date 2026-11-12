@@ -20,6 +20,7 @@
 
     # Enable Docker Desktop WSL integration
     wsl.docker-desktop.enable = true;
+    wsl.interop.register = true;
 
   };
 
