@@ -29,4 +29,9 @@
 
   ];
 
+  # Use separate Git identity for work repos
+  den.aspects.nixos.homeManager.programs.git.includes = [
+    { condition = "gitdir:~/Repos/"; path = "~/.config/git/work"; }
+  ];
+
 }
