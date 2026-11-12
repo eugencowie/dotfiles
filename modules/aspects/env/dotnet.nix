@@ -10,11 +10,13 @@
       export PATH="$PATH:$HOME/.dotnet/tools"
     '';
 
-    # ICU is required by the dynamically linked .NET runtime on NixOS
+    # ICU is required by the dynamically linked .NET runtime on NixOS.
+    # Cairo, CUPS and Pango are linked by the Chromium binary that
+    # Playwright for .NET downloads.
     os = { pkgs, ... }: lib.optionalAttrs (host.class == "nixos") {
       programs.nix-ld = {
         enable = true;
-        libraries = [ pkgs.icu ];
+        libraries = with pkgs; [ icu cairo cups pango ];
       };
     };
 
