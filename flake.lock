@@ -121,11 +121,11 @@
     "cursor-plugins": {
       "flake": false,
       "locked": {
-        "lastModified": 1794384576,
-        "narHash": "sha256-mmxJFRHgDc0zpfyrzUZCoA+PPQV9lNlkuJ0xsnkaXLQ=",
+        "lastModified": 1794466422,
+        "narHash": "sha256-mJPXPDaQpD4WdXRhrNHViE+a2rkp6XsZL/PlGeT+5P0=",
         "owner": "cursor",
         "repo": "plugins",
-        "rev": "5866df557357d005b3c0c9d3da0d9e739b4bdde3",
+        "rev": "a5539b15a3d56e04992565aafee2b37051329ce3",
         "type": "github"
       },
       "original": {
@@ -156,11 +156,11 @@
     },
     "den": {
       "locked": {
-        "lastModified": 1794375580,
-        "narHash": "sha256-6tixj2XPwcEJBOrMtGrPM5tvz/uOJTzp3em1hWnibl4=",
+        "lastModified": 1794428243,
+        "narHash": "sha256-xO3H84l+hCdmCZeYTz2ZCDR22WVa4eSLcUDaX4MhMU0=",
         "owner": "vic",
         "repo": "den",
-        "rev": "1ebb7de44c17f8873862480193dad2c75a9c1d3b",
+        "rev": "a66a7789483bd5eb95276cee8df4b4ea138ed4f7",
         "type": "github"
       },
       "original": {
@@ -416,11 +416,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1794397294,
-        "narHash": "sha256-ldRd1UWymZ+B1ngo5vNM2WYUbUYE0p8yTY6XIZJoc7A=",
+        "lastModified": 1794446492,
+        "narHash": "sha256-AIiEQTIvcYJZbIpJUEiZ/y6P2cIL7OVaZjncpv4FlLM=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "3c4f3e7ccf54c7279659536160f9c58de38073c1",
+        "rev": "a4ef5bdd670dc14d115a2f4cd38a2955303254f3",
         "type": "github"
       },
       "original": {
@@ -484,11 +484,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1794042290,
-        "narHash": "sha256-ziZn2PvCJE5JEEpqTdxXwJpPB+L3YqoCpTAMCzyaP3U=",
+        "lastModified": 1794192123,
+        "narHash": "sha256-SvB8u5qaJAOwZZyZciqTVOg/rBoUs2w0sFTU6ED51AQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f4a03c008967841f2a0b3cb7c436fc6fc31671f6",
+        "rev": "177d0540942fb205af6993b1d5fa0b57799e09f8",
         "type": "github"
       },
       "original": {
@@ -647,11 +647,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794414736,
-        "narHash": "sha256-am74g+iYl5LSbWtqgE4yOYE1G0odVtWRxr6Z60nmMEk=",
+        "lastModified": 1794437881,
+        "narHash": "sha256-wIeCNQqReVSQVlPYt4CJvasO6UuS4UbZheNnxRbpc1c=",
         "owner": "omarcresp",
         "repo": "t3code-flake",
-        "rev": "1bb7dbf10218e6c907f0a3d490a498be6b5ef5d1",
+        "rev": "2820c530dcef28e36d749db25b0520eaceefddbe",
         "type": "github"
       },
       "original": {
