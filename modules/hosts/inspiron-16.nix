@@ -18,6 +18,9 @@
       RestartSec = "2s";
     };
 
+    # Enable Docker Desktop WSL integration
+    wsl.docker-desktop.enable = true;
+
   };
 
   # Include host aspects
