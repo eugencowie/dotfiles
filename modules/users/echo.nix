@@ -20,7 +20,7 @@
     # Configure terminal environment
     shell._.zsh
     prompts._.starship
-    multiplex._.zellij
+    multiplex._.rex
     term._.ghostty
 
     # Configure development environment
