@@ -121,11 +121,11 @@
     "cursor-plugins": {
       "flake": false,
       "locked": {
-        "lastModified": 1795309357,
-        "narHash": "sha256-prQwn1as83NuoYIDee+ZJ2ETDVNoFbHNabSwzpy70mk=",
+        "lastModified": 1795487934,
+        "narHash": "sha256-FRYs+0KkT/Xt5nwWUFer3FOGetEZjUyjhe89JEEL5kk=",
         "owner": "cursor",
         "repo": "plugins",
-        "rev": "7a583913eb1b8d1a0ee76753d1a2cf072e7b54f9",
+        "rev": "005d8f6e8ec057b738adcd08a08b30db0478402d",
         "type": "github"
       },
       "original": {
@@ -156,11 +156,11 @@
     },
     "den": {
       "locked": {
-        "lastModified": 1795224939,
-        "narHash": "sha256-kbhey6X+XXiYGkNAjxKNK7XpQTski/8tStIYaG4nli4=",
+        "lastModified": 1795492927,
+        "narHash": "sha256-uOMfoQLIIvRr6oPpMFhGI0fGzz4/77Tv9QxKwG18WYg=",
         "owner": "vic",
         "repo": "den",
-        "rev": "27efd748801b13f86d49ab77e6d658684348c1fb",
+        "rev": "74d921bae01887cd2770485099171b8d21af8c8d",
         "type": "github"
       },
       "original": {
@@ -416,11 +416,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1795416666,
-        "narHash": "sha256-b1GmfrMPoZ2ANkR0we9Q9KQN6n1e+vNyDqt1p4CNEAY=",
+        "lastModified": 1795495638,
+        "narHash": "sha256-hhROWq9062PdIznKMqiQuy3L9F7l4LHwofEVrcncfZM=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "5330ee115c06d2b43f49e902130125eab579b22f",
+        "rev": "45e6e554481f962d4134021d3a63c96d8755f395",
         "type": "github"
       },
       "original": {
@@ -546,10 +546,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1795116584,
-        "narHash": "sha256-sodLKItgiZdA4JQowYVogqE02b4SmGTPB1ux9pyEUrk=",
+        "lastModified": 1795467078,
+        "narHash": "sha256-Q+GqRAQCGrpaERDvjAR7B0T5AMqnQWullUVDCskIQOU=",
         "type": "tarball",
-        "url": "https://pkgs.superlogical.com/rex/nix/preview/0.1.0-preview.22.tar.gz"
+        "url": "https://pkgs.superlogical.com/rex/nix/preview/0.1.0-preview.23.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -599,11 +599,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1795038909,
-        "narHash": "sha256-u9VYWK6f9T8ZuMliRvX4LUuvJ/k5+6M5y35cZgsyJ8A=",
+        "lastModified": 1795479262,
+        "narHash": "sha256-bzTDA4xxj8+KNo/qWDgDGOKqfWWlH5GCkVw+e70HWu0=",
         "owner": "nix-community",
         "repo": "stylix",
-        "rev": "44aafe27b8b3427201dd53c6a464c196b6a956dd",
+        "rev": "926063673683f3ed4810ae3edac4d69df7adf42a",
         "type": "github"
       },
       "original": {
@@ -665,11 +665,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795432128,
-        "narHash": "sha256-j61lohuWIyqJC5rOWY3Lp7091Jj2BehGQntLwcZKtFU=",
+        "lastModified": 1795503884,
+        "narHash": "sha256-EoRtnFCt7VCpKFy0xPY82YioGQSmlbDsfVxJyxZ+soE=",
         "owner": "omarcresp",
         "repo": "t3code-flake",
-        "rev": "df4a31016b8c2070c91fa96801ba51f781314980",
+        "rev": "26ad24eeeea31c0cb26a8cc49bcfc2693755d35a",
         "type": "github"
       },
       "original": {
